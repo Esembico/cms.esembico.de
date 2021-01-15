@@ -1,0 +1,76 @@
+body {
+  margin: 0;
+  background-color: var(--main-background);
+  color: var(--main-color);
+}
+
+body.dark {
+  --sidebar-background: #2f323a;
+  --sidebar-color: white;
+  --main-hover-background: #0066ff;
+  --main-hover-color: white;
+  --main-background: #212121;
+  --main-color: var(--sidebar-color);
+}
+
+body.light {
+  --sidebar-background: #eee;
+  --sidebar-color: black;
+  --main-hover-background: #0066ff;
+  --main-hover-color: white;
+  --main-background: white;
+  --main-color: black;
+}
+
+.main {
+  margin-left: 240px;
+}
+
+.container {
+  margin: 0 10px 0 10px;
+}
+
+.col {
+  float: left;
+  margin-top: 6px;
+}
+
+.col-25 {
+  width: 25%;
+}
+
+.col-75 {
+  width: 75%;
+}
+
+.col-100 {
+  width: 100%;
+}
+
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) {
+  .col {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+}

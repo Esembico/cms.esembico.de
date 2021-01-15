@@ -1,0 +1,27 @@
+.data-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 10px 0 0;
+}
+
+.data-list li {
+  border: 1px solid #ddd;
+  margin-top: -1px;
+  padding: 12px;
+}
+
+.data-list li.entry {
+  cursor: pointer;
+}
+
+.data-list li.header {
+  font-size: large;
+  font-weight: bold;
+  background-color: var(--sidebar-background);
+}
+
+.data-list li.entry.active,
+.data-list li.entry:hover {
+  background-color: var(--main-hover-background);
+  color: var(--main-hover-color);
+}

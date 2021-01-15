@@ -1,0 +1,28 @@
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table td {
+  border-left: 1px solid var(--main-color);
+  border-right: 1px solid var(--main-color);
+  padding: 8px 10px;
+}
+
+.data-table td:first-child {
+  border-left: none;
+}
+
+.data-table td:last-child {
+  border-right: none;
+}
+
+.data-table tbody tr {
+  cursor: pointer;
+}
+
+.data-table tbody tr:hover,
+.data-table tbody tr.active {
+  background-color: var(--main-hover-background);
+  color: var(--main-hover-color);
+}

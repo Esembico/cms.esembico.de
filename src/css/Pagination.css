@@ -1,0 +1,16 @@
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: var(--main-color);
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination a.active,
+.pagination a:hover {
+  background-color: var(--main-hover-background);
+  color: var(--main-hover-color);
+}

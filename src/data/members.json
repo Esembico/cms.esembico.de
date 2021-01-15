@@ -1,0 +1,55 @@
+{
+  "count": 4,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 2,
+      "name": "Sebastian",
+      "artist_name": "Esbi",
+      "titles": "Management Assistant in IT Systems | Business Analyst | Project Manager | Tester | Developer",
+      "bio": "Would be very happy to be supported by robot in old age.\r\nOn the way there I try to list interesting findings as prototypes.",
+      "image": {
+        "id": 1,
+        "url": "/static/images/team/esbi.png",
+        "alt": "Esbi"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Marc",
+      "artist_name": "Embi",
+      "titles": "System Engineer | Professional coder/developer",
+      "bio": "VBA | Java\r\nI would like to take my programmning skills to the next level.",
+      "image": {
+        "id": 2,
+        "url": "/static/images/team/embi.png",
+        "alt": "Embi"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Denis",
+      "artist_name": "Ardi",
+      "titles": "Student",
+      "bio": "I like to learn everything that has to do with computers and programming.\r\nWould also like to have a self-build robot.",
+      "image": {
+        "id": 3,
+        "url": "/static/images/team/ardi.jpg",
+        "alt": "Ardi"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Tixi",
+      "artist_name": "Tixi",
+      "titles": "Robot | A. I.",
+      "bio": "I want to be the best robot in the world.\\nWould like to support and help where I can.",
+      "image": {
+        "id": 4,
+        "url": "/static/images/team/tixi.jpg",
+        "alt": "Tixi"
+      }
+    }
+  ]
+}

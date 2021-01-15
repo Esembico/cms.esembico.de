@@ -1,0 +1,464 @@
+{
+  "count": 31,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 1,
+      "type": "misc",
+      "url": "https://www.youtube.com/watch?v=PbtukN4o1Hw&feature=youtu.be",
+      "title": "Create your own avatar with GIMP",
+      "description": "Click/Tap the image for more details",
+      "image": {
+        "id": 10,
+        "url": "/static/images/rec/1 avatar.png",
+        "width": 170,
+        "height": 90,
+        "alt": "avatar"
+      }
+    },
+    {
+      "id": 2,
+      "type": "misc",
+      "url": "https://www.sololearn.com/",
+      "title": "Online and mobile learning platform",
+      "description": "Learn Playing. Play learning",
+      "image": {
+        "id": 11,
+        "url": "/static/images/rec/SoloLearn.jpg",
+        "width": 143,
+        "height": 88,
+        "alt": "SoloLearn"
+      }
+    },
+    {
+      "id": 3,
+      "type": "misc",
+      "url": "https://www.kaggle.com/",
+      "title": "Community of data scientists and machine learning ",
+      "description": "Your Home for Data Science",
+      "image": {
+        "id": 12,
+        "url": "/static/images/rec/kaggle.jpeg",
+        "width": 143,
+        "height": 88,
+        "alt": "kaggle"
+      }
+    },
+    {
+      "id": 4,
+      "type": "misc",
+      "url": "https://repl.it/",
+      "title": "Online IDE",
+      "description": "Show me what you've got!",
+      "image": {
+        "id": 13,
+        "url": "/static/images/rec/repl.png",
+        "width": 143,
+        "height": 88,
+        "alt": "repl.it"
+      }
+    },
+    {
+      "id": 5,
+      "type": "misc",
+      "url": "/recommendations/dbvsba",
+      "title": "Data Scientist vs Business Analyst",
+      "description": "Here's the Difference",
+      "image": {
+        "id": 14,
+        "url": "/static/images/rec/DSvsBA.jpg",
+        "width": 220,
+        "height": 88,
+        "alt": "DSvsBA"
+      }
+    },
+    {
+      "id": 6,
+      "type": "misc",
+      "url": "http://pythontutor.com/",
+      "title": "Visualize code execution",
+      "description": "See what happens in each line of your code",
+      "image": {
+        "id": 15,
+        "url": "/static/images/rec/pythontutor.PNG",
+        "width": 220,
+        "height": 88,
+        "alt": "pythontutor"
+      }
+    },
+    {
+      "id": 7,
+      "type": "misc",
+      "url": "https://www.freeformatter.com/",
+      "title": "Free Online Tools for Developers",
+      "description": "Formatters | Validators | Converters\n\rTest your xml structure agains xsd or transform your file with xslt etc.",
+      "image": {
+        "id": 16,
+        "url": "/static/images/rec/freeformatter.PNG",
+        "width": 180,
+        "height": 180,
+        "alt": "freeformatter"
+      }
+    },
+    {
+      "id": 8,
+      "type": "misc",
+      "url": "https://www.udemy.com/",
+      "title": "Online Education Platform",
+      "description": "Learn what you want and improve your skills.",
+      "image": {
+        "id": 17,
+        "url": "/static/images/rec/udemy.jpg",
+        "width": 180,
+        "height": 180,
+        "alt": "udemy"
+      }
+    },
+    {
+      "id": 9,
+      "type": "movie",
+      "url": "https://www.imdb.com/title/tt0986263/",
+      "title": "SURROGATES",
+      "image": {
+        "id": 18,
+        "url": "/static/images/rec/surrogates.jpg",
+        "width": 90,
+        "height": 135,
+        "alt": "surrogates"
+      },
+      "field1": "12",
+      "field2": "2009"
+    },
+    {
+      "id": 10,
+      "type": "movie",
+      "url": "https://www.imdb.com/title/tt0212720/",
+      "title": "AI",
+      "image": {
+        "id": 19,
+        "url": "/static/images/rec/ai.jpg",
+        "width": 90,
+        "height": 135,
+        "alt": "ai"
+      },
+      "field1": "12",
+      "field2": "2001"
+    },
+    {
+      "id": 11,
+      "type": "movie",
+      "url": "https://www.imdb.com/title/tt2317225/",
+      "title": "The Machine",
+      "image": {
+        "id": 20,
+        "url": "/static/images/rec/the_machine.jpg",
+        "width": 90,
+        "height": 135,
+        "alt": "the machine"
+      },
+      "field1": "16",
+      "field2": "2013"
+    },
+    {
+      "id": 12,
+      "type": "movie",
+      "url": "https://www.imdb.com/title/tt1386703/",
+      "title": "Total Recall",
+      "image": {
+        "id": 21,
+        "url": "/static/images/rec/total_recall.jpg",
+        "width": 90,
+        "height": 135,
+        "alt": "total recall"
+      },
+      "field1": "12",
+      "field2": "2012"
+    },
+    {
+      "id": 13,
+      "type": "movie",
+      "url": "https://www.imdb.com/title/tt1446714/",
+      "title": "Prometheus",
+      "image": {
+        "id": 22,
+        "url": "/static/images/rec/prometheus.jpg",
+        "width": 90,
+        "height": 135,
+        "alt": "prometheus"
+      },
+      "field1": "16",
+      "field2": "2012"
+    },
+    {
+      "id": 14,
+      "type": "movie",
+      "url": "https://www.imdb.com/title/tt1990314/",
+      "title": "Robot & Frank",
+      "image": {
+        "id": 23,
+        "url": "/static/images/rec/robot_frank.jpg",
+        "width": 90,
+        "height": 135,
+        "alt": "robot frank"
+      },
+      "field1": "0",
+      "field2": "2012"
+    },
+    {
+      "id": 15,
+      "type": "movie",
+      "url": "https://www.imdb.com/title/tt1535108/",
+      "title": "Elysium",
+      "image": {
+        "id": 24,
+        "url": "/static/images/rec/elysium.jpg",
+        "width": 90,
+        "height": 135,
+        "alt": "elysium"
+      },
+      "field1": "16",
+      "field2": "2013"
+    },
+    {
+      "id": 16,
+      "type": "movie",
+      "url": "https://www.imdb.com/title/tt1483013/",
+      "title": "Oblivion",
+      "image": {
+        "id": 25,
+        "url": "/static/images/rec/oblivion.jpg",
+        "width": 90,
+        "height": 135,
+        "alt": "oblivion"
+      },
+      "field1": "12",
+      "field2": "2013"
+    },
+    {
+      "id": 17,
+      "type": "movie",
+      "url": "https://www.imdb.com/title/tt1971325/",
+      "title": "Automata",
+      "image": {
+        "id": 26,
+        "url": "/static/images/rec/automata.jpg",
+        "width": 90,
+        "height": 135,
+        "alt": "automata"
+      },
+      "field1": "12",
+      "field2": "2014"
+    },
+    {
+      "id": 18,
+      "type": "movie",
+      "url": "https://www.imdb.com/title/tt1823672/",
+      "title": "Chappie",
+      "image": {
+        "id": 27,
+        "url": "/static/images/rec/chappie.jpg",
+        "width": 90,
+        "height": 135,
+        "alt": "chappie"
+      },
+      "field1": "12",
+      "field2": "2015"
+    },
+    {
+      "id": 19,
+      "type": "movie",
+      "url": "https://www.imdb.com/title/tt0119116/",
+      "title": "The Fifth Element",
+      "image": {
+        "id": 28,
+        "url": "/static/images/rec/fifth_element.jpg",
+        "width": 90,
+        "height": 135,
+        "alt": "fifth element"
+      },
+      "field1": "12",
+      "field2": "1997"
+    },
+    {
+      "id": 20,
+      "type": "movie",
+      "url": "https://www.imdb.com/title/tt0470752/",
+      "title": "Ex Machina",
+      "image": {
+        "id": 29,
+        "url": "/static/images/rec/ex_machina.jpg",
+        "width": 90,
+        "height": 135,
+        "alt": "ex machina"
+      },
+      "field1": "12",
+      "field2": "2014"
+    },
+    {
+      "id": 21,
+      "type": "movie",
+      "url": "https://www.imdb.com/title/tt6499752/",
+      "title": "Upgrade",
+      "image": {
+        "id": 30,
+        "url": "/static/images/rec/upgrade.jpg",
+        "width": 90,
+        "height": 135,
+        "alt": "upgrade"
+      },
+      "field1": "16",
+      "field2": "2018"
+    },
+    {
+      "id": 22,
+      "type": "movie",
+      "url": "https://www.imdb.com/title/tt1856101/",
+      "title": "Blade Runner 2049",
+      "image": {
+        "id": 31,
+        "url": "/static/images/rec/blade_runner_2049.jpg",
+        "width": 90,
+        "height": 135,
+        "alt": "blade runner 2049"
+      },
+      "field1": "12",
+      "field2": "2017"
+    },
+    {
+      "id": 23,
+      "type": "movie",
+      "url": "https://www.imdb.com/title/tt2239822/",
+      "title": "Valerian",
+      "image": {
+        "id": 32,
+        "url": "/static/images/rec/valerian.jpg",
+        "width": 90,
+        "height": 135,
+        "alt": "valerian"
+      },
+      "field1": "12",
+      "field2": "2017"
+    },
+    {
+      "id": 24,
+      "type": "movie",
+      "url": "https://www.imdb.com/title/tt2209764/",
+      "title": "Transendence",
+      "image": {
+        "id": 33,
+        "url": "/static/images/rec/transcendence.jpg",
+        "width": 90,
+        "height": 135,
+        "alt": "transcendence"
+      },
+      "field1": "12",
+      "field2": "2014"
+    },
+    {
+      "id": 25,
+      "type": "movie",
+      "url": "https://www.imdb.com/title/tt1798709/",
+      "title": "Her",
+      "image": {
+        "id": 34,
+        "url": "/static/images/rec/her.jpg",
+        "width": 90,
+        "height": 135,
+        "alt": "her"
+      },
+      "field1": "12",
+      "field2": "2013"
+    },
+    {
+      "id": 26,
+      "type": "movie",
+      "url": "https://www.imdb.com/title/tt0343818/",
+      "title": "I, Robot",
+      "image": {
+        "id": 35,
+        "url": "/static/images/rec/irobot.jpg",
+        "width": 90,
+        "height": 135,
+        "alt": "irobot"
+      },
+      "field1": "12",
+      "field2": "2004"
+    },
+    {
+      "id": 27,
+      "type": "movie",
+      "url": "https://www.imdb.com/title/tt1104001/",
+      "title": "Tron",
+      "image": {
+        "id": 36,
+        "url": "/static/images/rec/tron.jpg",
+        "width": 90,
+        "height": 135,
+        "alt": "tron"
+      },
+      "field1": "12",
+      "field2": "2004"
+    },
+    {
+      "id": 28,
+      "type": "movie",
+      "url": "https://www.imdb.com/title/tt1731141/",
+      "title": "Ender's game",
+      "image": {
+        "id": 37,
+        "url": "/static/images/rec/enders_game.jpg",
+        "width": 90,
+        "height": 135,
+        "alt": "enders game"
+      },
+      "field1": "12",
+      "field2": "2013"
+    },
+    {
+      "id": 29,
+      "type": "movie",
+      "url": "https://www.imdb.com/title/tt0134847/",
+      "title": "Pitch Black",
+      "image": {
+        "id": 38,
+        "url": "/static/images/rec/pitch_black.jpg",
+        "width": 90,
+        "height": 135,
+        "alt": "pitchblack"
+      },
+      "field1": "16",
+      "field2": "2000"
+    },
+    {
+      "id": 30,
+      "type": "movie",
+      "url": "https://www.imdb.com/title/tt0296572/",
+      "title": "The Chronicles of Riddick",
+      "image": {
+        "id": 39,
+        "url": "/static/images/rec/chronicles_of_riddick.jpg",
+        "width": 90,
+        "height": 135,
+        "alt": "chronicles of riddick"
+      },
+      "field1": "16",
+      "field2": "2004"
+    },
+    {
+      "id": 31,
+      "type": "movie",
+      "url": "https://www.imdb.com/title/tt1411250/",
+      "title": "Riddick",
+      "image": {
+        "id": 40,
+        "url": "/static/images/rec/riddick.jpg",
+        "width": 90,
+        "height": 135,
+        "alt": "riddick"
+      },
+      "field1": "16",
+      "field2": "2013"
+    }
+  ]
+}
