@@ -2,6 +2,7 @@ import React from "react";
 import Row from "../components/Responsive/Row";
 import Column from "../components/Responsive/Column";
 import makeDataPage from "../helpers/makeDataPage";
+import TextField from "../components/Material/TextField";
 
 const columns = [
   {
@@ -29,45 +30,27 @@ const MemberEditor = ({ data, onUpdate }) => {
   return (
     <React.Fragment>
       <Row>
-        <Column width={25}>
-          <label>Name</label>
-        </Column>
-        <Column width={75}>
-          <input
-            type="text"
-            onChange={(e) => onUpdate("name", e.target.value)}
-            value={data.name}
-          />
-        </Column>
-        <Column width={25}>
-          <label>Artist Name</label>
-        </Column>
-        <Column width={75}>
-          <input
-            type="text"
-            onChange={(e) => onUpdate("artist_name", e.target.value)}
-            value={data.artist_name}
-          />
-        </Column>
-        <Column width={25}>
-          <label>Titles</label>
-        </Column>
-        <Column width={75}>
-          <input
-            type="text"
-            onChange={(e) => onUpdate("titles", e.target.value)}
-            value={data.titles}
-          />
-        </Column>
-        <Column width={25}>
-          <label>Bio</label>
-        </Column>
-        <Column width={75}>
-          <textarea
-            onChange={(e) => onUpdate("bio", e.target.value)}
-            value={data.bio}
-          ></textarea>
-        </Column>
+        <TextField
+          label="Name"
+          onChange={(e) => onUpdate("name", e.target.value)}
+          value={data.name}
+        />
+        <TextField
+          label="Artist Name"
+          onChange={(e) => onUpdate("artist_name", e.target.value)}
+          value={data.artist_name}
+        />
+        <TextField
+          label="Titles"
+          onChange={(e) => onUpdate("titles", e.target.value)}
+          value={data.titles}
+        />
+        <TextField
+          label="Bio"
+          onChange={(e) => onUpdate("bio", e.target.value)}
+          value={data.bio}
+          multiline={true}
+        />
       </Row>
     </React.Fragment>
   );

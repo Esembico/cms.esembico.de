@@ -8,6 +8,7 @@ import DataList from "../components/DataList";
 import Container from "../components/Responsive/Container";
 import Row from "../components/Responsive/Row";
 import Column from "../components/Responsive/Column";
+import Button from "../components/Material/Button";
 
 export default function makeDataPage({
   pageHeader,
@@ -63,7 +64,7 @@ export default function makeDataPage({
           <React.Fragment>
             <Container>
               <Row>
-                <button onClick={newEntry}>New</button>
+                <Button onClick={newEntry}>New</Button>
               </Row>
               {mode === "view" && (
                 <DataTable
@@ -103,18 +104,10 @@ export default function makeDataPage({
                           onSave={saveEntry}
                         />
                         <Column width={100}>
-                          <button
-                            style={{ float: "right" }}
-                            onClick={saveEntry}
-                          >
-                            Save
-                          </button>
-                          <button
-                            style={{ float: "right" }}
-                            onClick={() => setMode("view")}
-                          >
+                          <Button onClick={saveEntry}>Save</Button>
+                          <Button onClick={() => setMode("view")}>
                             Cancel
-                          </button>
+                          </Button>
                         </Column>
                       </React.Fragment>
                     )}
