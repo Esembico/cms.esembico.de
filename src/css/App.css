@@ -1,25 +1,25 @@
 body {
   margin: 0;
-  background-color: var(--main-background);
-  color: var(--main-color);
+  background-color: var(--primary-background);
+  color: var(--text-color);
 }
 
 body.dark {
-  --sidebar-background: #2f323a;
-  --sidebar-color: white;
-  --main-hover-background: #0066ff;
-  --main-hover-color: white;
-  --main-background: #212121;
-  --main-color: var(--sidebar-color);
+  --text-color: white;
+  --primary-color: #0066ff;
+  --primary-color-lighter: #0066ffb9;
+  --secondary-color: #0066ff;
+  --primary-background: #212121;
+  --secondary-background: #2f323a;
 }
 
 body.light {
-  --sidebar-background: #eee;
-  --sidebar-color: black;
-  --main-hover-background: #0066ff;
-  --main-hover-color: white;
-  --main-background: white;
-  --main-color: black;
+  --text-color: black;
+  --primary-color: #0066ff;
+  --primary-color-lighter: #0066ffb9;
+  --secondary-color: #0066ff;
+  --primary-background: white;
+  --secondary-background: #eee;
 }
 
 .main {
@@ -58,17 +58,6 @@ body.light {
     width: 100%;
     margin-top: 0;
   }
-}
-
-input[type="text"],
-select,
-textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  resize: vertical;
 }
 
 label {

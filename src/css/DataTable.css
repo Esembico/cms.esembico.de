@@ -4,8 +4,8 @@
 }
 
 .data-table td {
-  border-left: 1px solid var(--main-color);
-  border-right: 1px solid var(--main-color);
+  border-left: 1px solid var(--text-color);
+  border-right: 1px solid var(--text-color);
   padding: 8px 10px;
 }
 
@@ -23,6 +23,6 @@
 
 .data-table tbody tr:hover,
 .data-table tbody tr.active {
-  background-color: var(--main-hover-background);
-  color: var(--main-hover-color);
+  background-color: var(--primary-color);
+  color: var(--text-color);
 }
