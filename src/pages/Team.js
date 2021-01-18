@@ -1,6 +1,5 @@
 import React from "react";
 import Row from "../components/Responsive/Row";
-import Column from "../components/Responsive/Column";
 import makeDataPage from "../helpers/makeDataPage";
 import TextField from "../components/Material/TextField";
 
