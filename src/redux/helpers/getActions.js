@@ -1,9 +1,22 @@
+const generateHeaders = (token) => {
+  const headers = {
+    "Content-Type": "application/json",
+  };
+  if (token) {
+    headers.Authorization = `Token ${token}`;
+  }
+
+  return headers;
+};
+
 export default function getActions(entity, endpoint) {
   const actionEntity = entity.replace(" ", "_").toUpperCase();
   const getPageAction = (page) => {
     return (dispatch) => {
       dispatch({ type: `FETCH_${actionEntity}_PENDING` });
-      fetch(`${process.env.REACT_APP_API_URL}/${endpoint}/?format=json&page=${page}`)
+      fetch(`${process.env.REACT_APP_API_URL}/${endpoint}/?page=${page}`, {
+        headers: generateHeaders(),
+      })
         .then((res) => res.json())
         .then((json) => {
           dispatch({
@@ -45,9 +58,24 @@ export default function getActions(entity, endpoint) {
   };
 
   const commitDataAction = (data) => {
-    return (dispatch) => {
-      // POST Data to server
-      dispatch({ type: `UPDATE_${actionEntity}`, data });
+    return (dispatch, stateGetter) => {
+      const state = stateGetter();
+      const token = state.auth.token;
+      fetch(
+        `${process.env.REACT_APP_API_URL}/${endpoint}/${data.id}/?format=json`,
+        {
+          method: "PUT",
+          headers: generateHeaders(token),
+          body: JSON.stringify(data),
+        }
+      )
+        .then((res) => res.json())
+        .then((json) => {
+          dispatch({ type: `UPDATE_${actionEntity}`, data: json });
+        })
+        .catch((err) => {
+          dispatch({ type: `FETCH_${actionEntity}_ERROR`, error: err });
+        });
     };
   };
 
