@@ -3,20 +3,18 @@ import DataTable from "../components/DataTable/DataTable";
 import Header from "../components/Header";
 import { connect } from "react-redux";
 import LoadingIndicator from "../components/LoadingIndicator";
-import getMappers from "../redux/helpers/getMappers";
 import DataList from "../components/DataList";
 import Container from "../components/Responsive/Container";
 import Row from "../components/Responsive/Row";
 import Column from "../components/Responsive/Column";
 import Button from "../components/Material/Button";
+import StateRegister from "../register/StateRegister";
 
 export default function makeDataPage({
-  pageHeader,
   columns,
   primaryProperty,
   Editor,
   entity,
-  endpoint,
 }) {
   const Component = ({
     data,
@@ -58,7 +56,7 @@ export default function makeDataPage({
 
     return (
       <div>
-        <Header>{pageHeader}</Header>
+        <Header>{StateRegister.getOption(entity, "header")}</Header>
         <LoadingIndicator show={status === "loading"} />
         {status !== "loading" && (
           <React.Fragment>
@@ -120,7 +118,9 @@ export default function makeDataPage({
       </div>
     );
   };
-  const { mapStateToProps, mapDispatchToProps } = getMappers(entity, endpoint);
+  const { mapStateToProps, mapDispatchToProps } = StateRegister.getMappers(
+    entity
+  );
 
   return connect(mapStateToProps, mapDispatchToProps)(Component);
 }

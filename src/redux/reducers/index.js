@@ -1,10 +1,8 @@
 import { combineReducers } from "redux";
-import createReducer from "../helpers/createReducer";
 import auth from "./auth";
+import StateRegister from "../../register/StateRegister";
 
 export default combineReducers({
-  teamMembers: createReducer("team members"),
-  recommendations: createReducer("recommendations"),
-  images: createReducer("images"),
+  ...StateRegister.getReducers(),
   auth,
 });

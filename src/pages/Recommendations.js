@@ -32,9 +32,7 @@ const primaryProperty = {
 };
 
 export default makeDataPage({
-  pageHeader: "Recommendations",
   columns,
   primaryProperty,
   entity: "recommendations",
-  endpoint: "recommendations",
 });

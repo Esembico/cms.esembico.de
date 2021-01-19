@@ -55,10 +55,8 @@ const ImageEditor = ({ data, onUpdate }) => {
 };
 
 export default makeDataPage({
-  pageHeader: "Images",
   columns,
   primaryProperty,
   entity: "images",
-  endpoint: "images",
   Editor: ImageEditor,
 });

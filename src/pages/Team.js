@@ -56,10 +56,8 @@ const MemberEditor = ({ data, onUpdate }) => {
 };
 
 export default makeDataPage({
-  pageHeader: "Team",
   columns,
   primaryProperty,
-  entity: "team members",
-  endpoint: "members",
+  entity: "team",
   Editor: MemberEditor,
 });
