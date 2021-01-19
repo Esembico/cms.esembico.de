@@ -49,7 +49,7 @@ export default function createReducer(entity) {
         const ids = [];
         const lookup = {};
         const pageItems = [];
-        const { data, page, lastPage } = action.payload;
+        const { data, page, nextPage } = action.payload;
         data.forEach((member) => {
           pageItems.push(member.id);
           ids.push(member.id);
@@ -58,7 +58,7 @@ export default function createReducer(entity) {
 
         const newLastPage = Math.max(
           state.lastPage,
-          lastPage || state.lastPage
+          nextPage || state.lastPage
         );
 
         return {
