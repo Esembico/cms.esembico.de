@@ -107,6 +107,11 @@
   left: 0;
 }
 
+.form-group option {
+  background-color: var(--primary-background);
+  color: var(--text-color);
+}
+
 .button-container {
   display: inline-block;
 }
