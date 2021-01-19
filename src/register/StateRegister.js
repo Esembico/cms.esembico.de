@@ -2,20 +2,26 @@ import createReducer from "../redux/helpers/createReducer";
 import getActions from "../redux/helpers/getActions";
 import getMappers from "../redux/helpers/getMappers";
 import getSelectors from "../redux/helpers/getSelectors";
-import { toCamelCase } from "../helpers/caseConverter";
+import { toCamelCase, toUpperCaseFirstChar } from "../helpers/caseConverter";
 
 class StateRegister {
   constructor() {
     this.states = {};
+    this.globalOptions = {};
+  }
+
+  setGlobalOptions(options) {
+    this.globalOptions = options;
   }
 
   register(name, options = {}) {
+    const mergedOptions = { ...this.globalOptions, ...options };
     this.states[name] = {
-      actions: getActions(name, options.endpoint || name),
+      actions: getActions(name, mergedOptions.endpoint || name),
       selectors: getSelectors(name),
-      mappers: getMappers(name, options.endpoint || name),
+      mappers: getMappers(name, mergedOptions.endpoint || name),
       reducer: createReducer(name),
-      header: options.header || name,
+      header: mergedOptions.header || toUpperCaseFirstChar(name),
     };
   }
 

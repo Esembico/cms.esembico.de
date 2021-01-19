@@ -5,3 +5,7 @@ export function toCamelCase(str) {
     })
     .replace(/\s+/g, "");
 }
+
+export function toUpperCaseFirstChar(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
