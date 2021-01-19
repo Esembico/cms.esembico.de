@@ -3,6 +3,7 @@ import getActions from "../redux/helpers/getActions";
 import getMappers from "../redux/helpers/getMappers";
 import getSelectors from "../redux/helpers/getSelectors";
 import { toCamelCase, toUpperCaseFirstChar } from "../helpers/caseConverter";
+import makeDataPage from "../helpers/makeDataPage";
 
 class StateRegister {
   constructor() {
@@ -22,7 +23,30 @@ class StateRegister {
       mappers: getMappers(name, mergedOptions.endpoint || name),
       reducer: createReducer(name),
       header: mergedOptions.header || toUpperCaseFirstChar(name),
+      columns: mergedOptions.columns,
+      primaryProperty: mergedOptions.primaryProperty,
+      editor: mergedOptions.editor,
+      pageComponent: mergedOptions.pageComponent,
     };
+  }
+
+  getRoutes() {
+    const routes = [];
+    Object.entries(this.states).forEach(([name, entry]) => {
+      routes.push({
+        name,
+        path: `/${name}`,
+        component:
+          entry.pageComponent ||
+          makeDataPage({
+            columns: entry.columns,
+            primaryProperty: entry.primaryProperty,
+            entity: name,
+            Editor: entry.editor,
+          }),
+      });
+    });
+    return routes;
   }
 
   getOption(name, option, defaultValue) {
@@ -48,8 +72,8 @@ class StateRegister {
 
   getReducers() {
     const reducers = {};
-    Object.entries(this.states).forEach(([key, value]) => {
-      reducers[toCamelCase(key)] = value.reducer;
+    Object.entries(this.states).forEach(([name, entry]) => {
+      reducers[toCamelCase(name)] = entry.reducer;
     });
 
     return reducers;

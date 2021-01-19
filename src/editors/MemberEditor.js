@@ -1,29 +1,6 @@
 import React from "react";
 import Row from "../components/Responsive/Row";
-import makeDataPage from "../helpers/makeDataPage";
 import TextField from "../components/Material/TextField";
-
-const columns = [
-  {
-    header: "Name",
-    display: "name",
-  },
-  {
-    header: "Artist name",
-    display: "artist_name",
-  },
-  {
-    header: "Title",
-    display: "titles",
-  },
-];
-
-const primaryProperty = {
-  display: (entry) => {
-    return `${entry.name} (${entry.artist_name})`;
-  },
-  header: "Name",
-};
 
 const MemberEditor = ({ data, onUpdate }) => {
   return (
@@ -55,9 +32,4 @@ const MemberEditor = ({ data, onUpdate }) => {
   );
 };
 
-export default makeDataPage({
-  columns,
-  primaryProperty,
-  entity: "team",
-  Editor: MemberEditor,
-});
+export default MemberEditor;

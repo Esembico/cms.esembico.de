@@ -1,29 +1,6 @@
 import React from "react";
 import Row from "../components/Responsive/Row";
-import makeDataPage from "../helpers/makeDataPage";
 import TextField from "../components/Material/TextField";
-
-const columns = [
-  {
-    header: "Url",
-    display: "url",
-  },
-  {
-    header: "Alternate text",
-    display: "alt",
-  },
-  {
-    header: "Dimension",
-    display: (entry) => {
-      return `${entry.width || "auto"} x ${entry.height || "auto"}`;
-    },
-  },
-];
-
-const primaryProperty = {
-  header: "Url",
-  display: "url",
-};
 
 const ImageEditor = ({ data, onUpdate }) => {
   return (
@@ -54,9 +31,4 @@ const ImageEditor = ({ data, onUpdate }) => {
   );
 };
 
-export default makeDataPage({
-  columns,
-  primaryProperty,
-  entity: "images",
-  Editor: ImageEditor,
-});
+export default ImageEditor;

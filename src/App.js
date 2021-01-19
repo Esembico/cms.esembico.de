@@ -8,26 +8,28 @@ import "./css/Material.css";
 
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
-import Recommendations from "./pages/Recommendations";
-import Team from "./pages/Team";
-import Images from "./pages/Images";
 import Login from "./pages/Login";
 import PrivateRoute from "./components/PrivateRoute";
+import stateRegister from "./register/StateRegister";
 
 function App({ token }) {
+  const routes = stateRegister.getRoutes();
   return (
     <Router>
       {token && <Sidebar />}
       <div className={token ? "main" : ""}>
         <Switch>
           <Route exact={true} path="/login" component={Login} />
-          <PrivateRoute exact={true} path="/team" component={Team} />
-          <PrivateRoute
-            exact={true}
-            path="/recommendations"
-            component={Recommendations}
-          />
-          <PrivateRoute exact={true} path="/images" component={Images} />
+          {routes.map((route) => {
+            return (
+              <PrivateRoute
+                key={route.name}
+                exact={true}
+                path={route.path}
+                component={route.component}
+              />
+            );
+          })}
           <PrivateRoute exact={true} path="/" component={Home} />
           <PrivateRoute path="*" component={NotFound} />
         </Switch>
