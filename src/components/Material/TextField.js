@@ -1,13 +1,12 @@
 import React from "react";
 
 export default function TextField({
-  required,
   value,
-  onChange,
   label,
   multiline,
   rows,
   type,
+  ...other
 }) {
   return (
     <div className="form-group">
@@ -16,17 +15,15 @@ export default function TextField({
           className={value ? "has-value" : ""}
           rows={rows || 3}
           value={value}
-          onChange={onChange}
-          required={required}
+          {...other}
         ></textarea>
       )}
       {!multiline && (
         <input
           className={value ? "has-value" : ""}
           type={type || "text"}
-          required={required}
           value={value}
-          onChange={onChange}
+          {...other}
         />
       )}
       <label className="control-label">{label}</label>

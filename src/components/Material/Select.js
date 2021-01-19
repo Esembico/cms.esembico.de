@@ -3,13 +3,13 @@ import React from "react";
 export default function Select({
   label,
   value,
-  onChange,
   options,
   identifierProperty,
+  ...other
 }) {
   return (
     <div className="form-group">
-      <select onChange={onChange}>
+      <select {...other}>
         <option></option>
         {options.map((entry) => {
           return (
