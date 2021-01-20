@@ -1,6 +1,7 @@
 import React from "react";
 import Row from "../components/Responsive/Row";
 import TextField from "../components/Material/TextField";
+import SearchableField from "../components/Material/SearchableField";
 
 const MemberEditor = ({ data, onUpdate }) => {
   return (
@@ -26,6 +27,12 @@ const MemberEditor = ({ data, onUpdate }) => {
           onChange={(e) => onUpdate("bio", e.target.value)}
           value={data.bio}
           multiline={true}
+        />
+        <SearchableField
+          label="Image"
+          entity="images"
+          value={data.image}
+          onChange={(image) => onUpdate("image", image)}
         />
       </Row>
     </React.Fragment>
