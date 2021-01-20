@@ -1,4 +1,7 @@
 export default function getDisplayValue(obj, displayDefinition) {
+  if (typeof obj !== "object") {
+    return obj;
+  }
   if (typeof displayDefinition === "string") {
     return obj[displayDefinition];
   }
@@ -7,5 +10,5 @@ export default function getDisplayValue(obj, displayDefinition) {
     return displayDefinition(obj);
   }
 
-  return undefined;
+  return "";
 }
