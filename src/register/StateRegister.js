@@ -4,6 +4,7 @@ import getMappers from "../redux/helpers/getMappers";
 import getSelectors from "../redux/helpers/getSelectors";
 import { toCamelCase, toUpperCaseFirstChar } from "../helpers/caseConverter";
 import makeDataPage from "../helpers/makeDataPage";
+import makeEditor from "../helpers/makeEditor";
 
 class StateRegister {
   constructor() {
@@ -17,6 +18,10 @@ class StateRegister {
 
   register(name, options = {}) {
     const mergedOptions = { ...this.globalOptions, ...options };
+    let editor = options.editor;
+    if (Array.isArray(editor)) {
+      editor = makeEditor({ proprties: editor });
+    }
     this.states[name] = {
       actions: getActions(name, mergedOptions.endpoint || name),
       selectors: getSelectors(name),
@@ -25,7 +30,7 @@ class StateRegister {
       header: mergedOptions.header || toUpperCaseFirstChar(name),
       columns: mergedOptions.columns,
       primaryProperty: mergedOptions.primaryProperty,
-      editor: mergedOptions.editor,
+      editor,
       pageComponent: mergedOptions.pageComponent,
     };
   }

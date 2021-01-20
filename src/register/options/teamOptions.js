@@ -1,5 +1,3 @@
-import MemberEditor from "../../editors/MemberEditor";
-
 const teamOptions = {
   endpoint: "members",
   columns: [
@@ -22,7 +20,35 @@ const teamOptions = {
     },
     header: "Name",
   },
-  editor: MemberEditor,
+  editor: [
+    {
+      type: "text",
+      label: "Name",
+      name: "name",
+    },
+    {
+      type: "text",
+      label: "Artist name",
+      name: "artist_name",
+    },
+    {
+      type: "text",
+      label: "Titles",
+      name: "titles",
+    },
+    {
+      type: "text",
+      label: "Bio",
+      name: "bio",
+      multiline: true,
+    },
+    {
+      type: "reference",
+      label: "Image",
+      name: "image",
+      to: "images",
+    },
+  ],
 };
 
 export default teamOptions;

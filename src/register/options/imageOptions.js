@@ -1,5 +1,3 @@
-import ImageEditor from "../../editors/ImageEditor";
-
 const imageOptions = {
   columns: [
     {
@@ -21,7 +19,28 @@ const imageOptions = {
     header: "Url",
     display: "url",
   },
-  editor: ImageEditor,
+  editor: [
+    {
+      type: "text",
+      label: "Url",
+      name: "url",
+    },
+    {
+      type: "text",
+      label: "Alt",
+      name: "alt",
+    },
+    {
+      type: "number",
+      label: "Width",
+      name: "width",
+    },
+    {
+      type: "number",
+      label: "Height",
+      name: "height",
+    },
+  ],
 };
 
 export default imageOptions;
