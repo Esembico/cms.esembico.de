@@ -14,7 +14,7 @@ export default function TextField({
         <textarea
           className={value ? "has-value" : ""}
           rows={rows || 3}
-          value={value}
+          value={value || ""}
           {...other}
         ></textarea>
       )}
@@ -22,7 +22,7 @@ export default function TextField({
         <input
           className={value ? "has-value" : ""}
           type={type || "text"}
-          value={value}
+          value={value || ""}
           {...other}
         />
       )}
