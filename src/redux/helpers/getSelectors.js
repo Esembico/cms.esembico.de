@@ -57,6 +57,10 @@ export default function getSelectors(entity) {
     return getState(store) ? getState(store).editedData : null;
   };
 
+  const getFilteredData = (store) => {
+    return getState(store) ? getState(store).filteredData : [];
+  };
+
   return {
     getState,
     getList,
@@ -72,5 +76,6 @@ export default function getSelectors(entity) {
     getSelectedId,
     getSelectedData,
     getEditedData,
+    getFilteredData,
   };
 }

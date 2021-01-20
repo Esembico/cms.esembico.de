@@ -35,6 +35,24 @@ export default function getActions(entity, endpoint) {
     };
   };
 
+  const setFilteredDataAction = (search) => {
+    return (dispatch) => {
+      fetch(`${process.env.REACT_APP_API_URL}/${endpoint}/?search=${search}`, {
+        headers: generateHeaders(),
+      })
+        .then((res) => res.json())
+        .then((json) => {
+          dispatch({
+            type: `SET_FILTERED_DATA_${actionEntity}`,
+            data: json.results,
+          });
+        })
+        .catch((err) => {
+          dispatch({ type: `FETCH_${actionEntity}_ERROR`, error: err });
+        });
+    };
+  };
+
   const fetchAction = () => {
     return getPageAction(1);
   };
@@ -86,5 +104,6 @@ export default function getActions(entity, endpoint) {
     setEditedDataAction,
     updateEditedDataAction,
     commitDataAction,
+    setFilteredDataAction,
   };
 }

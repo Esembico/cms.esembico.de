@@ -156,3 +156,19 @@
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12),
     0 3px 5px -1px rgba(0, 0, 0, 0.2);
 }
+
+.searchable-field-dropdown {
+  margin-top: -2.25rem;
+  border: 1px solid var(--text-color);
+}
+
+.searchable-field-dropdown a {
+  display: block;
+  color: var(--text-color);
+  padding: 10px 0;
+}
+
+.searchable-field-dropdown a:hover,
+.searchable-field-dropdown a.active {
+  background-color: var(--primary-color);
+}

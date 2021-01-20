@@ -58,8 +58,16 @@ class StateRegister {
     return this.states[name].actions;
   }
 
+  getAction(entityName, actionName) {
+    return this.states[entityName].actions[actionName];
+  }
+
   getSelectors(name) {
     return this.states[name].selectors;
+  }
+
+  getSelector(entityName, selectorName) {
+    return this.states[entityName].selectors[selectorName];
   }
 
   getMappers(name) {

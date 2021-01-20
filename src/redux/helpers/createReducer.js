@@ -9,6 +9,7 @@ const initialState = {
   lastLoaded: 0,
   selectedId: null,
   editedData: null,
+  filteredData: [],
 };
 
 export default function createReducer(entity) {
@@ -44,6 +45,11 @@ export default function createReducer(entity) {
         return {
           ...state,
           status: "loading",
+        };
+      case `SET_FILTERED_DATA_${actionEntity}`:
+        return {
+          ...state,
+          filteredData: action.data,
         };
       case `FETCH_${actionEntity}_SUCCESS`:
         const ids = [];
