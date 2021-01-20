@@ -79,11 +79,16 @@ export default function getActions(entity, endpoint) {
     return (dispatch, stateGetter) => {
       const state = stateGetter();
       const token = state.auth.token;
-      fetch(`${process.env.REACT_APP_API_URL}/${endpoint}/${data.id || ""}`, {
-        method: data.id ? "PUT" : "POST",
-        headers: generateHeaders(token),
-        body: JSON.stringify(data),
-      })
+      fetch(
+        `${process.env.REACT_APP_API_URL}/${endpoint}/${
+          data.id ? `${data.id}/` : "/"
+        }`,
+        {
+          method: data.id ? "PUT" : "POST",
+          headers: generateHeaders(token),
+          body: JSON.stringify(data),
+        }
+      )
         .then((res) => res.json())
         .then((json) => {
           dispatch({ type: `UPDATE_${actionEntity}`, data: json });
