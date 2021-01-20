@@ -96,11 +96,7 @@ export default function makeDataPage({
                   <Column width={75}>
                     {Editor && (
                       <React.Fragment>
-                        <Editor
-                          onUpdate={updateEditedData}
-                          data={editedData}
-                          onSave={saveEntry}
-                        />
+                        <Editor onUpdate={updateEditedData} data={editedData} />
                         <Column width={100}>
                           <Button onClick={saveEntry}>Save</Button>
                           <Button onClick={() => setMode("view")}>

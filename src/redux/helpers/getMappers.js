@@ -1,7 +1,7 @@
 import { bindActionCreators } from "redux";
 import StateRegister from "../../register/StateRegister";
 
-export default function getMappers(entity, endpoint) {
+export default function getMappers(entity) {
   const mapStateToProps = (state) => {
     const {
       getError,
