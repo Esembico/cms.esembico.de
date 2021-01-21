@@ -88,7 +88,7 @@ export default function getActions(entity, endpoint) {
       const token = state.auth.token;
       fetch(
         `${process.env.REACT_APP_API_URL}/${endpoint}/${
-          data.id ? `${data.id}/` : "/"
+          data.id ? `${data.id}/` : ""
         }`,
         {
           method: data.id ? "PUT" : "POST",
