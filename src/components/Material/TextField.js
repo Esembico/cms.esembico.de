@@ -41,7 +41,11 @@ export default function TextField({
           {Array.isArray(errors) ? (
             <React.Fragment>
               {errors.map((error, i) => {
-                return <span key={i}>{error}</span>;
+                return (
+                  <span className="error" key={i}>
+                    {error}
+                  </span>
+                );
               })}
             </React.Fragment>
           ) : (
