@@ -49,6 +49,13 @@
   transition: left 0.28s ease, width 0.28s ease;
   z-index: 2;
 }
+
+.form-group select.has-errors ~ .bar::before,
+.form-group input.has-errors ~ .bar::before,
+.form-group textarea.has-errors ~ .bar::before {
+  background: var(--error-color);
+}
+
 .form-group input,
 .form-group textarea {
   display: block;
@@ -105,6 +112,18 @@
 .form-group textarea:focus ~ .bar::before {
   width: 100%;
   left: 0;
+}
+
+.form-group select.has-errors ~ .control-label,
+.form-group input.has-errors ~ .control-label,
+.form-group textarea.has-errors ~ .control-label {
+  color: var(--error-color);
+}
+
+.form-group select.has-errors ~ .bar,
+.form-group input.has-errors ~ .bar,
+.form-group textarea.has-errors ~ .bar {
+  border-bottom: 0.0625rem solid var(--error-color);
 }
 
 .form-group option {

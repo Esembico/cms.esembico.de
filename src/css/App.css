@@ -11,6 +11,7 @@ body.dark {
   --secondary-color: #0066ff;
   --primary-background: #212121;
   --secondary-background: #2f323a;
+  --error-color: red;
 }
 
 body.light {
@@ -20,6 +21,7 @@ body.light {
   --secondary-color: #0066ff;
   --primary-background: white;
   --secondary-background: #eee;
+  --error-color: red;
 }
 
 .main {

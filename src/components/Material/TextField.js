@@ -6,13 +6,21 @@ export default function TextField({
   multiline,
   rows,
   type,
+  errors,
   ...other
 }) {
+  const classes = [];
+  if (value) {
+    classes.push("has-value");
+  }
+  if (errors) {
+    classes.push("has-errors");
+  }
   return (
     <div className="form-group">
       {multiline && (
         <textarea
-          className={value ? "has-value" : ""}
+          className={classes.join(" ")}
           rows={rows || 3}
           value={value || ""}
           {...other}
@@ -20,7 +28,7 @@ export default function TextField({
       )}
       {!multiline && (
         <input
-          className={value ? "has-value" : ""}
+          className={classes.join(" ")}
           type={type || "text"}
           value={value || ""}
           {...other}

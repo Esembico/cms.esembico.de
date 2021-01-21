@@ -4,7 +4,13 @@ import getDisplayValue from "../../helpers/getDisplayValue";
 import stateRegister from "../../register/StateRegister";
 import TextField from "./TextField";
 
-export default function SearchableField({ label, entity, value, onChange }) {
+export default function SearchableField({
+  label,
+  entity,
+  value,
+  onChange,
+  errors,
+}) {
   const [internalValue, setInternalValue] = useState(value);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
@@ -69,6 +75,7 @@ export default function SearchableField({ label, entity, value, onChange }) {
         value={getDisplayValue(internalValue, primaryProperty.display)}
         onChange={onInputChange}
         onKeyDown={onKeyDown}
+        errors={errors}
       />
       {dropdownOpen && (
         <div className="searchable-field-dropdown">

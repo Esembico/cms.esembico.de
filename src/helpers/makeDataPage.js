@@ -38,6 +38,11 @@ export default function makeDataPage({
       fetchData();
     }, [fetchData]);
 
+    useEffect(() => {
+      const errors = validateData(editedData || {});
+      setErrors(errors || {});
+    }, [editedData, validateData]);
+
     const changePage = (page) => {
       selectPage(page);
     };
@@ -48,11 +53,9 @@ export default function makeDataPage({
     };
 
     const saveEntry = () => {
-      const errors = validateData(editedData);
-      if (!errors) {
+      if (Object.keys(errors).length === 0) {
         commitData(editedData);
       }
-      setErrors(errors || {});
     };
 
     const newEntry = () => {
