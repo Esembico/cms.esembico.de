@@ -6,13 +6,21 @@ import SearchableField from "../components/Material/SearchableField";
 function createFieldForProperty({ property, data, onUpdate }) {
   switch (property.type) {
     case "text":
-    case "number":
       return (
         <TextField
           label={property.label}
           value={data[property.name]}
           multiline={property.multiline}
           onChange={(e) => onUpdate(property.name, e.target.value)}
+        />
+      );
+    case "number":
+      return (
+        <TextField
+          label={property.label}
+          value={data[property.name]}
+          multiline={property.multiline}
+          onChange={(e) => onUpdate(property.name, e.target.value || null)}
         />
       );
     case "reference":
