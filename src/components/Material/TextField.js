@@ -36,6 +36,19 @@ export default function TextField({
       )}
       <label className="control-label">{label}</label>
       <i className="bar"></i>
+      {errors && (
+        <React.Fragment>
+          {Array.isArray(errors) ? (
+            <React.Fragment>
+              {errors.map((error, i) => {
+                return <span key={i}>{error}</span>;
+              })}
+            </React.Fragment>
+          ) : (
+            <span className="error">{errors}</span>
+          )}
+        </React.Fragment>
+      )}
     </div>
   );
 }

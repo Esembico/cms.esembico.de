@@ -191,3 +191,8 @@
 .searchable-field-dropdown a.active {
   background-color: var(--primary-color);
 }
+
+.form-group .error {
+  color: var(--error-color);
+  display: block;
+}
