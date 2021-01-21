@@ -1,4 +1,7 @@
 export default function getDisplayValue(obj, displayDefinition) {
+  if (!obj) {
+    return "";
+  }
   if (typeof obj !== "object") {
     return obj;
   }
