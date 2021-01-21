@@ -9,9 +9,10 @@ import makeEditor from "../helpers/makeEditor";
 class StateRegister {
   constructor() {
     this.states = {};
-    this.globalOptions = {
+    this.defaultOptions = {
       validateData: () => {},
     };
+    this.globalOptions = {};
   }
 
   setGlobalOptions(options) {
@@ -19,22 +20,23 @@ class StateRegister {
   }
 
   register(name, options = {}) {
-    const mergedOptions = { ...this.globalOptions, ...options };
+    const mergedOptions = {
+      ...this.defaultOptions,
+      ...this.globalOptions,
+      ...options,
+    };
     let editor = options.editor;
     if (Array.isArray(editor)) {
       editor = makeEditor({ proprties: editor });
     }
     this.states[name] = {
+      ...mergedOptions,
       actions: getActions(name, mergedOptions.endpoint || name),
       selectors: getSelectors(name),
       mappers: getMappers(name, mergedOptions.endpoint || name),
       reducer: createReducer(name),
       header: mergedOptions.header || toUpperCaseFirstChar(name),
-      columns: mergedOptions.columns,
-      primaryProperty: mergedOptions.primaryProperty,
       editor,
-      pageComponent: mergedOptions.pageComponent,
-      validateData: mergedOptions.validateData,
     };
   }
 

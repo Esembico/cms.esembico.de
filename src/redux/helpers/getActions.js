@@ -1,3 +1,5 @@
+import stateRegister from "../../register/StateRegister";
+
 const generateHeaders = (token) => {
   const headers = {
     "Content-Type": "application/json",
@@ -19,12 +21,17 @@ export default function getActions(entity, endpoint) {
       })
         .then((res) => res.json())
         .then((json) => {
+          const getNextPageNumber = stateRegister.getOption(
+            entity,
+            "getNextPageNumber"
+          );
+          const nextPage = getNextPageNumber(json);
           dispatch({
             type: `FETCH_${actionEntity}_SUCCESS`,
             payload: {
               data: json.results,
               page,
-              nextPage: json.next,
+              nextPage,
             },
           });
           return json.results;
