@@ -1,3 +1,5 @@
+import { required } from "../../helpers/validation";
+
 const imageOptions = {
   columns: [
     {
@@ -44,13 +46,8 @@ const imageOptions = {
   validateData: (data) => {
     const errors = {};
 
-    if (!data.url) {
-      errors.url = "Url is required";
-    }
-
-    if (!data.alt) {
-      errors.alt = "Alt is required";
-    }
+    required(errors, "Url", data, "url");
+    required(errors, "Alt", data, "alt");
 
     return errors;
   },

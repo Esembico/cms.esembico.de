@@ -1,3 +1,5 @@
+import { required } from "../../helpers/validation";
+
 const teamOptions = {
   endpoint: "members",
   columns: [
@@ -52,25 +54,11 @@ const teamOptions = {
   validateData: (data) => {
     const errors = {};
 
-    if (!data.name) {
-      errors.name = "Name is required";
-    }
-
-    if (!data.artist_name) {
-      errors.artist_name = "Artist name is required";
-    }
-
-    if (!data.titles) {
-      errors.titles = "Titles is required";
-    }
-
-    if (!data.bio) {
-      errors.bio = "Bio is required";
-    }
-
-    if (!data.image) {
-      errors.image = "Image is required";
-    }
+    required(errors, "Name", data, "name");
+    required(errors, "Artist name", data, "artist_name");
+    required(errors, "Titles", data, "titles");
+    required(errors, "Bio", data, "bio");
+    required(errors, "Image", data, "image");
 
     return errors;
   },
