@@ -4,7 +4,7 @@ import Sidebar from "./components/Sidebar";
 import { connect } from "react-redux";
 
 import "./css/App.css";
-import "./css/Material.css";
+import "./css/Input.css";
 
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";

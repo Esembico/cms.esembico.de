@@ -7,7 +7,7 @@ import DataList from "../components/DataList";
 import Container from "../components/Responsive/Container";
 import Row from "../components/Responsive/Row";
 import Column from "../components/Responsive/Column";
-import Button from "../components/Material/Button";
+import Button from "../components/Input/Button";
 import StateRegister from "../register/StateRegister";
 import stateRegister from "../register/StateRegister";
 

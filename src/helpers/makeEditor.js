@@ -1,7 +1,7 @@
 import React from "react";
 import Row from "../components/Responsive/Row";
-import TextField from "../components/Material/TextField";
-import SearchableField from "../components/Material/SearchableField";
+import TextField from "../components/Input/TextField";
+import SearchableField from "../components/Input/SearchableField";
 
 function createFieldForProperty({ property, data, onUpdate, ...others }) {
   switch (property.type) {

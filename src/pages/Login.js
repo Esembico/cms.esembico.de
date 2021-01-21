@@ -3,8 +3,8 @@ import Container from "../components/Responsive/Container";
 import { connect } from "react-redux";
 import { authAction } from "../redux/reducers/auth";
 import { bindActionCreators } from "redux";
-import TextField from "../components/Material/TextField";
-import Button from "../components/Material/Button";
+import TextField from "../components/Input/TextField";
+import Button from "../components/Input/Button";
 import { Redirect } from "react-router-dom";
 
 const Login = ({ auth, token }) => {
