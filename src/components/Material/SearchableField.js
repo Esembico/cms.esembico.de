@@ -39,6 +39,9 @@ export default function SearchableField({
     setDropdownOpen(!!value);
     setInternalValue(value);
     dispatch(setFilteredDataAction(value));
+    if (!value) {
+      onChange(null);
+    }
   };
 
   const changeSelection = (entry) => {
