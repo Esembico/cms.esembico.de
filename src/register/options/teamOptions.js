@@ -49,6 +49,33 @@ const teamOptions = {
       to: "images",
     },
   ],
+  validateData: (data) => {
+    const errors = {};
+
+    if (!data.name) {
+      errors.name = "Name is required";
+    }
+
+    if (!data.artist_name) {
+      errors.artist_name = "Artist name is required";
+    }
+
+    if (!data.titles) {
+      errors.titles = "Titles is required";
+    }
+
+    if (!data.bio) {
+      errors.bio = "Bio is required";
+    }
+
+    console.log(data.image);
+
+    if (!data.image) {
+      errors.image = "Image is required";
+    }
+
+    return errors;
+  },
 };
 
 export default teamOptions;
