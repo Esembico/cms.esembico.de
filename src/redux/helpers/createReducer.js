@@ -34,6 +34,10 @@ export default function createReducer(entity) {
           editedData: newData,
         };
       case `UPDATE_${actionEntity}`:
+        const page1 = state.byPage[1];
+        if (action.new) {
+          page1.unshift(action.data.id);
+        }
         return {
           ...state,
           byIds: {

@@ -98,7 +98,11 @@ export default function getActions(entity, endpoint) {
       )
         .then((res) => res.json())
         .then((json) => {
-          dispatch({ type: `UPDATE_${actionEntity}`, data: json });
+          dispatch({
+            type: `UPDATE_${actionEntity}`,
+            data: json,
+            new: !data.id,
+          });
         })
         .catch((err) => {
           dispatch({ type: `FETCH_${actionEntity}_ERROR`, error: err });
