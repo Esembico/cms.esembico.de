@@ -3,7 +3,7 @@ import Row from "../components/Responsive/Row";
 import TextField from "../components/Material/TextField";
 import SearchableField from "../components/Material/SearchableField";
 
-function createFieldForProperty({ property, data, onUpdate }) {
+function createFieldForProperty({ property, data, onUpdate, ...others }) {
   switch (property.type) {
     case "text":
       return (
@@ -12,6 +12,7 @@ function createFieldForProperty({ property, data, onUpdate }) {
           value={data[property.name]}
           multiline={property.multiline}
           onChange={(e) => onUpdate(property.name, e.target.value)}
+          {...others}
         />
       );
     case "number":
@@ -21,6 +22,7 @@ function createFieldForProperty({ property, data, onUpdate }) {
           value={data[property.name]}
           multiline={property.multiline}
           onChange={(e) => onUpdate(property.name, e.target.value || null)}
+          {...others}
         />
       );
     case "reference":
@@ -30,6 +32,7 @@ function createFieldForProperty({ property, data, onUpdate }) {
           entity={property.to}
           value={data[property.name]}
           onChange={(value) => onUpdate(property.name, value)}
+          {...others}
         />
       );
     default:
@@ -38,14 +41,19 @@ function createFieldForProperty({ property, data, onUpdate }) {
 }
 
 export default function makeEditor({ proprties }) {
-  const Editor = ({ data, onUpdate }) => {
+  const Editor = ({ data, onUpdate, errors }) => {
     return (
       <React.Fragment>
         <Row>
           {proprties.map((property) => {
             return (
-              <React.Fragment key={property.label}>
-                {createFieldForProperty({ property, data, onUpdate })}
+              <React.Fragment key={property.name}>
+                {createFieldForProperty({
+                  property,
+                  data,
+                  onUpdate,
+                  errors: errors[property.name],
+                })}
               </React.Fragment>
             );
           })}

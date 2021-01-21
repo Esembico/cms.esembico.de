@@ -41,6 +41,22 @@ const imageOptions = {
       name: "height",
     },
   ],
+  validateData: (data) => {
+    const errors = {};
+
+    if (!data.url) {
+      errors.url = "Url is required";
+    }
+    if (!data.alt) {
+      errors.alt = "Alt is required";
+    }
+
+    if (Object.keys(errors).length === 0) {
+      return false;
+    } else {
+      return errors;
+    }
+  },
 };
 
 export default imageOptions;

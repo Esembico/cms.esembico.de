@@ -9,7 +9,9 @@ import makeEditor from "../helpers/makeEditor";
 class StateRegister {
   constructor() {
     this.states = {};
-    this.globalOptions = {};
+    this.globalOptions = {
+      validateData: () => undefined,
+    };
   }
 
   setGlobalOptions(options) {
@@ -32,6 +34,7 @@ class StateRegister {
       primaryProperty: mergedOptions.primaryProperty,
       editor,
       pageComponent: mergedOptions.pageComponent,
+      validateData: mergedOptions.validateData,
     };
   }
 

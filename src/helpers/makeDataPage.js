@@ -9,6 +9,7 @@ import Row from "../components/Responsive/Row";
 import Column from "../components/Responsive/Column";
 import Button from "../components/Material/Button";
 import StateRegister from "../register/StateRegister";
+import stateRegister from "../register/StateRegister";
 
 export default function makeDataPage({
   columns,
@@ -31,6 +32,8 @@ export default function makeDataPage({
     commitData,
   }) => {
     const [mode, setMode] = useState("view");
+    const [errors, setErrors] = useState({});
+    const validateData = stateRegister.getOption(entity, "validateData");
     useEffect(() => {
       fetchData();
     }, [fetchData]);
@@ -45,7 +48,11 @@ export default function makeDataPage({
     };
 
     const saveEntry = () => {
-      commitData(editedData);
+      const errors = validateData(editedData);
+      if (!errors) {
+        commitData(editedData);
+      }
+      setErrors(errors || {});
     };
 
     const newEntry = () => {
@@ -96,7 +103,11 @@ export default function makeDataPage({
                   <Column width={75}>
                     {Editor && (
                       <React.Fragment>
-                        <Editor onUpdate={updateEditedData} data={editedData} />
+                        <Editor
+                          errors={errors}
+                          onUpdate={updateEditedData}
+                          data={editedData}
+                        />
                         <Column width={100}>
                           <Button onClick={saveEntry}>Save</Button>
                           <Button onClick={() => setMode("view")}>
