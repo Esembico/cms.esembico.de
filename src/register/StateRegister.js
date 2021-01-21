@@ -10,7 +10,7 @@ class StateRegister {
   constructor() {
     this.states = {};
     this.globalOptions = {
-      validateData: () => undefined,
+      validateData: () => {},
     };
   }
 
