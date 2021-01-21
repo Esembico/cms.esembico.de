@@ -68,8 +68,6 @@ const teamOptions = {
       errors.bio = "Bio is required";
     }
 
-    console.log(data.image);
-
     if (!data.image) {
       errors.image = "Image is required";
     }
