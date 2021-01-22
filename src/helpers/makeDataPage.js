@@ -95,8 +95,13 @@ export default function makeDataPage({
                   <Column width={25}>
                     <DataList
                       data={data}
+                      pageData={{
+                        current: currentPage,
+                        last: lastPage,
+                      }}
                       primaryProperty={primaryProperty}
                       selected={selectedId}
+                      onPageChange={changePage}
                       onSelect={(id) => {
                         editEntry(id);
                         selectItem(id);
