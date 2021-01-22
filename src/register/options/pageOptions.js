@@ -1,3 +1,5 @@
+import { required } from "../../helpers/validation";
+
 const pageOptions = {
   columns: [
     {
@@ -30,6 +32,13 @@ const pageOptions = {
       name: "content",
     },
   ],
+  validateData: (data) => {
+    const errors = {};
+    required(errors, "Name", data, "name");
+    required(errors, "Slug", data, "slug");
+    required(errors, "Content", data, "content");
+    return errors;
+  },
 };
 
 export default pageOptions;
