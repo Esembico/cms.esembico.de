@@ -5,6 +5,11 @@ import SearchableField from "../components/Input/SearchableField";
 import MarkdownEditor from "../components/Input/MarkdownEditor";
 
 function createFieldForProperty({ property, data, onUpdate, ...others }) {
+  if (property.if) {
+    if (!property.if(data)) {
+      return <React.Fragment />;
+    }
+  }
   switch (property.type) {
     case "text":
       return (
