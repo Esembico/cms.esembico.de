@@ -23,6 +23,7 @@ function createFieldForProperty({ property, data, onUpdate, ...others }) {
           value={data[property.name]}
           onChange={(e) => onUpdate(property.name, e.target.value)}
           options={property.options}
+          {...others}
         />
       );
     case "text":
