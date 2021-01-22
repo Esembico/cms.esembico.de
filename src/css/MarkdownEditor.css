@@ -1,0 +1,24 @@
+.mde-header {
+  background-color: var(--secondary-background);
+}
+
+.mde-header-item button {
+  color: var(--text-color) !important;
+}
+
+.mde-tabs button {
+  color: var(--text-color) !important;
+  background-color: var(--primary-color-lighter) !important;
+  border-color: var(--primary-color-lighter) !important;
+}
+
+.mde-tabs button.selected,
+.mde-tabs button:hover {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+.mde-text {
+  background-color: var(--primary-background);
+  color: var(--text-color);
+}

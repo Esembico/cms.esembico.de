@@ -7,6 +7,7 @@ import { CodeHighlighter, languageVBA, languagePython } from "esembico-common";
 import "react-mde/lib/styles/css/react-mde-editor.css";
 import "react-mde/lib/styles/css/react-mde-toolbar.css";
 import "react-mde/lib/styles/css/react-mde.css";
+import "../../css/MarkdownEditor.css";
 
 const languages = {
   vba: languageVBA,
