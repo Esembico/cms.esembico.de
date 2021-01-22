@@ -4599,7 +4599,7 @@ escodegen@^1.14.1:
 
 "esembico-common@git+https://github.com/Esembico/esembico-common.git":
   version "1.0.0"
-  resolved "git+https://github.com/Esembico/esembico-common.git#89c4ef7d8364451760463e0dd0a3b3b0a69b69de"
+  resolved "git+https://github.com/Esembico/esembico-common.git#3e8c54d8265bf4d9701c0cb98332fa3fce9b4c41"
 
 eslint-config-react-app@^6.0.0:
   version "6.0.0"
