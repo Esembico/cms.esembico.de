@@ -9,15 +9,12 @@ export default function Select({
 }) {
   return (
     <div className="form-group">
-      <select {...other}>
+      <select value={value} {...other}>
         <option></option>
-        {options.map((entry) => {
+        {options.map((option, i) => {
           return (
-            <option
-              selected={value[identifierProperty] === entry[identifierProperty]}
-              value={entry[identifierProperty]}
-            >
-              {entry.id}
+            <option key={i} value={option.value}>
+              {option.display}
             </option>
           );
         })}
