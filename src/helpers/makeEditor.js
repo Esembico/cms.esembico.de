@@ -2,6 +2,7 @@ import React from "react";
 import Row from "../components/Responsive/Row";
 import TextField from "../components/Input/TextField";
 import SearchableField from "../components/Input/SearchableField";
+import MarkdownEditor from "../components/Input/MarkdownEditor";
 
 function createFieldForProperty({ property, data, onUpdate, ...others }) {
   switch (property.type) {
@@ -34,6 +35,17 @@ function createFieldForProperty({ property, data, onUpdate, ...others }) {
           onChange={(value) => onUpdate(property.name, value)}
           {...others}
         />
+      );
+    case "markdown":
+      return (
+        <React.Fragment>
+          <label>{property.label}</label>
+          <MarkdownEditor
+            value={data[property.name]}
+            onChange={(value) => onUpdate(property.name, value)}
+            {...others}
+          />
+        </React.Fragment>
       );
     default:
       return <span>{data[property.name]}</span>;

@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 
 import "./css/App.css";
 import "./css/Input.css";
+import "esembico-common/dist/index.css"
 
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";

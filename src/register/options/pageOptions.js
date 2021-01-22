@@ -25,10 +25,9 @@ const pageOptions = {
       name: "slug",
     },
     {
-      type: "text",
+      type: "markdown",
       label: "Content",
       name: "content",
-      multiline: true,
     },
   ],
 };
