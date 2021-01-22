@@ -11,11 +11,15 @@ function createFieldForProperty({ property, data, onUpdate, ...others }) {
       return <React.Fragment />;
     }
   }
+  let label = property.label;
+  if (typeof label === "function") {
+    label = label(data);
+  }
   switch (property.type) {
     case "select":
       return (
         <Select
-          label={property.label}
+          label={label}
           value={data[property.name]}
           onChange={(e) => onUpdate(property.name, e.target.value)}
           options={property.options}
@@ -24,7 +28,7 @@ function createFieldForProperty({ property, data, onUpdate, ...others }) {
     case "text":
       return (
         <TextField
-          label={property.label}
+          label={label}
           value={data[property.name]}
           multiline={property.multiline}
           onChange={(e) => onUpdate(property.name, e.target.value)}
@@ -34,7 +38,7 @@ function createFieldForProperty({ property, data, onUpdate, ...others }) {
     case "number":
       return (
         <TextField
-          label={property.label}
+          label={label}
           value={data[property.name]}
           multiline={property.multiline}
           onChange={(e) => onUpdate(property.name, e.target.value || null)}
@@ -44,7 +48,7 @@ function createFieldForProperty({ property, data, onUpdate, ...others }) {
     case "reference":
       return (
         <SearchableField
-          label={property.label}
+          label={label}
           entity={property.to}
           value={data[property.name]}
           onChange={(value) => onUpdate(property.name, value)}
@@ -54,7 +58,7 @@ function createFieldForProperty({ property, data, onUpdate, ...others }) {
     case "markdown":
       return (
         <React.Fragment>
-          <label>{property.label}</label>
+          <label>{label}</label>
           <MarkdownEditor
             value={data[property.name]}
             onChange={(value) => onUpdate(property.name, value)}
