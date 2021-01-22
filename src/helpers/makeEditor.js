@@ -3,6 +3,7 @@ import Row from "../components/Responsive/Row";
 import TextField from "../components/Input/TextField";
 import SearchableField from "../components/Input/SearchableField";
 import MarkdownEditor from "../components/Input/MarkdownEditor";
+import Select from "../components/Input/Select";
 
 function createFieldForProperty({ property, data, onUpdate, ...others }) {
   if (property.if) {
@@ -11,6 +12,15 @@ function createFieldForProperty({ property, data, onUpdate, ...others }) {
     }
   }
   switch (property.type) {
+    case "select":
+      return (
+        <Select
+          label={property.label}
+          value={data[property.name]}
+          onChange={(e) => onUpdate(property.name, e.target.value)}
+          options={property.options}
+        />
+      );
     case "text":
       return (
         <TextField
