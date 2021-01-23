@@ -1,4 +1,5 @@
 import React from "react";
+import InputErrors from "./InputErrors";
 
 export default function Select({
   label,
@@ -29,23 +30,7 @@ export default function Select({
       </select>
       <label className="control-label">{label}</label>
       <i className="bar"></i>
-      {errors && (
-        <React.Fragment>
-          {Array.isArray(errors) ? (
-            <React.Fragment>
-              {errors.map((error, i) => {
-                return (
-                  <span className="error" key={i}>
-                    {error}
-                  </span>
-                );
-              })}
-            </React.Fragment>
-          ) : (
-            <span className="error">{errors}</span>
-          )}
-        </React.Fragment>
-      )}
+      <InputErrors errors={errors} />
     </div>
   );
 }
