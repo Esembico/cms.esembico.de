@@ -51,7 +51,7 @@
 }
 
 .form-group *.has-errors ~ .bar::before {
-  background: var(--error-color);
+  background: var(--danger-color);
 }
 
 .form-group input,
@@ -114,13 +114,13 @@
 
 .form-group *.has-errors ~ .control-label,
 .markdown-label.has-errors {
-  color: var(--error-color) !important;
+  color: var(--danger-color) !important;
 }
 
 .form-group select.has-errors ~ .bar,
 .form-group input.has-errors ~ .bar,
 .form-group textarea.has-errors ~ .bar {
-  border-bottom: 0.0625rem solid var(--error-color);
+  border-bottom: 0.0625rem solid var(--danger-color);
 }
 
 .form-group option {
@@ -198,10 +198,10 @@
 }
 
 .form-group .error {
-  color: var(--error-color);
+  color: var(--danger-color);
   display: block;
 }
 
 .markdown-label.has-errors ~ .react-mde {
-  border-color: var(--error-color);
+  border-color: var(--danger-color);
 }

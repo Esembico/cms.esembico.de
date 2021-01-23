@@ -8,14 +8,14 @@
 
 .mde-tabs button {
   color: var(--text-color) !important;
-  background-color: var(--primary-color-lighter) !important;
-  border-color: var(--primary-color-lighter) !important;
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
 }
 
 .mde-tabs button.selected,
 .mde-tabs button:hover {
-  background-color: var(--primary-color) !important;
-  border-color: var(--primary-color) !important;
+  background-color: var(--primary-color-dark) !important;
+  border-color: var(--primary-color-dark) !important;
 }
 
 .mde-text {
