@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
-import { useState } from "react/cjs/react.development";
 import { CodeHighlighter, languageVBA, languagePython } from "esembico-common";
 
 import "react-mde/lib/styles/css/react-mde-editor.css";
