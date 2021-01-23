@@ -41,10 +41,6 @@ export default function getSelectors(entity) {
     return getState(store) ? getState(store).error : null;
   };
 
-  const getLastLoaded = (store) => {
-    return getState(store) ? getState(store).lastLoaded : 0;
-  };
-
   const getSelectedId = (store) => {
     return getState(store) ? getState(store).selectedId : null;
   };
@@ -61,6 +57,14 @@ export default function getSelectors(entity) {
     return getState(store) ? getState(store).filteredData : [];
   };
 
+  const getPageLastLoaded = (store, page) => {
+    const state = getState(store);
+    if (!state) {
+      return 0;
+    }
+    return state.pageLoaded[page] ? state.pageLoaded[page] : 0;
+  };
+
   return {
     getState,
     getList,
@@ -72,10 +76,10 @@ export default function getSelectors(entity) {
     getCurrentPageData,
     getStatus,
     getError,
-    getLastLoaded,
     getSelectedId,
     getSelectedData,
     getEditedData,
     getFilteredData,
+    getPageLastLoaded,
   };
 }

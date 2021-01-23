@@ -6,10 +6,10 @@ const initialState = {
   status: "idle",
   lastPage: 1,
   currentPage: 1,
-  lastLoaded: 0,
   selectedId: null,
   editedData: null,
   filteredData: [],
+  pageLoaded: {},
 };
 
 export default function createReducer(entity) {
@@ -20,6 +20,11 @@ export default function createReducer(entity) {
         return {
           ...state,
           selectedId: action.selectedId,
+        };
+      case `SET_PAGE_${actionEntity}`:
+        return {
+          ...state,
+          currentPage: action.page,
         };
       case `SET_EDITED_DATA_${actionEntity}`:
         const editedData = action.id === -1 ? {} : state.byIds[action.id];
@@ -44,6 +49,7 @@ export default function createReducer(entity) {
             ...state.byIds,
             [action.data.id]: action.data,
           },
+          pageLoaded: {},
         };
       case `FETCH_${actionEntity}_PENDING`:
         return {
@@ -57,14 +63,16 @@ export default function createReducer(entity) {
         };
       case `FETCH_${actionEntity}_SUCCESS`:
         const ids = [];
-        const lookup = {};
+        const newLookup = {};
         const pageItems = [];
         const { data, page, nextPage } = action.payload;
         data.forEach((member) => {
           pageItems.push(member.id);
           ids.push(member.id);
-          lookup[member.id] = member;
+          newLookup[member.id] = member;
         });
+
+        const lookup = { ...state.byIds, ...newLookup };
 
         const newLastPage = Math.max(
           state.lastPage,
@@ -79,7 +87,10 @@ export default function createReducer(entity) {
           status: "idle",
           lastPage: newLastPage,
           currentPage: page,
-          lastLoaded: Date.now(),
+          pageLoaded: {
+            ...state.pageLoaded,
+            [page]: Date.now(),
+          },
         };
       case `FETCH_${actionEntity}_ERROR`:
         return {

@@ -3,8 +3,23 @@ import { generateHeaders, fetchWrapper } from "../../helpers/api";
 
 export default function getActions(entity, endpoint) {
   const actionEntity = entity.replace(" ", "_").toUpperCase();
+
   const getPageAction = (page) => {
-    return (dispatch) => {
+    return (dispatch, storeGetter) => {
+      const store = storeGetter();
+      const getPageLastLoaded = stateRegister.getSelector(
+        entity,
+        "getPageLastLoaded"
+      );
+      const lastLoaded = getPageLastLoaded(store, page);
+
+      const diff = Date.now() - lastLoaded;
+
+      if (diff < 60000) {
+        dispatch({ type: `SET_PAGE_${actionEntity}`, page });
+        return;
+      }
+
       dispatch({ type: `FETCH_${actionEntity}_PENDING` });
       fetchWrapper(
         `${process.env.REACT_APP_API_URL}/${endpoint}/?page=${page}`,
