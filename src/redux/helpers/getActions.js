@@ -1,15 +1,5 @@
 import stateRegister from "../../register/StateRegister";
-
-const generateHeaders = (token) => {
-  const headers = {
-    "Content-Type": "application/json",
-  };
-  if (token) {
-    headers.Authorization = `Token ${token}`;
-  }
-
-  return headers;
-};
+import { generateHeaders } from "../../helpers/api";
 
 export default function getActions(entity, endpoint) {
   const actionEntity = entity.replace(" ", "_").toUpperCase();
