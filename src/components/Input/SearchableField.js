@@ -71,34 +71,41 @@ export default function SearchableField({
     }
   };
 
+  const onBlur = () => {
+    setDropdownOpen(false);
+  };
+
   return (
     <React.Fragment>
-      <TextField
-        label={label}
-        value={getDisplayValue(internalValue, primaryProperty.display)}
-        onChange={onInputChange}
-        onKeyDown={onKeyDown}
-        errors={errors}
-      />
-      {dropdownOpen && (
-        <div className="searchable-field-dropdown">
-          {data.map((entry, i) => {
-            return (
-              <a
-                onClick={(e) => {
-                  e.preventDefault();
-                  changeSelection(entry);
-                }}
-                className={i === selectedIndex ? "active" : ""}
-                key={entry.id}
-                href={`#entry-${entry.id}`}
-              >
-                {getDisplayValue(entry, primaryProperty.display)}
-              </a>
-            );
-          })}
-        </div>
-      )}
+      <div className="searchable-container">
+        <TextField
+          label={label}
+          value={getDisplayValue(internalValue, primaryProperty.display)}
+          onChange={onInputChange}
+          onKeyDown={onKeyDown}
+          onBlur={onBlur}
+          errors={errors}
+        />
+        {dropdownOpen && (
+          <div className="searchable-field-dropdown">
+            {data.map((entry, i) => {
+              return (
+                <a
+                  onClick={(e) => {
+                    e.preventDefault();
+                    changeSelection(entry);
+                  }}
+                  className={i === selectedIndex ? "active" : ""}
+                  key={entry.id}
+                  href={`#entry-${entry.id}`}
+                >
+                  {getDisplayValue(entry, primaryProperty.display)}
+                </a>
+              );
+            })}
+          </div>
+        )}
+      </div>
     </React.Fragment>
   );
 }
