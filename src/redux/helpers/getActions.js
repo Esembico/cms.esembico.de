@@ -1,15 +1,17 @@
 import stateRegister from "../../register/StateRegister";
-import { generateHeaders } from "../../helpers/api";
+import { generateHeaders, fetchWrapper } from "../../helpers/api";
 
 export default function getActions(entity, endpoint) {
   const actionEntity = entity.replace(" ", "_").toUpperCase();
   const getPageAction = (page) => {
     return (dispatch) => {
       dispatch({ type: `FETCH_${actionEntity}_PENDING` });
-      fetch(`${process.env.REACT_APP_API_URL}/${endpoint}/?page=${page}`, {
-        headers: generateHeaders(),
-      })
-        .then((res) => res.json())
+      fetchWrapper(
+        `${process.env.REACT_APP_API_URL}/${endpoint}/?page=${page}`,
+        {
+          headers: generateHeaders(),
+        }
+      )
         .then((json) => {
           const getNextPageNumber = stateRegister.getOption(
             entity,
@@ -34,10 +36,12 @@ export default function getActions(entity, endpoint) {
 
   const setFilteredDataAction = (search) => {
     return (dispatch) => {
-      fetch(`${process.env.REACT_APP_API_URL}/${endpoint}/?search=${search}`, {
-        headers: generateHeaders(),
-      })
-        .then((res) => res.json())
+      fetchWrapper(
+        `${process.env.REACT_APP_API_URL}/${endpoint}/?search=${search}`,
+        {
+          headers: generateHeaders(),
+        }
+      )
         .then((json) => {
           dispatch({
             type: `SET_FILTERED_DATA_${actionEntity}`,
@@ -76,7 +80,7 @@ export default function getActions(entity, endpoint) {
     return (dispatch, stateGetter) => {
       const state = stateGetter();
       const token = state.auth.token;
-      fetch(
+      fetchWrapper(
         `${process.env.REACT_APP_API_URL}/${endpoint}/${
           data.id ? `${data.id}/` : ""
         }`,
@@ -86,7 +90,6 @@ export default function getActions(entity, endpoint) {
           body: JSON.stringify(data),
         }
       )
-        .then((res) => res.json())
         .then((json) => {
           dispatch({
             type: `UPDATE_${actionEntity}`,

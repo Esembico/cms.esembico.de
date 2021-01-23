@@ -26,7 +26,7 @@ export function validateAuthAction() {
 
 export function authAction(username, password) {
   return (dispatch) => {
-    fetch(`${process.env.REACT_APP_API_URL}/auth/`, {
+    fetchWrapper(`${process.env.REACT_APP_API_URL}/auth/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -36,7 +36,6 @@ export function authAction(username, password) {
         password,
       }),
     })
-      .then((res) => res.json())
       .then((json) => {
         if (json.non_field_errors) {
           dispatch({ type: SET_AUTH_ERROR, error: json.non_field_errors });
@@ -45,8 +44,8 @@ export function authAction(username, password) {
           dispatch({ type: SET_USERNAME, username });
         }
       })
-      .catch((err) => {
-        dispatch({ type: SET_AUTH_ERROR, error: err });
+      .catch((error) => {
+        dispatch({ type: SET_AUTH_ERROR, error });
       });
   };
 }
