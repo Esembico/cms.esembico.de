@@ -4,7 +4,7 @@ import { generateHeaders, fetchWrapper } from "../../helpers/api";
 export default function getActions(entity, endpoint) {
   const actionEntity = entity.replace(" ", "_").toUpperCase();
 
-  const getPageAction = (page) => {
+  const getPageAction = (page, forceLoad) => {
     return (dispatch, storeGetter) => {
       const store = storeGetter();
       const getPageLastLoaded = stateRegister.getSelector(
@@ -15,7 +15,7 @@ export default function getActions(entity, endpoint) {
 
       const diff = Date.now() - lastLoaded;
 
-      if (diff < 60000) {
+      if (!forceLoad && diff < 60000) {
         dispatch({ type: `SET_PAGE_${actionEntity}`, page });
         return;
       }
