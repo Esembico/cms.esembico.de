@@ -1,11 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
+import { validateAuthAction } from "./redux/reducers/auth";
 
 import "./css/App.css";
 import "./css/Input.css";
-import "esembico-common/dist/index.css"
+import "esembico-common/dist/index.css";
 
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
@@ -15,6 +16,8 @@ import stateRegister from "./register/StateRegister";
 
 function App({ token }) {
   const routes = stateRegister.getRoutes();
+  const dispatch = useDispatch();
+  dispatch(validateAuthAction());
   return (
     <Router>
       {token && <Sidebar />}

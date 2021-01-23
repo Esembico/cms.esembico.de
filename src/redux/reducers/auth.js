@@ -1,4 +1,5 @@
 import { SET_TOKEN, SET_USERNAME, SET_AUTH_ERROR } from "../actionTypes";
+import { generateHeaders, fetchWrapper } from "../../helpers/api";
 
 const localToken = localStorage.getItem("token");
 
@@ -6,6 +7,22 @@ const initialState = {
   token: localToken,
   username: null,
 };
+
+export function validateAuthAction() {
+  return (dispatch, stateGetter) => {
+    const state = stateGetter();
+    fetchWrapper(`${process.env.REACT_APP_API_URL}/current-user/`, {
+      headers: generateHeaders(state.auth.token),
+    })
+      .then((json) => {
+        dispatch({ type: SET_USERNAME, username: json.username });
+      })
+      .catch((error) => {
+        dispatch({ type: SET_TOKEN, token: null });
+        dispatch({ type: SET_AUTH_ERROR, error });
+      });
+  };
+}
 
 export function authAction(username, password) {
   return (dispatch) => {
