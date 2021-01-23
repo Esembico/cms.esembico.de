@@ -49,6 +49,28 @@ export default function getActions(entity, endpoint) {
     };
   };
 
+  const deleteItemAction = (id) => {
+    return (dispatch, storeGetter) => {
+      const store = storeGetter();
+      const token = store.auth.token;
+      const getCurrentPage = stateRegister.getSelector(
+        entity,
+        "getCurrentPage"
+      );
+      fetchWrapper(`${process.env.REACT_APP_API_URL}/${endpoint}/${id}/`, {
+        method: "DELETE",
+        headers: generateHeaders(token),
+      })
+        .then(() => {
+          const page = getCurrentPage(store);
+          dispatch(getPageAction(page, true));
+        })
+        .catch((error) => {
+          dispatch({ type: `FETCH_${actionEntity}_ERROR`, error });
+        });
+    };
+  };
+
   const setFilteredDataAction = (search) => {
     return (dispatch) => {
       fetchWrapper(
@@ -126,5 +148,6 @@ export default function getActions(entity, endpoint) {
     updateEditedDataAction,
     commitDataAction,
     setFilteredDataAction,
+    deleteItemAction,
   };
 }

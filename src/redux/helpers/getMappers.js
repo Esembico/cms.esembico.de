@@ -41,6 +41,7 @@ export default function getMappers(entity) {
       setEditedDataAction,
       updateEditedDataAction,
       commitDataAction,
+      deleteItemAction,
     } = StateRegister.getActions(entity);
     return bindActionCreators(
       {
@@ -50,6 +51,7 @@ export default function getMappers(entity) {
         setEditedData: setEditedDataAction,
         updateEditedData: updateEditedDataAction,
         commitData: commitDataAction,
+        deleteItem: deleteItemAction,
       },
       dispatch
     );

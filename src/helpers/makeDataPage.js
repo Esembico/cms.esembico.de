@@ -30,6 +30,7 @@ export default function makeDataPage({
     setEditedData,
     updateEditedData,
     commitData,
+    deleteItem,
   }) => {
     const [mode, setMode] = useState("view");
     const [errors, setErrors] = useState({});
@@ -62,6 +63,11 @@ export default function makeDataPage({
       setMode("edit");
       setEditedData(-1);
       selectItem(null);
+    };
+
+    const onDelete = () => {
+      // FIXME: Ask for confirmation before deleting.
+      deleteItem(selectedId);
     };
 
     return (
@@ -120,6 +126,9 @@ export default function makeDataPage({
                           <Button onClick={saveEntry}>Save</Button>
                           <Button onClick={() => setMode("view")}>
                             Cancel
+                          </Button>
+                          <Button onClick={() => onDelete()} type="danger">
+                            Delete
                           </Button>
                         </Column>
                       </React.Fragment>
