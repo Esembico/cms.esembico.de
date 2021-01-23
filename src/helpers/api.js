@@ -19,6 +19,10 @@ export function fetchWrapper(url, options) {
           });
           return;
         }
+        if (res.status === 204) {
+          resolve();
+          return;
+        }
         res.json().then((json) => {
           resolve(json);
         });
