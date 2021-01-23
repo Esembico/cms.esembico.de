@@ -58,14 +58,12 @@ function createFieldForProperty({ property, data, onUpdate, ...others }) {
       );
     case "markdown":
       return (
-        <React.Fragment>
-          <label>{label}</label>
-          <MarkdownEditor
-            value={data[property.name]}
-            onChange={(value) => onUpdate(property.name, value)}
-            {...others}
-          />
-        </React.Fragment>
+        <MarkdownEditor
+          label={label}
+          value={data[property.name]}
+          onChange={(value) => onUpdate(property.name, value)}
+          {...others}
+        />
       );
     default:
       return <span>{data[property.name]}</span>;

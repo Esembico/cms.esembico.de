@@ -50,9 +50,7 @@
   z-index: 2;
 }
 
-.form-group select.has-errors ~ .bar::before,
-.form-group input.has-errors ~ .bar::before,
-.form-group textarea.has-errors ~ .bar::before {
+.form-group *.has-errors ~ .bar::before {
   background: var(--error-color);
 }
 
@@ -114,10 +112,9 @@
   left: 0;
 }
 
-.form-group select.has-errors ~ .control-label,
-.form-group input.has-errors ~ .control-label,
-.form-group textarea.has-errors ~ .control-label {
-  color: var(--error-color);
+.form-group *.has-errors ~ .control-label,
+.markdown-label.has-errors {
+  color: var(--error-color) !important;
 }
 
 .form-group select.has-errors ~ .bar,
@@ -203,4 +200,8 @@
 .form-group .error {
   color: var(--error-color);
   display: block;
+}
+
+.markdown-label.has-errors ~ .react-mde {
+  border-color: var(--error-color);
 }

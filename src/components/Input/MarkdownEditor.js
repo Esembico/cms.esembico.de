@@ -7,6 +7,7 @@ import "react-mde/lib/styles/css/react-mde-editor.css";
 import "react-mde/lib/styles/css/react-mde-toolbar.css";
 import "react-mde/lib/styles/css/react-mde.css";
 import "../../css/MarkdownEditor.css";
+import InputErrors from "./InputErrors";
 
 const languages = {
   vba: languageVBA,
@@ -32,19 +33,25 @@ const renderers = {
   },
 };
 
-export default function MarkdownEditor({ value, onChange }) {
+export default function MarkdownEditor({ label, value, onChange, errors }) {
   const [selectedTab, setSelectedTab] = useState("write");
   return (
-    <ReactMde
-      value={value}
-      onChange={onChange}
-      selectedTab={selectedTab}
-      onTabChange={setSelectedTab}
-      generateMarkdownPreview={(markdown) => {
-        return Promise.resolve(
-          <ReactMarkdown renderers={renderers} source={markdown} />
-        );
-      }}
-    />
+    <div className="form-group">
+      <label className={`markdown-label ${errors ? "has-errors" : ""}`}>
+        {label}
+      </label>
+      <ReactMde
+        value={value}
+        onChange={onChange}
+        selectedTab={selectedTab}
+        onTabChange={setSelectedTab}
+        generateMarkdownPreview={(markdown) => {
+          return Promise.resolve(
+            <ReactMarkdown renderers={renderers} source={markdown} />
+          );
+        }}
+      />
+      <InputErrors errors={errors} />
+    </div>
   );
 }
