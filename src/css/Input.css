@@ -134,8 +134,7 @@
 
 .button-container button {
   position: relative;
-  background: var(--primary-color-lighter);
-  border: 1px solid var(--primary-color-lighter);
+  border: 1px solid;
   font-size: 1.1rem;
   color: var(--text-color);
   margin: 0 0.5rem 0 0.5rem;
@@ -150,11 +149,29 @@
     0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
+.button-container button.primary {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.button-container button.danger {
+  background: var(--danger-color);
+  border-color: var(--danger-color);
+}
+
+.button-container button.success {
+  background: var(--success-color);
+  border-color: var(--success-color);
+}
+
+.button-container button.info {
+  background: var(--info-color);
+  border-color: var(--info-color);
+}
+
 .button-container button::before {
   content: "";
   position: absolute;
-  background: #071017;
-  border: 50vh solid #1d4567;
   width: 30vh;
   height: 30vh;
   border-radius: 50%;
@@ -168,9 +185,24 @@
 }
 
 .button-container button:hover {
-  background-color: var(--primary-color);
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12),
     0 3px 5px -1px rgba(0, 0, 0, 0.2);
+}
+
+.button-container button.primary:hover {
+  background-color: var(--primary-color-dark);
+}
+
+.button-container button.danger:hover {
+  background-color: var(--danger-color-dark);
+}
+
+.button-container button.success:hover {
+  background-color: var(--success-color-dark);
+}
+
+.button-container button.info:hover {
+  background-color: var(--info-color-dark);
 }
 
 .searchable-container {
