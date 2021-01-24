@@ -237,3 +237,14 @@
 .markdown-label.has-errors ~ .react-mde {
   border-color: var(--danger-color);
 }
+
+@media screen and (max-width: 600px) {
+  .button-container {
+    width: 100%;
+  }
+
+  .button-container button {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
