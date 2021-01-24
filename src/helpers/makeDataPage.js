@@ -77,7 +77,12 @@ export default function makeDataPage({
           <React.Fragment>
             <Container>
               <Row>
-                <Button onClick={newEntry}>New</Button>
+                <Button
+                  className={mode === 'edit' ? 'hide-on-mobile' : ''}
+                  onClick={newEntry}
+                >
+                  New
+                </Button>
               </Row>
               {mode === 'view' && (
                 <DataTable

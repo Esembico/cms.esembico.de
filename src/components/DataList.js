@@ -13,7 +13,7 @@ export default function DataList({
 }) {
   return (
     <React.Fragment>
-      <div style={{ marginRight: '10px' }}>
+      <div className='hide-on-mobile data-list-container'>
         <ul className='data-list'>
           <li className='header'>{primaryProperty.header}</li>
           {data.map((entry) => {
