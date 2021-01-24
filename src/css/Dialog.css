@@ -1,0 +1,41 @@
+.dialog-overlay {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.dialog {
+  background-color: var(--primary-background);
+  margin: 15% auto;
+  border: 1px solid var(--text-color);
+  border-radius: 5px;
+  width: 40%;
+}
+
+.dialog-overlay.show {
+  display: block;
+}
+
+.dialog-title {
+  padding: 16px 24px;
+}
+
+.dialog-title h2 {
+  margin: 0;
+}
+
+.dialog-content {
+  padding: 8px 24px;
+}
+
+.dialog-actions {
+  display: flex;
+  padding: 8px;
+  align-items: center;
+  justify-content: flex-end;
+}
