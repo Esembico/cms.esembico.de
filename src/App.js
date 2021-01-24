@@ -6,6 +6,9 @@ import { validateAuthAction } from './redux/reducers/auth';
 import { setSidebarVisibleAction } from './redux/reducers/pageState';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import PrivateRoute from './components/PrivateRoute';
+import stateRegister from './register/stateRegister';
+import { bindActionCreators } from 'redux';
 
 import './css/App.css';
 import './css/Input.css';
@@ -14,9 +17,6 @@ import 'esembico-common/dist/styles/css/CodeHighlighter.css';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Login from './pages/Login';
-import PrivateRoute from './components/PrivateRoute';
-import stateRegister from './register/stateRegister';
-import { bindActionCreators } from 'redux';
 
 function App({ token, sidebarVisible, setSidebarVisible }) {
   const routes = stateRegister.getRoutes();
