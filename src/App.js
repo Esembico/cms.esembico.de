@@ -6,7 +6,7 @@ import { validateAuthAction } from "./redux/reducers/auth";
 
 import "./css/App.css";
 import "./css/Input.css";
-import "esembico-common/dist/index.css";
+import "esembico-common/dist/styles/css/CodeHighlighter.css"
 
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
