@@ -75,6 +75,10 @@ body.light {
     margin-top: 0;
   }
 
+  .sidenav.show ~ .main {
+    display: none;
+  }
+
   .main {
     margin-left: 0;
   }
