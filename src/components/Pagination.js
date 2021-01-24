@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import "../css/Pagination.css";
+import React, { useEffect, useState } from 'react';
+import '../css/Pagination.css';
 
 export default function Pagination({
   lastPage,
   selectedPage,
   onPageChange,
-  align,
+  align
 }) {
   const [hasPreviousPage, setHasPreviousPage] = useState(false);
   const [hasNextPage, setHasNextPage] = useState(false);
@@ -26,7 +26,7 @@ export default function Pagination({
   }, [lastPage, selectedPage]);
 
   return (
-    <div className="pagination" style={{ float: align || "left" }}>
+    <div className='pagination' style={{ float: align || 'left' }}>
       {hasPreviousPage && (
         <a
           onClick={(e) => {
@@ -45,7 +45,7 @@ export default function Pagination({
               e.preventDefault();
               onPageChange(page);
             }}
-            className={selectedPage === page ? "active" : ""}
+            className={selectedPage === page ? 'active' : ''}
             key={page}
             href={`#page-${page}`}
           >

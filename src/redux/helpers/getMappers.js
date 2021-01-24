@@ -1,5 +1,5 @@
-import { bindActionCreators } from "redux";
-import StateRegister from "../../register/StateRegister";
+import { bindActionCreators } from 'redux';
+import stateRegister from '../../register/stateRegister';
 
 export default function getMappers(entity) {
   const mapStateToProps = (state) => {
@@ -11,8 +11,8 @@ export default function getMappers(entity) {
       getCurrentPage,
       getSelectedId,
       getSelectedData,
-      getEditedData,
-    } = StateRegister.getSelectors(entity);
+      getEditedData
+    } = stateRegister.getSelectors(entity);
     const error = getError(state);
     const status = getStatus(state);
     const data = getCurrentPageData(state);
@@ -29,7 +29,7 @@ export default function getMappers(entity) {
       currentPage,
       selectedId,
       selectedData,
-      editedData,
+      editedData
     };
   };
 
@@ -41,8 +41,8 @@ export default function getMappers(entity) {
       setEditedDataAction,
       updateEditedDataAction,
       commitDataAction,
-      deleteItemAction,
-    } = StateRegister.getActions(entity);
+      deleteItemAction
+    } = stateRegister.getActions(entity);
     return bindActionCreators(
       {
         fetchData: fetchAction,
@@ -51,7 +51,7 @@ export default function getMappers(entity) {
         setEditedData: setEditedDataAction,
         updateEditedData: updateEditedDataAction,
         commitData: commitDataAction,
-        deleteItem: deleteItemAction,
+        deleteItem: deleteItemAction
       },
       dispatch
     );

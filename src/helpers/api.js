@@ -1,6 +1,6 @@
 export function generateHeaders(token) {
   const headers = {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json'
   };
   if (token) {
     headers.Authorization = `Token ${token}`;

@@ -1,22 +1,22 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Sidebar from "./components/Sidebar";
-import { connect, useDispatch } from "react-redux";
-import { validateAuthAction } from "./redux/reducers/auth";
-import { setSidebarVisibleAction } from "./redux/reducers/pageState";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Sidebar from './components/Sidebar';
+import { connect, useDispatch } from 'react-redux';
+import { validateAuthAction } from './redux/reducers/auth';
+import { setSidebarVisibleAction } from './redux/reducers/pageState';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
-import "./css/App.css";
-import "./css/Input.css";
-import "esembico-common/dist/styles/css/CodeHighlighter.css";
+import './css/App.css';
+import './css/Input.css';
+import 'esembico-common/dist/styles/css/CodeHighlighter.css';
 
-import Home from "./pages/Home";
-import NotFound from "./pages/NotFound";
-import Login from "./pages/Login";
-import PrivateRoute from "./components/PrivateRoute";
-import stateRegister from "./register/StateRegister";
-import { bindActionCreators } from "redux";
+import Home from './pages/Home';
+import NotFound from './pages/NotFound';
+import Login from './pages/Login';
+import PrivateRoute from './components/PrivateRoute';
+import stateRegister from './register/stateRegister';
+import { bindActionCreators } from 'redux';
 
 function App({ token, sidebarVisible, setSidebarVisible }) {
   const routes = stateRegister.getRoutes();
@@ -33,14 +33,14 @@ function App({ token, sidebarVisible, setSidebarVisible }) {
           <Sidebar visible={sidebarVisible} setVisible={setSidebarVisible} />
         </React.Fragment>
       )}
-      <div className={token ? "main" : ""}>
-        <div className="show-sidebar">
-          <a onClick={showSidebar} href="#show-sidebar">
+      <div className={token ? 'main' : ''}>
+        <div className='show-sidebar'>
+          <a onClick={showSidebar} href='#show-sidebar'>
             <FontAwesomeIcon icon={faBars} />
           </a>
         </div>
         <Switch>
-          <Route exact={true} path="/login" component={Login} />
+          <Route exact={true} path='/login' component={Login} />
           {routes.map((route) => {
             return (
               <PrivateRoute
@@ -51,8 +51,8 @@ function App({ token, sidebarVisible, setSidebarVisible }) {
               />
             );
           })}
-          <PrivateRoute exact={true} path="/" component={Home} />
-          <PrivateRoute path="*" component={NotFound} />
+          <PrivateRoute exact={true} path='/' component={Home} />
+          <PrivateRoute path='*' component={NotFound} />
         </Switch>
       </div>
     </Router>

@@ -1,30 +1,30 @@
-import React, { useState } from "react";
-import Container from "../components/Responsive/Container";
-import { connect } from "react-redux";
-import { authAction } from "../redux/reducers/auth";
-import { bindActionCreators } from "redux";
-import TextField from "../components/Input/TextField";
-import Button from "../components/Input/Button";
-import { Redirect } from "react-router-dom";
+import { useState } from 'react';
+import Container from '../components/Responsive/Container';
+import { connect } from 'react-redux';
+import { authAction } from '../redux/reducers/auth';
+import { bindActionCreators } from 'redux';
+import TextField from '../components/Input/TextField';
+import Button from '../components/Input/Button';
+import { Redirect } from 'react-router-dom';
 
 const Login = ({ auth, token }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const login = () => {
     auth(username, password);
   };
   return (
     <Container>
-      {token && <Redirect to="/" />}
+      {token && <Redirect to='/' />}
       <TextField
-        label="Username"
+        label='Username'
         value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
       <TextField
-        label="Password"
-        type="password"
+        label='Password'
+        type='password'
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />

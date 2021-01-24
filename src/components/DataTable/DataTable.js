@@ -1,7 +1,7 @@
-import React from "react";
-import "../../css/DataTable.css";
-import getDisplayValue from "../../helpers/getDisplayValue";
-import Pagination from "../Pagination";
+import React from 'react';
+import '../../css/DataTable.css';
+import getDisplayValue from '../../helpers/getDisplayValue';
+import Pagination from '../Pagination';
 
 export default function DataTable({
   data,
@@ -9,11 +9,11 @@ export default function DataTable({
   pageData,
   onPageChange,
   onSelect,
-  selected,
+  selected
 }) {
   return (
     <React.Fragment>
-      <table className="data-table">
+      <table className='data-table'>
         <thead>
           <tr>
             {columns.map((column) => {
@@ -25,7 +25,7 @@ export default function DataTable({
           {data.map((entry) => {
             return (
               <tr
-                className={selected === entry.id ? "active" : ""}
+                className={selected === entry.id ? 'active' : ''}
                 onClick={() => onSelect(entry.id)}
                 key={entry.id}
               >
@@ -42,7 +42,7 @@ export default function DataTable({
         </tbody>
       </table>
       <Pagination
-        align="right"
+        align='right'
         lastPage={pageData.last}
         onPageChange={onPageChange}
         selectedPage={pageData.current}

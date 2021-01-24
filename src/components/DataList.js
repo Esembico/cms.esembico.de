@@ -1,7 +1,7 @@
-import React from "react";
-import "../css/DataList.css";
-import getDisplayValue from "../helpers/getDisplayValue";
-import Pagination from "./Pagination";
+import React from 'react';
+import '../css/DataList.css';
+import getDisplayValue from '../helpers/getDisplayValue';
+import Pagination from './Pagination';
 
 export default function DataList({
   data,
@@ -9,18 +9,18 @@ export default function DataList({
   selected,
   onSelect,
   onPageChange,
-  pageData,
+  pageData
 }) {
   return (
     <React.Fragment>
-      <div style={{ marginRight: "10px" }}>
-        <ul className="data-list">
-          <li className="header">{primaryProperty.header}</li>
+      <div style={{ marginRight: '10px' }}>
+        <ul className='data-list'>
+          <li className='header'>{primaryProperty.header}</li>
           {data.map((entry) => {
             return (
               <li
                 onClick={() => onSelect(entry.id)}
-                className={selected === entry.id ? "entry active" : "entry"}
+                className={selected === entry.id ? 'entry active' : 'entry'}
                 key={entry.id}
               >
                 {getDisplayValue(entry, primaryProperty.display)}
@@ -29,7 +29,7 @@ export default function DataList({
           })}
         </ul>
         <Pagination
-          align="right"
+          align='right'
           lastPage={pageData.last}
           onPageChange={onPageChange}
           selectedPage={pageData.current}

@@ -1,9 +1,9 @@
-import React from "react";
-import Row from "../components/Responsive/Row";
-import TextField from "../components/Input/TextField";
-import SearchableField from "../components/Input/SearchableField";
-import MarkdownEditor from "../components/Input/MarkdownEditor";
-import Select from "../components/Input/Select";
+import React from 'react';
+import Row from '../components/Responsive/Row';
+import TextField from '../components/Input/TextField';
+import SearchableField from '../components/Input/SearchableField';
+import MarkdownEditor from '../components/Input/MarkdownEditor';
+import Select from '../components/Input/Select';
 
 function createFieldForProperty({ property, data, onUpdate, ...others }) {
   if (property.if) {
@@ -12,11 +12,11 @@ function createFieldForProperty({ property, data, onUpdate, ...others }) {
     }
   }
   let label = property.label;
-  if (typeof label === "function") {
+  if (typeof label === 'function') {
     label = label(data);
   }
   switch (property.type) {
-    case "select":
+    case 'select':
       return (
         <Select
           label={label}
@@ -26,7 +26,7 @@ function createFieldForProperty({ property, data, onUpdate, ...others }) {
           {...others}
         />
       );
-    case "text":
+    case 'text':
       return (
         <TextField
           label={label}
@@ -36,7 +36,7 @@ function createFieldForProperty({ property, data, onUpdate, ...others }) {
           {...others}
         />
       );
-    case "number":
+    case 'number':
       return (
         <TextField
           label={label}
@@ -46,7 +46,7 @@ function createFieldForProperty({ property, data, onUpdate, ...others }) {
           {...others}
         />
       );
-    case "reference":
+    case 'reference':
       return (
         <SearchableField
           label={label}
@@ -56,7 +56,7 @@ function createFieldForProperty({ property, data, onUpdate, ...others }) {
           {...others}
         />
       );
-    case "markdown":
+    case 'markdown':
       return (
         <MarkdownEditor
           label={label}
@@ -82,7 +82,7 @@ export default function makeEditor({ proprties }) {
                   property,
                   data,
                   onUpdate,
-                  errors: errors[property.name],
+                  errors: errors[property.name]
                 })}
               </React.Fragment>
             );

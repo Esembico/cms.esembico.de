@@ -1,17 +1,17 @@
 export default function getDisplayValue(obj, displayDefinition) {
   if (!obj) {
-    return "";
+    return '';
   }
-  if (typeof obj !== "object") {
+  if (typeof obj !== 'object') {
     return obj;
   }
-  if (typeof displayDefinition === "string") {
+  if (typeof displayDefinition === 'string') {
     return obj[displayDefinition];
   }
 
-  if (typeof displayDefinition === "function") {
+  if (typeof displayDefinition === 'function') {
     return displayDefinition(obj);
   }
 
-  return "";
+  return '';
 }

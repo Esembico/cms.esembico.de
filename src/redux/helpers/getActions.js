@@ -1,15 +1,15 @@
-import stateRegister from "../../register/StateRegister";
-import { generateHeaders, fetchWrapper } from "../../helpers/api";
+import stateRegister from '../../register/stateRegister';
+import { generateHeaders, fetchWrapper } from '../../helpers/api';
 
 export default function getActions(entity, endpoint) {
-  const actionEntity = entity.replace(" ", "_").toUpperCase();
+  const actionEntity = entity.replace(' ', '_').toUpperCase();
 
   const getPageAction = (page, forceLoad) => {
     return (dispatch, storeGetter) => {
       const store = storeGetter();
       const getPageLastLoaded = stateRegister.getSelector(
         entity,
-        "getPageLastLoaded"
+        'getPageLastLoaded'
       );
       const lastLoaded = getPageLastLoaded(store, page);
 
@@ -24,13 +24,13 @@ export default function getActions(entity, endpoint) {
       fetchWrapper(
         `${process.env.REACT_APP_API_URL}/${endpoint}/?page=${page}`,
         {
-          headers: generateHeaders(),
+          headers: generateHeaders()
         }
       )
         .then((json) => {
           const getNextPageNumber = stateRegister.getOption(
             entity,
-            "getNextPageNumber"
+            'getNextPageNumber'
           );
           const nextPage = getNextPageNumber(json);
           dispatch({
@@ -38,8 +38,8 @@ export default function getActions(entity, endpoint) {
             payload: {
               data: json.results,
               page,
-              nextPage,
-            },
+              nextPage
+            }
           });
           return json.results;
         })
@@ -55,11 +55,11 @@ export default function getActions(entity, endpoint) {
       const token = store.auth.token;
       const getCurrentPage = stateRegister.getSelector(
         entity,
-        "getCurrentPage"
+        'getCurrentPage'
       );
       fetchWrapper(`${process.env.REACT_APP_API_URL}/${endpoint}/${id}/`, {
-        method: "DELETE",
-        headers: generateHeaders(token),
+        method: 'DELETE',
+        headers: generateHeaders(token)
       })
         .then(() => {
           const page = getCurrentPage(store);
@@ -76,13 +76,13 @@ export default function getActions(entity, endpoint) {
       fetchWrapper(
         `${process.env.REACT_APP_API_URL}/${endpoint}/?search=${search}`,
         {
-          headers: generateHeaders(),
+          headers: generateHeaders()
         }
       )
         .then((json) => {
           dispatch({
             type: `SET_FILTERED_DATA_${actionEntity}`,
-            data: json.results,
+            data: json.results
           });
         })
         .catch((err) => {
@@ -119,19 +119,19 @@ export default function getActions(entity, endpoint) {
       const token = state.auth.token;
       fetchWrapper(
         `${process.env.REACT_APP_API_URL}/${endpoint}/${
-          data.id ? `${data.id}/` : ""
+          data.id ? `${data.id}/` : ''
         }`,
         {
-          method: data.id ? "PUT" : "POST",
+          method: data.id ? 'PUT' : 'POST',
           headers: generateHeaders(token),
-          body: JSON.stringify(data),
+          body: JSON.stringify(data)
         }
       )
         .then((json) => {
           dispatch({
             type: `UPDATE_${actionEntity}`,
             data: json,
-            new: !data.id,
+            new: !data.id
           });
         })
         .catch((err) => {
@@ -148,6 +148,6 @@ export default function getActions(entity, endpoint) {
     updateEditedDataAction,
     commitDataAction,
     setFilteredDataAction,
-    deleteItemAction,
+    deleteItemAction
   };
 }

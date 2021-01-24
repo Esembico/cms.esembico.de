@@ -1,18 +1,18 @@
-import { SET_TOKEN, SET_USERNAME, SET_AUTH_ERROR } from "../actionTypes";
-import { generateHeaders, fetchWrapper } from "../../helpers/api";
+import { SET_TOKEN, SET_USERNAME, SET_AUTH_ERROR } from '../actionTypes';
+import { generateHeaders, fetchWrapper } from '../../helpers/api';
 
-const localToken = localStorage.getItem("token");
+const localToken = localStorage.getItem('token');
 
 const initialState = {
   token: localToken,
-  username: null,
+  username: null
 };
 
 export function validateAuthAction() {
   return (dispatch, stateGetter) => {
     const state = stateGetter();
     fetchWrapper(`${process.env.REACT_APP_API_URL}/current-user/`, {
-      headers: generateHeaders(state.auth.token),
+      headers: generateHeaders(state.auth.token)
     })
       .then((json) => {
         dispatch({ type: SET_USERNAME, username: json.username });
@@ -27,14 +27,14 @@ export function validateAuthAction() {
 export function authAction(username, password) {
   return (dispatch) => {
     fetchWrapper(`${process.env.REACT_APP_API_URL}/auth/`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         username,
-        password,
-      }),
+        password
+      })
     })
       .then((json) => {
         if (json.non_field_errors) {
@@ -53,20 +53,20 @@ export function authAction(username, password) {
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_TOKEN:
-      localStorage.setItem("token", action.token);
+      localStorage.setItem('token', action.token);
       return {
         ...state,
-        token: action.token,
+        token: action.token
       };
     case SET_USERNAME:
       return {
         ...state,
-        username: action.username,
+        username: action.username
       };
     case SET_AUTH_ERROR:
       return {
         ...state,
-        error: action.error,
+        error: action.error
       };
     default:
       return state;

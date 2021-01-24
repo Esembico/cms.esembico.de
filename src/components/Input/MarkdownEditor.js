@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import ReactMarkdown from "react-markdown";
-import ReactMde from "react-mde";
-import { CodeHighlighter, languageVBA, languagePython } from "esembico-common";
+import React, { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+import ReactMde from 'react-mde';
+import { CodeHighlighter, languageVBA, languagePython } from 'esembico-common';
 
-import "react-mde/lib/styles/css/react-mde-editor.css";
-import "react-mde/lib/styles/css/react-mde-toolbar.css";
-import "react-mde/lib/styles/css/react-mde.css";
-import "../../css/MarkdownEditor.css";
-import InputErrors from "./InputErrors";
+import 'react-mde/lib/styles/css/react-mde-editor.css';
+import 'react-mde/lib/styles/css/react-mde-toolbar.css';
+import 'react-mde/lib/styles/css/react-mde.css';
+import '../../css/MarkdownEditor.css';
+import InputErrors from './InputErrors';
 
 const languages = {
   vba: languageVBA,
-  python: languagePython,
+  python: languagePython
 };
 
 const renderers = {
@@ -28,16 +28,15 @@ const renderers = {
     );
   },
   image: (params) => {
-    // eslint-disable-next-line jsx-a11y/alt-text
-    return <img className="responsive-image" {...params}></img>;
-  },
+    return <img className='responsive-image' {...params}></img>;
+  }
 };
 
 export default function MarkdownEditor({ label, value, onChange, errors }) {
-  const [selectedTab, setSelectedTab] = useState("write");
+  const [selectedTab, setSelectedTab] = useState('write');
   return (
-    <div className="form-group">
-      <label className={`markdown-label ${errors ? "has-errors" : ""}`}>
+    <div className='form-group'>
+      <label className={`markdown-label ${errors ? 'has-errors' : ''}`}>
         {label}
       </label>
       <ReactMde

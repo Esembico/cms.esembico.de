@@ -3,40 +3,40 @@ const initialState = {
   byIds: {},
   byPage: {},
   error: null,
-  status: "idle",
+  status: 'idle',
   lastPage: 1,
   currentPage: 1,
   selectedId: null,
   editedData: null,
   filteredData: [],
-  pageLoaded: {},
+  pageLoaded: {}
 };
 
 export default function createReducer(entity) {
-  const actionEntity = entity.replace(" ", "_").toUpperCase();
+  const actionEntity = entity.replace(' ', '_').toUpperCase();
   const reducer = (state = initialState, action) => {
     switch (action.type) {
       case `SELECT_${actionEntity}_ID`:
         return {
           ...state,
-          selectedId: action.selectedId,
+          selectedId: action.selectedId
         };
       case `SET_PAGE_${actionEntity}`:
         return {
           ...state,
-          currentPage: action.page,
+          currentPage: action.page
         };
       case `SET_EDITED_DATA_${actionEntity}`:
         const editedData = action.id === -1 ? {} : state.byIds[action.id];
         return {
           ...state,
-          editedData,
+          editedData
         };
       case `UPDATE_EDITED_DATA_${actionEntity}`:
         const newData = { ...state.editedData, [action.field]: action.value };
         return {
           ...state,
-          editedData: newData,
+          editedData: newData
         };
       case `UPDATE_${actionEntity}`:
         const page1 = state.byPage[1];
@@ -47,19 +47,19 @@ export default function createReducer(entity) {
           ...state,
           byIds: {
             ...state.byIds,
-            [action.data.id]: action.data,
+            [action.data.id]: action.data
           },
-          pageLoaded: {},
+          pageLoaded: {}
         };
       case `FETCH_${actionEntity}_PENDING`:
         return {
           ...state,
-          status: "loading",
+          status: 'loading'
         };
       case `SET_FILTERED_DATA_${actionEntity}`:
         return {
           ...state,
-          filteredData: action.data,
+          filteredData: action.data
         };
       case `FETCH_${actionEntity}_SUCCESS`:
         const ids = [];
@@ -84,19 +84,19 @@ export default function createReducer(entity) {
           allIds: ids,
           byIds: lookup,
           byPage: { ...state.byPage, [page]: pageItems },
-          status: "idle",
+          status: 'idle',
           lastPage: newLastPage,
           currentPage: page,
           pageLoaded: {
             ...state.pageLoaded,
-            [page]: Date.now(),
-          },
+            [page]: Date.now()
+          }
         };
       case `FETCH_${actionEntity}_ERROR`:
         return {
           ...state,
           error: action.error,
-          status: "idle",
+          status: 'idle'
         };
       default:
         return state;

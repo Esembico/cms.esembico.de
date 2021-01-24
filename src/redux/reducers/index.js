@@ -1,10 +1,10 @@
-import { combineReducers } from "redux";
-import auth from "./auth";
-import pageState from "./pageState";
-import StateRegister from "../../register/StateRegister";
+import { combineReducers } from 'redux';
+import auth from './auth';
+import pageState from './pageState';
+import stateRegister from '../../register/stateRegister';
 
 export default combineReducers({
-  ...StateRegister.getReducers(),
+  ...stateRegister.getReducers(),
   auth,
-  pageState,
+  pageState
 });

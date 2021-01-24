@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from "react";
-import DataTable from "../components/DataTable/DataTable";
-import Header from "../components/Header";
-import { connect } from "react-redux";
-import LoadingIndicator from "../components/LoadingIndicator";
-import DataList from "../components/DataList";
-import Container from "../components/Responsive/Container";
-import Row from "../components/Responsive/Row";
-import Column from "../components/Responsive/Column";
-import Button from "../components/Input/Button";
-import StateRegister from "../register/StateRegister";
-import stateRegister from "../register/StateRegister";
+import React, { useEffect, useState } from 'react';
+import DataTable from '../components/DataTable/DataTable';
+import Header from '../components/Header';
+import { connect } from 'react-redux';
+import LoadingIndicator from '../components/LoadingIndicator';
+import DataList from '../components/DataList';
+import Container from '../components/Responsive/Container';
+import Row from '../components/Responsive/Row';
+import Column from '../components/Responsive/Column';
+import Button from '../components/Input/Button';
+import stateRegister from '../register/stateRegister';
 
 export default function makeDataPage({
   columns,
   primaryProperty,
   Editor,
-  entity,
+  entity
 }) {
   const Component = ({
     data,
@@ -30,11 +29,11 @@ export default function makeDataPage({
     setEditedData,
     updateEditedData,
     commitData,
-    deleteItem,
+    deleteItem
   }) => {
-    const [mode, setMode] = useState("view");
+    const [mode, setMode] = useState('view');
     const [errors, setErrors] = useState({});
-    const validateData = stateRegister.getOption(entity, "validateData");
+    const validateData = stateRegister.getOption(entity, 'validateData');
     useEffect(() => {
       fetchData();
     }, [fetchData]);
@@ -49,7 +48,7 @@ export default function makeDataPage({
     };
 
     const editEntry = (id) => {
-      setMode("edit");
+      setMode('edit');
       setEditedData(id);
     };
 
@@ -60,7 +59,7 @@ export default function makeDataPage({
     };
 
     const newEntry = () => {
-      setMode("edit");
+      setMode('edit');
       setEditedData(-1);
       selectItem(null);
     };
@@ -72,19 +71,19 @@ export default function makeDataPage({
 
     return (
       <div>
-        <Header>{StateRegister.getOption(entity, "header")}</Header>
-        <LoadingIndicator show={status === "loading"} />
-        {status !== "loading" && (
+        <Header>{stateRegister.getOption(entity, 'header')}</Header>
+        <LoadingIndicator show={status === 'loading'} />
+        {status !== 'loading' && (
           <React.Fragment>
             <Container>
               <Row>
                 <Button onClick={newEntry}>New</Button>
               </Row>
-              {mode === "view" && (
+              {mode === 'view' && (
                 <DataTable
                   pageData={{
                     current: currentPage,
-                    last: lastPage,
+                    last: lastPage
                   }}
                   data={data}
                   columns={columns}
@@ -96,14 +95,14 @@ export default function makeDataPage({
                   selected={selectedId}
                 />
               )}
-              {mode === "edit" && (
+              {mode === 'edit' && (
                 <Row>
                   <Column width={25}>
                     <DataList
                       data={data}
                       pageData={{
                         current: currentPage,
-                        last: lastPage,
+                        last: lastPage
                       }}
                       primaryProperty={primaryProperty}
                       selected={selectedId}
@@ -124,10 +123,10 @@ export default function makeDataPage({
                         />
                         <Column width={100}>
                           <Button onClick={saveEntry}>Save</Button>
-                          <Button onClick={() => setMode("view")}>
+                          <Button onClick={() => setMode('view')}>
                             Cancel
                           </Button>
-                          <Button onClick={() => onDelete()} type="danger">
+                          <Button onClick={() => onDelete()} type='danger'>
                             Delete
                           </Button>
                         </Column>
@@ -142,7 +141,7 @@ export default function makeDataPage({
       </div>
     );
   };
-  const { mapStateToProps, mapDispatchToProps } = StateRegister.getMappers(
+  const { mapStateToProps, mapDispatchToProps } = stateRegister.getMappers(
     entity
   );
 

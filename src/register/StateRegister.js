@@ -1,16 +1,16 @@
-import createReducer from "../redux/helpers/createReducer";
-import getActions from "../redux/helpers/getActions";
-import getMappers from "../redux/helpers/getMappers";
-import getSelectors from "../redux/helpers/getSelectors";
-import { toCamelCase, toUpperCaseFirstChar } from "../helpers/caseConverter";
-import makeDataPage from "../helpers/makeDataPage";
-import makeEditor from "../helpers/makeEditor";
+import createReducer from '../redux/helpers/createReducer';
+import getActions from '../redux/helpers/getActions';
+import getMappers from '../redux/helpers/getMappers';
+import getSelectors from '../redux/helpers/getSelectors';
+import { toCamelCase, toUpperCaseFirstChar } from '../helpers/caseConverter';
+import makeDataPage from '../helpers/makeDataPage';
+import makeEditor from '../helpers/makeEditor';
 
 class StateRegister {
   constructor() {
     this.states = {};
     this.defaultOptions = {
-      validateData: () => {},
+      validateData: () => {}
     };
     this.globalOptions = {};
   }
@@ -23,7 +23,7 @@ class StateRegister {
     const mergedOptions = {
       ...this.defaultOptions,
       ...this.globalOptions,
-      ...options,
+      ...options
     };
     let editor = options.editor;
     if (Array.isArray(editor)) {
@@ -36,7 +36,7 @@ class StateRegister {
       mappers: getMappers(name, mergedOptions.endpoint || name),
       reducer: createReducer(name),
       header: mergedOptions.header || toUpperCaseFirstChar(name),
-      editor,
+      editor
     };
   }
 
@@ -52,8 +52,8 @@ class StateRegister {
             columns: entry.columns,
             primaryProperty: entry.primaryProperty,
             entity: name,
-            Editor: entry.editor,
-          }),
+            Editor: entry.editor
+          })
       });
     });
     return routes;

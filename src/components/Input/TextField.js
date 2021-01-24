@@ -1,5 +1,5 @@
-import React from "react";
-import InputErrors from "./InputErrors";
+import React from 'react';
+import InputErrors from './InputErrors';
 
 export default function TextField({
   value,
@@ -12,31 +12,31 @@ export default function TextField({
 }) {
   const classes = [];
   if (value) {
-    classes.push("has-value");
+    classes.push('has-value');
   }
   if (errors) {
-    classes.push("has-errors");
+    classes.push('has-errors');
   }
   return (
-    <div className="form-group">
+    <div className='form-group'>
       {multiline && (
         <textarea
-          className={classes.join(" ")}
+          className={classes.join(' ')}
           rows={rows || 3}
-          value={value || ""}
+          value={value || ''}
           {...other}
         ></textarea>
       )}
       {!multiline && (
         <input
-          className={classes.join(" ")}
-          type={type || "text"}
-          value={value || ""}
+          className={classes.join(' ')}
+          type={type || 'text'}
+          value={value || ''}
           {...other}
         />
       )}
-      <label className="control-label">{label}</label>
-      <i className="bar"></i>
+      <label className='control-label'>{label}</label>
+      <i className='bar'></i>
       <InputErrors errors={errors} />
     </div>
   );

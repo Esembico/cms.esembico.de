@@ -1,5 +1,5 @@
-import React from "react";
-import InputErrors from "./InputErrors";
+import React from 'react';
+import InputErrors from './InputErrors';
 
 export default function Select({
   label,
@@ -11,14 +11,14 @@ export default function Select({
 }) {
   const classes = [];
   if (value) {
-    classes.push("has-value");
+    classes.push('has-value');
   }
   if (errors) {
-    classes.push("has-errors");
+    classes.push('has-errors');
   }
   return (
-    <div className="form-group">
-      <select className={classes.join(" ")} value={value} {...other}>
+    <div className='form-group'>
+      <select className={classes.join(' ')} value={value} {...other}>
         <option></option>
         {options.map((option, i) => {
           return (
@@ -28,8 +28,8 @@ export default function Select({
           );
         })}
       </select>
-      <label className="control-label">{label}</label>
-      <i className="bar"></i>
+      <label className='control-label'>{label}</label>
+      <i className='bar'></i>
       <InputErrors errors={errors} />
     </div>
   );

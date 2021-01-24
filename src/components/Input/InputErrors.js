@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export default function InputErrors({ errors }) {
   return (
@@ -9,14 +9,14 @@ export default function InputErrors({ errors }) {
             <React.Fragment>
               {errors.map((error, i) => {
                 return (
-                  <span className="error" key={i}>
+                  <span className='error' key={i}>
                     {error}
                   </span>
                 );
               })}
             </React.Fragment>
           ) : (
-            <span className="error">{errors}</span>
+            <span className='error'>{errors}</span>
           )}
         </React.Fragment>
       )}

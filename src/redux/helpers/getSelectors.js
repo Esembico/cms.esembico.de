@@ -34,7 +34,7 @@ export default function getSelectors(entity) {
   };
 
   const getStatus = (store) => {
-    return getState(store) ? getState(store).status : "idle";
+    return getState(store) ? getState(store).status : 'idle';
   };
 
   const getError = (store) => {
@@ -80,6 +80,6 @@ export default function getSelectors(entity) {
     getSelectedData,
     getEditedData,
     getFilteredData,
-    getPageLastLoaded,
+    getPageLastLoaded
   };
 }

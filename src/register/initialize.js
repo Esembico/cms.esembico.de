@@ -1,11 +1,11 @@
-import StateRegister from "./StateRegister";
-import teamOptions from "./options/teamOptions";
-import recommendationOptions from "./options/recommendationOptions";
-import imageOptions from "./options/imageOptions";
-import prototypeOptions from "./options/prototypeOptions";
-import pageOptions from "./options/pageOptions";
+import stateRegister from './stateRegister';
+import teamOptions from './options/teamOptions';
+import recommendationOptions from './options/recommendationOptions';
+import imageOptions from './options/imageOptions';
+import prototypeOptions from './options/prototypeOptions';
+import pageOptions from './options/pageOptions';
 
-StateRegister.setGlobalOptions({
+stateRegister.setGlobalOptions({
   getNextPageNumber: (json) => {
     const pageRegex = /[\w\W]*page=([0-9]*)/;
     if (json.next) {
@@ -14,10 +14,10 @@ StateRegister.setGlobalOptions({
     } else {
       return null;
     }
-  },
+  }
 });
-StateRegister.register("team", teamOptions);
-StateRegister.register("recommendations", recommendationOptions);
-StateRegister.register("images", imageOptions);
-StateRegister.register("prototypes", prototypeOptions);
-StateRegister.register("pages", pageOptions);
+stateRegister.register('team', teamOptions);
+stateRegister.register('recommendations', recommendationOptions);
+stateRegister.register('images', imageOptions);
+stateRegister.register('prototypes', prototypeOptions);
+stateRegister.register('pages', pageOptions);

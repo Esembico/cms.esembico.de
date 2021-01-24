@@ -1,7 +1,7 @@
-import { SET_SIDEBAR_VISIBLE } from "../actionTypes";
+import { SET_SIDEBAR_VISIBLE } from '../actionTypes';
 
 const initialState = {
-  sidebarVisible: false,
+  sidebarVisible: false
 };
 
 export function setSidebarVisibleAction(visible) {
@@ -15,7 +15,7 @@ export default function reducer(state = initialState, action) {
     case SET_SIDEBAR_VISIBLE:
       return {
         ...state,
-        sidebarVisible: action.visible,
+        sidebarVisible: action.visible
       };
     default:
       return state;
