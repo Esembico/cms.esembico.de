@@ -131,7 +131,7 @@ export default function makeDataPage({
                           <Button onClick={() => setMode('view')}>
                             Cancel
                           </Button>
-                          <Button onClick={() => onDelete()} type='danger'>
+                          <Button onClick={() => onDelete()} color='danger'>
                             Delete
                           </Button>
                         </Column>
