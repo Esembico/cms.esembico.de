@@ -132,7 +132,7 @@
   display: inline-block;
 }
 
-.button-container button {
+.button-container button.contained {
   position: relative;
   border: none;
   font-size: 1.1rem;
@@ -149,23 +149,23 @@
     0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
-.button-container button.primary {
+.button-container button.contained.primary {
   background: var(--primary-color);
 }
 
-.button-container button.danger {
+.button-container button.contained.danger {
   background: var(--danger-color);
 }
 
-.button-container button.success {
+.button-container button.contained.success {
   background: var(--success-color);
 }
 
-.button-container button.info {
+.button-container button.contained.info {
   background: var(--info-color);
 }
 
-.button-container button::before {
+.button-container button.contained::before {
   content: "";
   position: absolute;
   width: 30vh;
@@ -180,24 +180,24 @@
   transform: translate(-50%, -50%) scale(0);
 }
 
-.button-container button:hover {
+.button-container button.contained:hover {
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12),
     0 3px 5px -1px rgba(0, 0, 0, 0.2);
 }
 
-.button-container button.primary:hover {
+.button-container button.contained.primary:hover {
   background-color: var(--primary-color-dark);
 }
 
-.button-container button.danger:hover {
+.button-container button.contained.danger:hover {
   background-color: var(--danger-color-dark);
 }
 
-.button-container button.success:hover {
+.button-container button.contained.success:hover {
   background-color: var(--success-color-dark);
 }
 
-.button-container button.info:hover {
+.button-container button.contained.info:hover {
   background-color: var(--info-color-dark);
 }
 

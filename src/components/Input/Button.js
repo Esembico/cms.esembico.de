@@ -5,7 +5,7 @@ export default function Button({ children, color, className, ...other }) {
     <div className='button-container'>
       <button
         type='button'
-        className={`${color || 'primary'} ${className || ''}`}
+        className={`contained ${color || 'primary'} ${className || ''}`}
         {...other}
       >
         {children}
