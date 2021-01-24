@@ -59,10 +59,28 @@ body.light {
   clear: both;
 }
 
+.show-sidebar {
+  display: none;
+  padding: 16px 8px 16px 16px;
+}
+
+.show-sidebar a {
+  color: var(--text-color);
+  font-size: 25px;
+}
+
 @media screen and (max-width: 600px) {
   .col {
     width: 100%;
     margin-top: 0;
+  }
+
+  .main {
+    margin-left: 0;
+  }
+
+  .show-sidebar {
+    display: block;
   }
 }
 
