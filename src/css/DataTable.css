@@ -1,6 +1,11 @@
-.data-table {
+.data-table-container {
   width: 100%;
+  overflow-x: auto;
+}
+
+.data-table {
   border-collapse: collapse;
+  width: 100%;
 }
 
 .data-table td {
