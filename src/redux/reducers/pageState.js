@@ -1,7 +1,7 @@
 import { SET_SIDEBAR_VISIBLE } from '../actionTypes';
 
 const initialState = {
-  sidebarVisible: false
+  sidebarVisible: true
 };
 
 export function setSidebarVisibleAction(visible) {

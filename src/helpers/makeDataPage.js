@@ -3,25 +3,21 @@ import DataTable from '../components/DataTable/DataTable';
 import Header from '../components/Header';
 import { connect } from 'react-redux';
 import LoadingIndicator from '../components/LoadingIndicator';
-import DataList from '../components/DataList';
 import Container from '../components/Responsive/Container';
 import Row from '../components/Responsive/Row';
 import Column from '../components/Responsive/Column';
-import Button from '../components/Input/Button';
+import Button from '@material-ui/core/Button';
 import stateRegister from '../register/stateRegister';
+import { ButtonGroup } from '@material-ui/core';
 
-export default function makeDataPage({
-  columns,
-  primaryProperty,
-  Editor,
-  entity
-}) {
+export default function makeDataPage({ columns, Editor, entity }) {
   const Component = ({
     data,
     status,
     lastPage,
     currentPage,
     editedData,
+    totalItems,
     fetchData,
     selectPage,
     selectItem,
@@ -77,10 +73,7 @@ export default function makeDataPage({
           <React.Fragment>
             <Container>
               <Row>
-                <Button
-                  className={mode === 'edit' ? 'hide-on-mobile' : ''}
-                  onClick={newEntry}
-                >
+                <Button variant='contained' color='primary' onClick={newEntry}>
                   New
                 </Button>
               </Row>
@@ -98,27 +91,12 @@ export default function makeDataPage({
                     selectItem(id);
                   }}
                   selected={selectedId}
+                  totalItems={totalItems}
                 />
               )}
               {mode === 'edit' && (
                 <Row>
-                  <Column width={25}>
-                    <DataList
-                      data={data}
-                      pageData={{
-                        current: currentPage,
-                        last: lastPage
-                      }}
-                      primaryProperty={primaryProperty}
-                      selected={selectedId}
-                      onPageChange={changePage}
-                      onSelect={(id) => {
-                        editEntry(id);
-                        selectItem(id);
-                      }}
-                    />
-                  </Column>
-                  <Column width={75}>
+                  <Column width={100}>
                     {Editor && (
                       <React.Fragment>
                         <Editor
@@ -127,13 +105,18 @@ export default function makeDataPage({
                           data={editedData}
                         />
                         <Column width={100}>
-                          <Button onClick={saveEntry}>Save</Button>
-                          <Button onClick={() => setMode('view')}>
-                            Cancel
-                          </Button>
-                          <Button onClick={() => onDelete()} color='danger'>
-                            Delete
-                          </Button>
+                          <ButtonGroup color='primary' variant='contained'>
+                            <Button onClick={saveEntry}>Save</Button>
+                            <Button onClick={() => setMode('view')}>
+                              Cancel
+                            </Button>
+                            <Button
+                              onClick={() => onDelete()}
+                              color='secondary'
+                            >
+                              Delete
+                            </Button>
+                          </ButtonGroup>
                         </Column>
                       </React.Fragment>
                     )}

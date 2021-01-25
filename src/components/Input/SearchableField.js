@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useStore } from 'react-redux';
 import getDisplayValue from '../../helpers/getDisplayValue';
 import stateRegister from '../../register/stateRegister';
-import TextField from './TextField';
+import TextField from './TextFieldImpl';
 
 export default function SearchableField({
   label,

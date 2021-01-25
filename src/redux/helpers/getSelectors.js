@@ -65,6 +65,10 @@ export default function getSelectors(entity) {
     return state.pageLoaded[page] ? state.pageLoaded[page] : 0;
   };
 
+  const getTotalItems = (store) => {
+    return getState(store) ? getState(store).totalItems : 0;
+  };
+
   return {
     getState,
     getList,
@@ -80,6 +84,7 @@ export default function getSelectors(entity) {
     getSelectedData,
     getEditedData,
     getFilteredData,
-    getPageLastLoaded
+    getPageLastLoaded,
+    getTotalItems
   };
 }

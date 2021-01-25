@@ -6,6 +6,7 @@ const initialState = {
   status: 'idle',
   lastPage: 1,
   currentPage: 1,
+  totalItems: 0,
   selectedId: null,
   editedData: null,
   filteredData: [],
@@ -87,6 +88,7 @@ export default function createReducer(entity) {
           status: 'idle',
           lastPage: newLastPage,
           currentPage: page,
+          totalItems: action.payload.count,
           pageLoaded: {
             ...state.pageLoaded,
             [page]: Date.now()

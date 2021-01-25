@@ -37,6 +37,7 @@ export default function getActions(entity, endpoint) {
             type: `FETCH_${actionEntity}_SUCCESS`,
             payload: {
               data: json.results,
+              count: json.count,
               page,
               nextPage
             }

@@ -3,8 +3,8 @@ import Container from '../components/Responsive/Container';
 import { connect } from 'react-redux';
 import { authAction } from '../redux/reducers/auth';
 import { bindActionCreators } from 'redux';
-import TextField from '../components/Input/TextField';
-import Button from '../components/Input/Button';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 import { Redirect } from 'react-router-dom';
 
 const Login = ({ auth, token }) => {
@@ -18,17 +18,21 @@ const Login = ({ auth, token }) => {
     <Container>
       {token && <Redirect to='/' />}
       <TextField
+        fullWidth
         label='Username'
         value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
       <TextField
+        fullWidth
         label='Password'
         type='password'
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
       <Button
+        variant='contained'
+        color='primary'
         onClick={(e) => {
           e.preventDefault();
           login();
