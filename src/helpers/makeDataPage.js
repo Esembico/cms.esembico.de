@@ -119,6 +119,7 @@ export default function makeDataPage({ columns, Editor, entity }) {
                               <Button
                                 onClick={() => onDelete()}
                                 color='secondary'
+                                disabled={!editedData.id}
                               >
                                 Delete
                               </Button>
