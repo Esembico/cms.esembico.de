@@ -134,12 +134,9 @@ function Base({ children, token, sidebarVisible, setSidebarVisible }) {
         <React.Fragment>
           <AppBar
             position='fixed'
-            className={
-              (classes.appBar,
-              {
-                [classes.appBarShift]: sidebarVisible
-              })
-            }
+            className={clsx(classes.appBar, {
+              [classes.appBarShift]: sidebarVisible
+            })}
           >
             <Toolbar>
               <IconButton
