@@ -1,45 +1,92 @@
 import { useState } from 'react';
-import Container from '../components/Responsive/Container';
+import Container from '@material-ui/core/Container';
 import { connect } from 'react-redux';
 import { authAction } from '../redux/reducers/auth';
 import { bindActionCreators } from 'redux';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { Redirect } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core';
+import Avatar from '@material-ui/core/Avatar';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+
+const useStyles = makeStyles((theme) => {
+  return {
+    paper: {
+      marginTop: theme.spacing(8),
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center'
+    },
+    avatar: {
+      margin: theme.spacing(1),
+      backgroundColor: theme.palette.secondary.main
+    },
+    form: {
+      width: '100%',
+      marginTop: theme.spacing(1)
+    },
+    submit: {
+      margin: theme.spacing(3, 0, 2)
+    }
+  };
+});
 
 const Login = ({ auth, token }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const login = () => {
+  const classes = useStyles();
+
+  const onLogin = (e) => {
+    e.preventDefault();
     auth(username, password);
   };
   return (
     <Container>
       {token && <Redirect to='/' />}
-      <TextField
-        fullWidth
-        label='Username'
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <TextField
-        fullWidth
-        label='Password'
-        type='password'
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <Button
-        variant='contained'
-        color='primary'
-        onClick={(e) => {
-          e.preventDefault();
-          login();
-        }}
-      >
-        Login
-      </Button>
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography variant='h5'>Login</Typography>
+        <form onSubmit={onLogin}>
+          <TextField
+            label='Username'
+            id='username'
+            variant='outlined'
+            fullWidth
+            required
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            autoFocus
+            margin='normal'
+            autoComplete='username'
+          />
+          <TextField
+            label='Password'
+            id='password'
+            type='password'
+            variant='outlined'
+            fullWidth
+            required
+            margin='normal'
+            autoComplete='current-password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Button
+            type='submit'
+            fullWidth
+            variant='contained'
+            color='primary'
+            className={classes.submit}
+          >
+            Login
+          </Button>
+        </form>
+      </div>
     </Container>
   );
 };
