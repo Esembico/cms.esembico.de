@@ -10,12 +10,19 @@ export default function SelectImpl({
   value,
   options,
   errors,
-  onChange
+  onChange,
+  required
 }) {
   return (
-    <FormControl error={!!errors} fullWidth>
+    <FormControl required={required} error={!!errors} fullWidth>
       <InputLabel>{label}</InputLabel>
-      <Select displayEmpty fullWidth value={value} onChange={onChange}>
+      <Select
+        required={required}
+        displayEmpty
+        fullWidth
+        value={value}
+        onChange={onChange}
+      >
         <MenuItem value=''>
           <em>None</em>
         </MenuItem>

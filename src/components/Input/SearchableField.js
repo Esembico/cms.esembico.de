@@ -10,7 +10,8 @@ export default function SearchableField({
   entity,
   value,
   onChange,
-  errors
+  errors,
+  required
 }) {
   const state = useStore().getState();
   const setFilteredDataAction = stateRegister.getAction(
@@ -51,6 +52,7 @@ export default function SearchableField({
             {...params}
             label={label}
             margin='normal'
+            required={required}
           />
         )}
         getOptionSelected={(option, value) => option?.id === value?.id}

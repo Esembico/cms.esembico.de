@@ -21,6 +21,7 @@ function createFieldForProperty({ property, data, onUpdate, ...others }) {
           value={data[property.name]}
           onChange={(e) => onUpdate(property.name, e.target.value)}
           options={property.options}
+          required={property.required}
           {...others}
         />
       );
@@ -31,6 +32,7 @@ function createFieldForProperty({ property, data, onUpdate, ...others }) {
           value={data[property.name]}
           multiline={property.multiline}
           onChange={(e) => onUpdate(property.name, e.target.value)}
+          required={property.required}
           {...others}
         />
       );
@@ -41,6 +43,7 @@ function createFieldForProperty({ property, data, onUpdate, ...others }) {
           value={data[property.name]}
           multiline={property.multiline}
           onChange={(e) => onUpdate(property.name, e.target.value || null)}
+          required={property.required}
           {...others}
         />
       );
@@ -51,6 +54,7 @@ function createFieldForProperty({ property, data, onUpdate, ...others }) {
           entity={property.to}
           value={data[property.name]}
           onChange={(value) => onUpdate(property.name, value)}
+          required={property.required}
           {...others}
         />
       );
@@ -60,6 +64,7 @@ function createFieldForProperty({ property, data, onUpdate, ...others }) {
           label={label}
           value={data[property.name]}
           onChange={(value) => onUpdate(property.name, value)}
+          required={property.required}
           {...others}
         />
       );
