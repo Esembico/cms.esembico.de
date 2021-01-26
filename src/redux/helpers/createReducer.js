@@ -33,6 +33,19 @@ export default function createReducer(entity) {
           ...state,
           editedData
         };
+      case `UPDATE_DATA_${actionEntity}`:
+        const newIds = state.allIds;
+        if (!newIds.includes(action.data.id)) {
+          newIds.push(action.data.id);
+        }
+        return {
+          ...state,
+          allIds: newIds,
+          byIds: {
+            ...state.byIds,
+            [action.data.id]: action.data
+          }
+        };
       case `UPDATE_EDITED_DATA_${actionEntity}`:
         const newData = { ...state.editedData, [action.field]: action.value };
         return {

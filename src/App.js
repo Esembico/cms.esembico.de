@@ -40,10 +40,20 @@ function App({ validateAuth }) {
             {routes.map((route) => {
               return (
                 <PrivateRoute
-                  key={route.name}
+                  key={`${route.name}-list`}
                   exact={true}
-                  path={route.path}
-                  component={route.component}
+                  path={route.listPath}
+                  component={route.listComponent}
+                />
+              );
+            })}
+            {routes.map((route) => {
+              return (
+                <PrivateRoute
+                  key={`${route.name}-edit`}
+                  exact={true}
+                  path={route.editPath}
+                  component={route.editComponent}
                 />
               );
             })}

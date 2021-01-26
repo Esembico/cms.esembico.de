@@ -103,8 +103,20 @@ export default function getActions(entity, endpoint) {
   };
 
   const setEditedDataAction = (id) => {
-    return (dispatch) => {
-      dispatch({ type: `SET_EDITED_DATA_${actionEntity}`, id });
+    return (dispatch, storeGetter) => {
+      const store = storeGetter();
+      if (id === -1 || store[entity].allIds.includes(id)) {
+        dispatch({ type: `SET_EDITED_DATA_${actionEntity}`, id });
+      } else {
+        fetchWrapper(`${process.env.REACT_APP_API_URL}/${endpoint}/${id}/`)
+          .then((json) => {
+            dispatch({ type: `UPDATE_DATA_${actionEntity}`, data: json });
+            dispatch({ type: `SET_EDITED_DATA_${actionEntity}`, id });
+          })
+          .catch((error) => {
+            dispatch({ type: `FETCH_${actionEntity}_ERROR`, error });
+          });
+      }
     };
   };
 

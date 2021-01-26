@@ -3,9 +3,10 @@ import getActions from '../redux/helpers/getActions';
 import getMappers from '../redux/helpers/getMappers';
 import getSelectors from '../redux/helpers/getSelectors';
 import { toCamelCase, toUpperCaseFirstChar } from '../helpers/caseConverter';
-import makeDataPage from '../helpers/makeDataPage';
 import makeEditor from '../helpers/makeEditor';
 import makeValidation from '../helpers/makeValidation';
+import makeListPage from '../helpers/makeListPage';
+import makeEditPage from '../helpers/makeEditPage';
 
 class StateRegister {
   constructor() {
@@ -50,20 +51,33 @@ class StateRegister {
     };
   }
 
+  getListUrl(name) {
+    return `/${name}`;
+  }
+
+  getEditUrl(name, id) {
+    return `/${name}/${id}`;
+  }
+
   getRoutes() {
     const routes = [];
     Object.entries(this.states).forEach(([name, entry]) => {
       routes.push({
         name,
-        path: `/${name}`,
-        component:
-          entry.pageComponent ||
-          makeDataPage({
-            columns: entry.columns,
-            primaryProperty: entry.primaryProperty,
-            entity: name,
-            Editor: entry.editor
-          })
+        listPath: `/${name}`,
+        editPath: `/${name}/:id`,
+        listComponent: makeListPage({
+          columns: entry.columns,
+          primaryProperty: entry.primaryProperty,
+          entity: name,
+          Editor: entry.editor
+        }),
+        editComponent: makeEditPage({
+          columns: entry.columns,
+          primaryProperty: entry.primaryProperty,
+          entity: name,
+          Editor: entry.editor
+        })
       });
     });
     return routes;
