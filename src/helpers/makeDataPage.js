@@ -112,7 +112,12 @@ export default function makeDataPage({ columns, Editor, entity }) {
                           />
                           <Column width={100}>
                             <ButtonGroup color='primary' variant='contained'>
-                              <Button type='submit'>Save</Button>
+                              <Button
+                                disabled={Object.keys(errors).length !== 0}
+                                type='submit'
+                              >
+                                Save
+                              </Button>
                               <Button onClick={() => setMode('view')}>
                                 Cancel
                               </Button>
