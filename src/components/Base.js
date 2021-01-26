@@ -16,33 +16,45 @@ import List from '@material-ui/core/List';
 import ListItemLink from './ListItemLink';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import GroupIcon from '@material-ui/icons/Group';
+import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
+import FeaturedPlayListIcon from '@material-ui/icons/FeaturedPlayList';
+import PagesIcon from '@material-ui/icons/Pages';
+import ImageIcon from '@material-ui/icons/Image';
+import HomeIcon from '@material-ui/icons/Home';
 
 const drawerWidth = 240;
 
 const links = [
   {
     to: '/',
-    text: 'Home'
+    text: 'Home',
+    icon: <HomeIcon />
   },
   {
     to: '/team',
-    text: 'Team'
+    text: 'Team',
+    icon: <GroupIcon />
   },
   {
     to: '/prototypes',
-    text: 'Prototypes'
+    text: 'Prototypes',
+    icon: <EmojiObjectsIcon />
   },
   {
     to: '/recommendations',
-    text: 'Recommendations'
+    text: 'Recommendations',
+    icon: <FeaturedPlayListIcon />
   },
   {
     to: '/pages',
-    text: 'Pages'
+    text: 'Pages',
+    icon: <PagesIcon />
   },
   {
     to: '/images',
-    text: 'Images'
+    text: 'Images',
+    icon: <ImageIcon />
   }
 ];
 
