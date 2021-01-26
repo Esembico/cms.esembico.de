@@ -11,10 +11,10 @@ export default function TextFieldImpl({ value, label, errors, ...other }) {
   }
   return (
     <TextField
-      error={errors}
+      error={!!errors}
       label={label}
       value={value}
-      helperText={errors}
+      helperText={errors?.join('\n')}
       fullWidth={true}
       margin='normal'
       {...other}

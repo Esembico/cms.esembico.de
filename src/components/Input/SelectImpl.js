@@ -13,7 +13,7 @@ export default function SelectImpl({
   onChange
 }) {
   return (
-    <FormControl error={errors} fullWidth>
+    <FormControl error={!!errors} fullWidth>
       <InputLabel>{label}</InputLabel>
       <Select displayEmpty fullWidth value={value} onChange={onChange}>
         <MenuItem value=''>
@@ -27,7 +27,7 @@ export default function SelectImpl({
           );
         })}
       </Select>
-      <FormHelperText>{errors}</FormHelperText>
+      <FormHelperText>{errors?.join('\n')}</FormHelperText>
     </FormControl>
   );
 }
