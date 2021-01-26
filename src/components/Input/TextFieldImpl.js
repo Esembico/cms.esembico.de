@@ -16,6 +16,7 @@ export default function TextFieldImpl({ value, label, errors, ...other }) {
       value={value}
       helperText={errors}
       fullWidth={true}
+      margin='normal'
       {...other}
     />
   );
