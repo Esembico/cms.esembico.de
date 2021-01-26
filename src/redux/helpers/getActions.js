@@ -115,9 +115,9 @@ export default function getActions(entity, endpoint) {
   };
 
   const commitDataAction = (data) => {
-    return (dispatch, stateGetter) => {
-      const state = stateGetter();
-      const token = state.auth.token;
+    return (dispatch, storeGetter) => {
+      const store = storeGetter();
+      const token = store.auth.token;
       fetchWrapper(
         `${process.env.REACT_APP_API_URL}/${endpoint}/${
           data.id ? `${data.id}/` : ''
