@@ -65,6 +65,11 @@ export default function makeDataPage({ columns, Editor, entity }) {
       deleteItem(selectedId);
     };
 
+    const onEditorSubmit = (e) => {
+      e.preventDefault();
+      saveEntry();
+    };
+
     return (
       <div>
         <Header>{stateRegister.getOption(entity, 'header')}</Header>
@@ -99,25 +104,27 @@ export default function makeDataPage({ columns, Editor, entity }) {
                   <Column width={100}>
                     {Editor && (
                       <React.Fragment>
-                        <Editor
-                          errors={errors}
-                          onUpdate={updateEditedData}
-                          data={editedData}
-                        />
-                        <Column width={100}>
-                          <ButtonGroup color='primary' variant='contained'>
-                            <Button onClick={saveEntry}>Save</Button>
-                            <Button onClick={() => setMode('view')}>
-                              Cancel
-                            </Button>
-                            <Button
-                              onClick={() => onDelete()}
-                              color='secondary'
-                            >
-                              Delete
-                            </Button>
-                          </ButtonGroup>
-                        </Column>
+                        <form onSubmit={onEditorSubmit}>
+                          <Editor
+                            errors={errors}
+                            onUpdate={updateEditedData}
+                            data={editedData}
+                          />
+                          <Column width={100}>
+                            <ButtonGroup color='primary' variant='contained'>
+                              <Button type='submit'>Save</Button>
+                              <Button onClick={() => setMode('view')}>
+                                Cancel
+                              </Button>
+                              <Button
+                                onClick={() => onDelete()}
+                                color='secondary'
+                              >
+                                Delete
+                              </Button>
+                            </ButtonGroup>
+                          </Column>
+                        </form>
                       </React.Fragment>
                     )}
                   </Column>
