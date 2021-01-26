@@ -4,10 +4,21 @@ import Header from '../components/Header';
 import { connect } from 'react-redux';
 import LoadingIndicator from '../components/LoadingIndicator';
 import Container from '../components/Responsive/Container';
-import Row from '../components/Responsive/Row';
-import Button from '@material-ui/core/Button';
 import stateRegister from '../register/stateRegister';
 import { useHistory } from 'react-router-dom';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
+import { makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles((theme) => {
+  return {
+    fab: {
+      position: 'absolute',
+      bottom: theme.spacing(2),
+      right: theme.spacing(2)
+    }
+  };
+});
 
 export default function makeListPage({ columns, entity }) {
   const Component = ({
@@ -21,6 +32,7 @@ export default function makeListPage({ columns, entity }) {
     selectItem,
     selectedId
   }) => {
+    const classes = useStyles();
     const history = useHistory();
 
     useEffect(() => {
@@ -42,11 +54,6 @@ export default function makeListPage({ columns, entity }) {
         {status !== 'loading' && (
           <React.Fragment>
             <Container>
-              <Row>
-                <Button variant='contained' color='primary' onClick={newEntry}>
-                  New
-                </Button>
-              </Row>
               <DataTable
                 pageData={{
                   current: currentPage,
@@ -62,6 +69,14 @@ export default function makeListPage({ columns, entity }) {
                 selected={selectedId}
                 totalItems={totalItems}
               />
+              <Fab
+                className={classes.fab}
+                color='primary'
+                aria-label='New'
+                onClick={newEntry}
+              >
+                <AddIcon />
+              </Fab>
             </Container>
           </React.Fragment>
         )}

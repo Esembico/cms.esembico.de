@@ -6,8 +6,21 @@ import Row from '../components/Responsive/Row';
 import Column from '../components/Responsive/Column';
 import Button from '@material-ui/core/Button';
 import stateRegister from '../register/stateRegister';
-import { ButtonGroup } from '@material-ui/core';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { useHistory, useParams } from 'react-router-dom';
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
+import { makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles((theme) => {
+  return {
+    fab: {
+      position: 'absolute',
+      bottom: theme.spacing(2),
+      right: theme.spacing(2)
+    }
+  };
+});
 
 export default function makeEditPage({ Editor, entity }) {
   const Component = ({
@@ -19,6 +32,7 @@ export default function makeEditPage({ Editor, entity }) {
     commitData,
     deleteItem
   }) => {
+    const classes = useStyles();
     const [errors, setErrors] = useState({});
     const validateData = stateRegister.getOption(entity, 'validateData');
     useEffect(() => {
@@ -55,6 +69,10 @@ export default function makeEditPage({ Editor, entity }) {
     const onEditorSubmit = (e) => {
       e.preventDefault();
       saveEntry();
+    };
+
+    const newEntry = () => {
+      history.push(stateRegister.getEditUrl(entity, 'new'));
     };
 
     return (
@@ -95,6 +113,15 @@ export default function makeEditPage({ Editor, entity }) {
                 </Column>
               </form>
             </Row>
+            <Fab
+              className={classes.fab}
+              color='primary'
+              aria-label='New'
+              onClick={newEntry}
+              disabled={!editedData.id}
+            >
+              <AddIcon />
+            </Fab>
           </Container>
         )}
       </div>
