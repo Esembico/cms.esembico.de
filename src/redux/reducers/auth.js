@@ -15,7 +15,7 @@ export function validateAuthAction() {
       headers: generateHeaders(state.auth.token)
     })
       .then((json) => {
-        dispatch({ type: SET_USERNAME, username: json.username });
+        dispatch({ type: SET_USERNAME, username: json.user });
       })
       .catch((error) => {
         dispatch({ type: SET_TOKEN, token: null });
