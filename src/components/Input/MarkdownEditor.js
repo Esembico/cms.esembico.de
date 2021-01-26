@@ -40,7 +40,7 @@ export default function MarkdownEditor({ label, value, onChange, errors }) {
         {label}
       </label>
       <ReactMde
-        value={value}
+        value={value || ''}
         onChange={onChange}
         selectedTab={selectedTab}
         onTabChange={setSelectedTab}

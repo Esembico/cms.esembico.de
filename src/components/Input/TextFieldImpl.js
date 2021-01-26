@@ -13,7 +13,7 @@ export default function TextFieldImpl({ value, label, errors, ...other }) {
     <TextField
       error={!!errors}
       label={label}
-      value={value}
+      value={value || ''}
       helperText={errors?.join('\n')}
       fullWidth={true}
       margin='normal'
