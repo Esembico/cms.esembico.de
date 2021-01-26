@@ -127,14 +127,14 @@ export default function DataTable({
               );
             })}
           </TableBody>
-          {totalItems && (
+          {totalItems ? (
             <TableFooter>
               <TableRow>
                 <TablePagination
                   rowsPerPageOptions={[]}
                   colSpan={3}
                   count={totalItems}
-                  rowsPerPage={process.env.REACT_APP_ROWS_PER_PAGE}
+                  rowsPerPage={parseInt(process.env.REACT_APP_ROWS_PER_PAGE)}
                   page={pageData.current - 1}
                   SelectProps={{
                     inputProps: { 'aria-label': 'rows per page' },
@@ -145,7 +145,7 @@ export default function DataTable({
                 />
               </TableRow>
             </TableFooter>
-          )}
+          ) : null}
         </Table>
       </TableContainer>
     </React.Fragment>
