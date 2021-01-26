@@ -4,7 +4,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 
-export default function ListItemLink({ icon, primary, to }) {
+export default function ListItemLink({ icon, primary, to, exact }) {
   return (
     <li>
       <ListItem
@@ -12,7 +12,7 @@ export default function ListItemLink({ icon, primary, to }) {
         component={NavLink}
         to={to}
         activeClassName='Mui-selected'
-        exact={true}
+        exact={exact}
       >
         {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
         <ListItemText primary={primary} />

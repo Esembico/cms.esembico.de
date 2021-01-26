@@ -29,7 +29,8 @@ const links = [
   {
     to: '/',
     text: 'Home',
-    icon: <HomeIcon />
+    icon: <HomeIcon />,
+    exact: true
   },
   {
     to: '/team',
@@ -182,6 +183,7 @@ function Base({ children, token, sidebarVisible, setSidebarVisible }) {
                   to={link.to}
                   primary={link.text}
                   icon={link.icon}
+                  exact={link.exact}
                 />
               ))}
             </List>
