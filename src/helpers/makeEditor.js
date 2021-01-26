@@ -4,6 +4,7 @@ import TextField from '../components/Input/TextFieldImpl';
 import SearchableField from '../components/Input/SearchableField';
 import MarkdownEditor from '../components/Input/MarkdownEditor';
 import Select from '../components/Input/SelectImpl';
+import getLabelText from './getLabelText';
 
 function createFieldForProperty({ property, data, onUpdate, ...others }) {
   if (property.if) {
@@ -11,10 +12,7 @@ function createFieldForProperty({ property, data, onUpdate, ...others }) {
       return <React.Fragment />;
     }
   }
-  let label = property.label;
-  if (typeof label === 'function') {
-    label = label(data);
-  }
+  const label = getLabelText(property.label, data);
   switch (property.type) {
     case 'select':
       return (
