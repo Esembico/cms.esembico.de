@@ -1,5 +1,5 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilm, faOtter } from '@fortawesome/free-solid-svg-icons';
+import MovieIcon from '@material-ui/icons/Movie';
+import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
 import { required } from '../../helpers/validation';
 
 const recommendationOptions = {
@@ -9,9 +9,9 @@ const recommendationOptions = {
       display: (entry) => {
         switch (entry.type) {
           case 'movie':
-            return <FontAwesomeIcon icon={faFilm} />;
+            return <MovieIcon />;
           case 'misc':
-            return <FontAwesomeIcon icon={faOtter} />;
+            return <AllInclusiveIcon />;
           default:
             return entry.type;
         }
