@@ -32,29 +32,29 @@ function TablePaginationActions({ onChangePage, count, page, rowsPerPage }) {
   };
 
   const handleBackButtonClick = () => {
-    onChangePage(page - 1);
+    onChangePage(page);
   };
 
   const handleNextButtonClick = () => {
-    onChangePage(page + 1);
+    onChangePage(page + 2);
   };
 
   const handleLastPageButtonClick = () => {
-    onChangePage(Math.max(0, Math.ceil(count / rowsPerPage) - 1));
+    onChangePage(Math.max(0, Math.ceil(count / rowsPerPage)));
   };
 
   return (
     <div className={classes.root}>
       <IconButton
         onClick={handleFirstPageButtonClick}
-        disabled={page === 1}
+        disabled={page === 0}
         aria-label='first page'
       >
         {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
       </IconButton>
       <IconButton
         onClick={handleBackButtonClick}
-        disabled={page === 1}
+        disabled={page === 0}
         aria-label='previous page'
       >
         {theme.direction === 'rtl' ? (
@@ -131,11 +131,11 @@ export default function DataTable({
             <TableFooter>
               <TableRow>
                 <TablePagination
-                  rowsPerPageOptions={[10]}
+                  rowsPerPageOptions={[]}
                   colSpan={3}
                   count={totalItems}
-                  rowsPerPage={10}
-                  page={pageData.current}
+                  rowsPerPage={process.env.REACT_APP_ROWS_PER_PAGE}
+                  page={pageData.current - 1}
                   SelectProps={{
                     inputProps: { 'aria-label': 'rows per page' },
                     native: true
