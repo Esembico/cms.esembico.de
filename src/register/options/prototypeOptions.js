@@ -1,5 +1,3 @@
-import { required } from '../../helpers/validation';
-
 const prototypeOptions = {
   columns: [
     {
@@ -19,56 +17,50 @@ const prototypeOptions = {
     {
       type: 'text',
       label: 'Title',
-      name: 'title'
+      name: 'title',
+      required: true
     },
     {
       type: 'text',
       label: 'Subtitle',
-      name: 'subtitle'
+      name: 'subtitle',
+      required: true
     },
     {
       type: 'text',
       label: 'Url',
-      name: 'url'
+      name: 'url',
+      required: true
     },
     {
       type: 'reference',
       label: 'Image',
       name: 'image',
-      to: 'images'
+      to: 'images',
+      required: true
     },
     {
       type: 'text',
       label: 'Challenge',
       name: 'challenge',
-      multiline: true
+      multiline: true,
+      required: true
     },
     {
       type: 'text',
       label: 'Solution',
       name: 'solution',
-      multiline: true
+      multiline: true,
+      required: true
     },
     {
       type: 'text',
       label: 'Rough details',
       name: 'rough_details',
-      multiline: true
+      multiline: true,
+      required: true
     }
-  ],
-  validateData: (data) => {
-    const errors = {};
-
-    required(errors, 'Title', data, 'title');
-    required(errors, 'Subtitle', data, 'subtitle');
-    required(errors, 'Url', data, 'url');
-    required(errors, 'Image', data, 'image');
-    required(errors, 'Challenge', data, 'challenge');
-    required(errors, 'Solution', data, 'solution');
-    required(errors, 'Rough details', data, 'rough_details');
-
-    return errors;
-  }
+  ]
 };
 
 export default prototypeOptions;

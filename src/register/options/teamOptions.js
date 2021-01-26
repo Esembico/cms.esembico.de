@@ -1,5 +1,3 @@
-import { required } from '../../helpers/validation';
-
 const teamOptions = {
   endpoint: 'members',
   columns: [
@@ -26,42 +24,36 @@ const teamOptions = {
     {
       type: 'text',
       label: 'Name',
-      name: 'name'
+      name: 'name',
+      required: true
     },
     {
       type: 'text',
       label: 'Artist name',
-      name: 'artist_name'
+      name: 'artist_name',
+      required: true
     },
     {
       type: 'text',
       label: 'Titles',
-      name: 'titles'
+      name: 'titles',
+      required: true
     },
     {
       type: 'text',
       label: 'Bio',
       name: 'bio',
-      multiline: true
+      multiline: true,
+      required: true
     },
     {
       type: 'reference',
       label: 'Image',
       name: 'image',
-      to: 'images'
+      to: 'images',
+      required: true
     }
-  ],
-  validateData: (data) => {
-    const errors = {};
-
-    required(errors, 'Name', data, 'name');
-    required(errors, 'Artist name', data, 'artist_name');
-    required(errors, 'Titles', data, 'titles');
-    required(errors, 'Bio', data, 'bio');
-    required(errors, 'Image', data, 'image');
-
-    return errors;
-  }
+  ]
 };
 
 export default teamOptions;

@@ -5,6 +5,7 @@ import getSelectors from '../redux/helpers/getSelectors';
 import { toCamelCase, toUpperCaseFirstChar } from '../helpers/caseConverter';
 import makeDataPage from '../helpers/makeDataPage';
 import makeEditor from '../helpers/makeEditor';
+import makeValidation from '../helpers/makeValidation';
 
 class StateRegister {
   constructor() {
@@ -26,6 +27,14 @@ class StateRegister {
       ...options
     };
     let editor = options.editor;
+    let validateData = mergedOptions.validateData;
+    if (mergedOptions.buildValidationFromEditor) {
+      if (!Array.isArray(editor)) {
+        throw Error('editor needs to be an array to build validation');
+      }
+
+      validateData = makeValidation(editor);
+    }
     if (Array.isArray(editor)) {
       editor = makeEditor({ proprties: editor });
     }
@@ -36,6 +45,7 @@ class StateRegister {
       mappers: getMappers(name, mergedOptions.endpoint || name),
       reducer: createReducer(name),
       header: mergedOptions.header || toUpperCaseFirstChar(name),
+      validateData,
       editor
     };
   }

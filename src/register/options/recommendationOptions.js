@@ -1,6 +1,5 @@
 import MovieIcon from '@material-ui/icons/Movie';
 import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
-import { required } from '../../helpers/validation';
 
 const recommendationOptions = {
   columns: [
@@ -38,23 +37,27 @@ const recommendationOptions = {
       options: [
         { value: 'misc', display: 'Misc' },
         { value: 'movie', display: 'Movie' }
-      ]
+      ],
+      required: true
     },
     {
       type: 'text',
       label: 'Url',
-      name: 'url'
+      name: 'url',
+      required: true
     },
     {
       type: 'text',
       label: 'Title',
-      name: 'title'
+      name: 'title',
+      required: true
     },
     {
       type: 'reference',
       label: 'Image',
       name: 'image',
-      to: 'images'
+      to: 'images',
+      required: true
     },
     {
       type: 'text',
@@ -62,7 +65,8 @@ const recommendationOptions = {
       name: 'description',
       if: (data) => {
         return data.type === 'misc';
-      }
+      },
+      required: true
     },
     {
       type: 'text',
@@ -74,7 +78,8 @@ const recommendationOptions = {
       name: 'field1',
       if: (data) => {
         return data.type === 'movie';
-      }
+      },
+      required: true
     },
     {
       type: 'text',
@@ -86,7 +91,8 @@ const recommendationOptions = {
       name: 'field2',
       if: (data) => {
         return data.type === 'movie';
-      }
+      },
+      required: true
     },
     {
       type: 'text',
@@ -106,21 +112,7 @@ const recommendationOptions = {
       name: 'field5',
       if: () => false
     }
-  ],
-  validateData: (data) => {
-    const errors = {};
-    required(errors, 'Type', data, 'type');
-    required(errors, 'Url', data, 'url');
-    required(errors, 'Title', data, 'title');
-    required(errors, 'Image', data, 'image');
-    if (data.type === 'misc') {
-      required(errors, 'Description', data, 'description');
-    } else if (data.type === 'movie') {
-      required(errors, 'FSK Rating', data, 'field1');
-      required(errors, 'Release year', data, 'field2');
-    }
-    return errors;
-  }
+  ]
 };
 
 export default recommendationOptions;

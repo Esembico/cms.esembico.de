@@ -1,5 +1,3 @@
-import { required } from '../../helpers/validation';
-
 const imageOptions = {
   columns: [
     {
@@ -25,12 +23,14 @@ const imageOptions = {
     {
       type: 'text',
       label: 'Url',
-      name: 'url'
+      name: 'url',
+      required: true
     },
     {
       type: 'text',
       label: 'Alt',
-      name: 'alt'
+      name: 'alt',
+      required: true
     },
     {
       type: 'number',
@@ -42,15 +42,7 @@ const imageOptions = {
       label: 'Height',
       name: 'height'
     }
-  ],
-  validateData: (data) => {
-    const errors = {};
-
-    required(errors, 'Url', data, 'url');
-    required(errors, 'Alt', data, 'alt');
-
-    return errors;
-  }
+  ]
 };
 
 export default imageOptions;

@@ -1,5 +1,3 @@
-import { required } from '../../helpers/validation';
-
 const pageOptions = {
   columns: [
     {
@@ -19,26 +17,22 @@ const pageOptions = {
     {
       type: 'text',
       label: 'Name',
-      name: 'name'
+      name: 'name',
+      required: true
     },
     {
       type: 'text',
       label: 'Slug',
-      name: 'slug'
+      name: 'slug',
+      required: true
     },
     {
       type: 'markdown',
       label: 'Content',
-      name: 'content'
+      name: 'content',
+      required: true
     }
-  ],
-  validateData: (data) => {
-    const errors = {};
-    required(errors, 'Name', data, 'name');
-    required(errors, 'Slug', data, 'slug');
-    required(errors, 'Content', data, 'content');
-    return errors;
-  }
+  ]
 };
 
 export default pageOptions;

@@ -6,6 +6,7 @@ import prototypeOptions from './options/prototypeOptions';
 import pageOptions from './options/pageOptions';
 
 stateRegister.setGlobalOptions({
+  buildValidationFromEditor: true,
   getNextPageNumber: (json) => {
     const pageRegex = /[\w\W]*page=([0-9]*)/;
     if (json.next) {
