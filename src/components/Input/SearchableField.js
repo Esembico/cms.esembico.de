@@ -53,7 +53,7 @@ export default function SearchableField({
             margin='normal'
           />
         )}
-        getOptionSelected={(option, value) => option.id === value.id}
+        getOptionSelected={(option, value) => option?.id === value?.id}
       />
     </React.Fragment>
   );
