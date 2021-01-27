@@ -5,13 +5,14 @@ export default function getActions(entity, endpoint) {
   const actionEntity = entity.replace(' ', '_').toUpperCase();
 
   const getPageAction = (page, forceLoad) => {
-    return (dispatch, storeGetter) => {
-      const store = storeGetter();
+    return (dispatch, getState) => {
+      const state = getState();
+      const token = state.auth.token;
       const getPageLastLoaded = stateRegister.getSelector(
         entity,
         'getPageLastLoaded'
       );
-      const lastLoaded = getPageLastLoaded(store, page);
+      const lastLoaded = getPageLastLoaded(state, page);
 
       const diff = Date.now() - lastLoaded;
 
@@ -24,7 +25,7 @@ export default function getActions(entity, endpoint) {
       fetchWrapper(
         `${process.env.REACT_APP_API_URL}/${endpoint}/?page=${page}`,
         {
-          headers: generateHeaders()
+          headers: generateHeaders(token)
         }
       )
         .then((json) => {
@@ -78,11 +79,13 @@ export default function getActions(entity, endpoint) {
   };
 
   const setFilteredDataAction = (search) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+      const state = getState();
+      const token = state.auth.token;
       fetchWrapper(
         `${process.env.REACT_APP_API_URL}/${endpoint}/?search=${search}`,
         {
-          headers: generateHeaders()
+          headers: generateHeaders(token)
         }
       )
         .then((json) => {
@@ -108,12 +111,15 @@ export default function getActions(entity, endpoint) {
   };
 
   const setEditedDataAction = (id) => {
-    return (dispatch, storeGetter) => {
-      const store = storeGetter();
-      if (id === -1 || store[entity].allIds.includes(id)) {
+    return (dispatch, getState) => {
+      const state = getState();
+      const token = state.auth.token;
+      if (id === -1 || state[entity].allIds.includes(id)) {
         dispatch({ type: `SET_EDITED_DATA_${actionEntity}`, id });
       } else {
-        fetchWrapper(`${process.env.REACT_APP_API_URL}/${endpoint}/${id}/`)
+        fetchWrapper(`${process.env.REACT_APP_API_URL}/${endpoint}/${id}/`, {
+          headers: generateHeaders(token)
+        })
           .then((json) => {
             dispatch({ type: `UPDATE_DATA_${actionEntity}`, data: json });
             dispatch({ type: `SET_EDITED_DATA_${actionEntity}`, id });
