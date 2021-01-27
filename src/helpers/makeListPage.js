@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import DataTable from '../components/DataTable/DataTable';
 import Header from '../components/Header';
 import { connect } from 'react-redux';
-import LoadingIndicator from '../components/LoadingIndicator';
 import Container from '../components/Responsive/Container';
 import stateRegister from '../register/stateRegister';
 import { useHistory } from 'react-router-dom';
@@ -52,8 +51,9 @@ export default function makeListPage({ columns, entity }) {
 
     return (
       <div>
-        <Header>{stateRegister.getOption(entity, 'header')}</Header>
-        <LoadingIndicator show={status === 'loading'} />
+        <Header loading={status !== 'idle'}>
+          {stateRegister.getOption(entity, 'header')}
+        </Header>
         {status !== 'loading' && (
           <React.Fragment>
             <Container>

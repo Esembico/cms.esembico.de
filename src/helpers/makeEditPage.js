@@ -97,7 +97,9 @@ export default function makeEditPage({ Editor, entity }) {
 
     return (
       <div>
-        <Header>{stateRegister.getOption(entity, 'header')}</Header>
+        <Header loading={status !== 'idle'}>
+          {stateRegister.getOption(entity, 'header')}
+        </Header>
         {editedData && (
           <Container>
             <Row>
