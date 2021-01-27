@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { setSidebarVisibleAction } from '../redux/reducers/pageState';
+import { logoutAction } from '../redux/reducers/auth';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -22,6 +23,9 @@ import FeaturedPlayListIcon from '@material-ui/icons/FeaturedPlayList';
 import PagesIcon from '@material-ui/icons/Pages';
 import ImageIcon from '@material-ui/icons/Image';
 import HomeIcon from '@material-ui/icons/Home';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
 
 const drawerWidth = 240;
 
@@ -80,6 +84,9 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2)
   },
+  title: {
+    flexGrow: 1
+  },
   hide: {
     display: 'none'
   },
@@ -116,9 +123,20 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function Base({ children, token, sidebarVisible, setSidebarVisible }) {
+function Base({ children, token, sidebarVisible, setSidebarVisible, logout }) {
   const classes = useStyles();
   const theme = useTheme();
+
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+  };
 
   const handleDrawerOpen = () => {
     setSidebarVisible(true);
@@ -126,6 +144,11 @@ function Base({ children, token, sidebarVisible, setSidebarVisible }) {
 
   const handleDrawerClose = () => {
     setSidebarVisible(false);
+  };
+
+  const handleLogout = () => {
+    handleCloseMenu();
+    logout();
   };
 
   return (
@@ -152,9 +175,34 @@ function Base({ children, token, sidebarVisible, setSidebarVisible }) {
               >
                 <MenuIcon />
               </IconButton>
-              <Typography variant='h6' noWrap>
+              <Typography className={classes.title} variant='h6' noWrap>
                 Content management system
               </Typography>
+              <div>
+                <IconButton
+                  aria-label='account of current user'
+                  aria-controls='menu-appbar'
+                  aria-haspopup='true'
+                  onClick={handleMenu}
+                  color='inherit'
+                >
+                  <AccountCircleIcon />
+                </IconButton>
+                <Menu
+                  id='menu-appbar'
+                  anchorEl={anchorEl}
+                  anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right'
+                  }}
+                  open={open}
+                  onClose={handleCloseMenu}
+                >
+                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                </Menu>
+              </div>
             </Toolbar>
           </AppBar>
           <Drawer
@@ -210,7 +258,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   const setSidebarVisible = setSidebarVisibleAction;
-  return bindActionCreators({ setSidebarVisible }, dispatch);
+  const logout = logoutAction;
+  return bindActionCreators({ setSidebarVisible, logout }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Base);

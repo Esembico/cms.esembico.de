@@ -8,6 +8,13 @@ const initialState = {
   username: null
 };
 
+export function logoutAction() {
+  return (dispatch) => {
+    dispatch({ type: SET_TOKEN, token: null });
+    dispatch({ type: SET_USERNAME, username: null });
+  };
+}
+
 export function validateAuthAction() {
   return (dispatch, stateGetter) => {
     const state = stateGetter();
