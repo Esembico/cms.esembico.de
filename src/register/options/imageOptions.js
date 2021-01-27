@@ -1,5 +1,8 @@
+import ImageIcon from '@material-ui/icons/Image';
+
 const imageOptions = {
   singularName: 'image',
+  icon: <ImageIcon />,
   columns: [
     {
       header: 'Url',

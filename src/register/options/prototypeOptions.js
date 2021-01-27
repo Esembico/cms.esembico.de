@@ -1,5 +1,8 @@
+import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
+
 const prototypeOptions = {
   singularName: 'prototype',
+  icon: <EmojiObjectsIcon />,
   columns: [
     {
       header: 'Title',

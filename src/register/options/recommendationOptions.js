@@ -1,8 +1,10 @@
 import MovieIcon from '@material-ui/icons/Movie';
 import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
+import FeaturedPlayListIcon from '@material-ui/icons/FeaturedPlayList';
 
 const recommendationOptions = {
   singularName: 'recommendation',
+  icon: <FeaturedPlayListIcon />,
   columns: [
     {
       header: 'Type',

@@ -1,5 +1,8 @@
+import PagesIcon from '@material-ui/icons/Pages';
+
 const pageOptions = {
   singularName: 'page',
+  icon: <PagesIcon />,
   columns: [
     {
       header: 'Name',

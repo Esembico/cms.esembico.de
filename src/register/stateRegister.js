@@ -59,6 +59,18 @@ class StateRegister {
     return `/${name}/${id}`;
   }
 
+  getLinks() {
+    const links = [];
+    Object.entries(this.states).forEach(([name, entry]) => {
+      links.push({
+        text: entry.header,
+        to: this.getListUrl(name),
+        icon: entry.icon
+      });
+    });
+    return links;
+  }
+
   getRoutes() {
     const routes = [];
     Object.entries(this.states).forEach(([name, entry]) => {

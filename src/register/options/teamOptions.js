@@ -1,5 +1,8 @@
+import GroupIcon from '@material-ui/icons/Group';
+
 const teamOptions = {
   singularName: 'team member',
+  icon: <GroupIcon />,
   endpoint: 'members',
   columns: [
     {

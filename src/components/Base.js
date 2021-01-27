@@ -17,15 +17,11 @@ import List from '@material-ui/core/List';
 import ListItemLink from './ListItemLink';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import GroupIcon from '@material-ui/icons/Group';
-import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
-import FeaturedPlayListIcon from '@material-ui/icons/FeaturedPlayList';
-import PagesIcon from '@material-ui/icons/Pages';
-import ImageIcon from '@material-ui/icons/Image';
 import HomeIcon from '@material-ui/icons/Home';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import stateRegister from '../register/stateRegister';
 
 const drawerWidth = 240;
 
@@ -35,31 +31,6 @@ const links = [
     text: 'Home',
     icon: <HomeIcon />,
     exact: true
-  },
-  {
-    to: '/team',
-    text: 'Team',
-    icon: <GroupIcon />
-  },
-  {
-    to: '/prototypes',
-    text: 'Prototypes',
-    icon: <EmojiObjectsIcon />
-  },
-  {
-    to: '/recommendations',
-    text: 'Recommendations',
-    icon: <FeaturedPlayListIcon />
-  },
-  {
-    to: '/pages',
-    text: 'Pages',
-    icon: <PagesIcon />
-  },
-  {
-    to: '/images',
-    text: 'Images',
-    icon: <ImageIcon />
   }
 ];
 
@@ -126,6 +97,8 @@ const useStyles = makeStyles((theme) => ({
 function Base({ children, token, sidebarVisible, setSidebarVisible, logout }) {
   const classes = useStyles();
   const theme = useTheme();
+
+  const entityLinks = stateRegister.getLinks();
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -232,6 +205,15 @@ function Base({ children, token, sidebarVisible, setSidebarVisible, logout }) {
                   primary={link.text}
                   icon={link.icon}
                   exact={link.exact}
+                />
+              ))}
+              {entityLinks.map((link) => (
+                <ListItemLink
+                  key={link.name}
+                  to={link.to}
+                  primary={link.text}
+                  icon={link.icon}
+                  exact={true}
                 />
               ))}
             </List>

@@ -19,6 +19,6 @@ stateRegister.setGlobalOptions({
 });
 stateRegister.register('team', teamOptions);
 stateRegister.register('recommendations', recommendationOptions);
-stateRegister.register('images', imageOptions);
 stateRegister.register('prototypes', prototypeOptions);
 stateRegister.register('pages', pageOptions);
+stateRegister.register('images', imageOptions);
