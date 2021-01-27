@@ -73,12 +73,16 @@ export default function makeEditPage({ Editor, entity }) {
 
     const saveEntry = () => {
       if (Object.keys(errors).length === 0) {
-        commitData(editedData);
+        commitData(editedData, (data) => {
+          history.push(stateRegister.getEditUrl(entity, data.id));
+        });
       }
     };
 
     const onDelete = () => {
-      deleteItem(selectedId);
+      deleteItem(selectedId, () => {
+        history.push(stateRegister.getListUrl(entity));
+      });
       setConfirmationOpen(false);
     };
 

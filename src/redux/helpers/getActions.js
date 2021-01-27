@@ -50,7 +50,7 @@ export default function getActions(entity, endpoint) {
     };
   };
 
-  const deleteItemAction = (id) => {
+  const deleteItemAction = (id, callback) => {
     return (dispatch, storeGetter) => {
       dispatch({ type: `SET_STATUS_${actionEntity}`, status: 'deleting' });
       const store = storeGetter();
@@ -67,6 +67,9 @@ export default function getActions(entity, endpoint) {
           const page = getCurrentPage(store);
           dispatch(getPageAction(page, true));
           dispatch({ type: `SET_STATUS_${actionEntity}`, status: 'idle' });
+          if (callback && typeof callback === 'function') {
+            callback();
+          }
         })
         .catch((error) => {
           dispatch({ type: `FETCH_${actionEntity}_ERROR`, error });
@@ -128,7 +131,7 @@ export default function getActions(entity, endpoint) {
     };
   };
 
-  const commitDataAction = (data) => {
+  const commitDataAction = (data, callback) => {
     return (dispatch, storeGetter) => {
       const store = storeGetter();
       const token = store.auth.token;
@@ -150,6 +153,9 @@ export default function getActions(entity, endpoint) {
             new: !data.id
           });
           dispatch({ type: `SET_STATUS_${actionEntity}`, status: 'idle' });
+          if (callback && typeof callback === 'function') {
+            callback(json);
+          }
         })
         .catch((err) => {
           dispatch({ type: `FETCH_${actionEntity}_ERROR`, error: err });
