@@ -113,6 +113,11 @@ export default function createReducer(entity) {
           error: action.error,
           status: 'idle'
         };
+      case `SET_STATUS_${actionEntity}`:
+        return {
+          ...state,
+          status: action.status
+        };
       default:
         return state;
     }

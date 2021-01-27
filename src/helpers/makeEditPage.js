@@ -17,6 +17,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
 import getDisplayValue from '../helpers/getDisplayValue';
+import ButtonWithLoading from '../components/Input/ButtonWithLoading';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -36,7 +37,8 @@ export default function makeEditPage({ Editor, entity }) {
     setEditedData,
     updateEditedData,
     commitData,
-    deleteItem
+    deleteItem,
+    status
   }) => {
     const classes = useStyles();
     const [errors, setErrors] = useState({});
@@ -103,12 +105,13 @@ export default function makeEditPage({ Editor, entity }) {
                 />
                 <Column width={100}>
                   <ButtonGroup color='primary' variant='contained'>
-                    <Button
+                    <ButtonWithLoading
+                      loading={status === 'saving'}
                       disabled={Object.keys(errors).length !== 0}
                       type='submit'
                     >
                       Save
-                    </Button>
+                    </ButtonWithLoading>
                     <Button
                       onClick={() =>
                         history.push(stateRegister.getListUrl(entity))
@@ -116,13 +119,14 @@ export default function makeEditPage({ Editor, entity }) {
                     >
                       Cancel
                     </Button>
-                    <Button
+                    <ButtonWithLoading
+                      loading={status === 'deleting'}
                       onClick={() => setConfirmationOpen(true)}
                       color='secondary'
                       disabled={!editedData.id}
                     >
                       Delete
-                    </Button>
+                    </ButtonWithLoading>
                   </ButtonGroup>
                 </Column>
               </form>

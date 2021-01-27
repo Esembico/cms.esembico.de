@@ -52,6 +52,7 @@ export default function getActions(entity, endpoint) {
 
   const deleteItemAction = (id) => {
     return (dispatch, storeGetter) => {
+      dispatch({ type: `SET_STATUS_${actionEntity}`, status: 'deleting' });
       const store = storeGetter();
       const token = store.auth.token;
       const getCurrentPage = stateRegister.getSelector(
@@ -65,6 +66,7 @@ export default function getActions(entity, endpoint) {
         .then(() => {
           const page = getCurrentPage(store);
           dispatch(getPageAction(page, true));
+          dispatch({ type: `SET_STATUS_${actionEntity}`, status: 'idle' });
         })
         .catch((error) => {
           dispatch({ type: `FETCH_${actionEntity}_ERROR`, error });
@@ -130,6 +132,7 @@ export default function getActions(entity, endpoint) {
     return (dispatch, storeGetter) => {
       const store = storeGetter();
       const token = store.auth.token;
+      dispatch({ type: `SET_STATUS_${actionEntity}`, status: 'saving' });
       fetchWrapper(
         `${process.env.REACT_APP_API_URL}/${endpoint}/${
           data.id ? `${data.id}/` : ''
@@ -146,6 +149,7 @@ export default function getActions(entity, endpoint) {
             data: json,
             new: !data.id
           });
+          dispatch({ type: `SET_STATUS_${actionEntity}`, status: 'idle' });
         })
         .catch((err) => {
           dispatch({ type: `FETCH_${actionEntity}_ERROR`, error: err });
