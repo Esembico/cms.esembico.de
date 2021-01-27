@@ -29,7 +29,7 @@ const pageOptions = {
       label: 'Slug',
       name: 'slug',
       value: (data) => {
-        return data.name.replace(' ', '-').toLowerCase();
+        return data.name?.replace(' ', '-').toLowerCase();
       },
       required: true
     },
