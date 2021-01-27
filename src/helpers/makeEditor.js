@@ -26,6 +26,7 @@ function createFieldForProperty({ property, data, onUpdate, ...others }) {
         />
       );
     case 'text':
+    case 'url':
       return (
         <TextField
           label={label}

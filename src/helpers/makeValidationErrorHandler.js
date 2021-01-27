@@ -18,5 +18,18 @@ export default function makeValidationErrorHandler(errors, data) {
     }
   };
 
-  return { required, requireNumber };
+  const requireUrl = (name, property) => {
+    const value = data[property];
+    try {
+      // eslint-disable-next-line no-new
+      new URL(value, 'http://esembico.de');
+    } catch {
+      if (!errors[property]) {
+        errors[property] = [];
+      }
+      errors[property].push(`${name} should be a valid url`);
+    }
+  };
+
+  return { required, requireNumber, requireUrl };
 }

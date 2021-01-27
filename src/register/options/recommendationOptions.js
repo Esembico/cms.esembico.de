@@ -44,7 +44,7 @@ const recommendationOptions = {
       required: true
     },
     {
-      type: 'text',
+      type: 'url',
       label: 'Url',
       name: 'url',
       required: true

@@ -4,7 +4,7 @@ import makeValidationErrorHandler from './makeValidationErrorHandler';
 export default function makeValidation(editor) {
   return (data) => {
     const errors = {};
-    const { required, requireNumber } = makeValidationErrorHandler(
+    const { required, requireNumber, requireUrl } = makeValidationErrorHandler(
       errors,
       data
     );
@@ -16,6 +16,9 @@ export default function makeValidation(editor) {
         }
         if (field.type === 'number') {
           requireNumber(label, field.name);
+        }
+        if (field.type === 'url') {
+          requireUrl(label, field.name);
         }
       }
     });
