@@ -12,12 +12,10 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import { makeStyles } from '@material-ui/core';
 
-// FIXME: Position: sticky is not supported on all browsers
 const useStyles = makeStyles((theme) => {
   return {
     fab: {
-      position: 'sticky',
-      float: 'right',
+      position: 'fixed',
       bottom: theme.spacing(2),
       right: theme.spacing(2)
     }

@@ -92,12 +92,13 @@ export default function DataTable({
   totalItems,
   onPageChange,
   onSelect,
-  selected
+  selected,
+  className
 }) {
   return (
     <React.Fragment>
       <TableContainer>
-        <Table>
+        <Table className={className}>
           <TableHead>
             <TableRow>
               {columns.map((column) => {
