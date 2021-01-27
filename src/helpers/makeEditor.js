@@ -39,6 +39,7 @@ function createFieldForProperty({ property, data, onUpdate, ...others }) {
     case 'number':
       return (
         <TextField
+          type='number'
           label={label}
           value={data[property.name]}
           multiline={property.multiline}
