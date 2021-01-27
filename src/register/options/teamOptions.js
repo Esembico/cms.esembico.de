@@ -1,4 +1,5 @@
 const teamOptions = {
+  singularName: 'team member',
   endpoint: 'members',
   columns: [
     {

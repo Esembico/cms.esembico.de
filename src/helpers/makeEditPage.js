@@ -11,6 +11,12 @@ import { useHistory, useParams } from 'react-router-dom';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import { makeStyles } from '@material-ui/core';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogActions from '@material-ui/core/DialogActions';
+import getDisplayValue from '../helpers/getDisplayValue';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -34,7 +40,10 @@ export default function makeEditPage({ Editor, entity }) {
   }) => {
     const classes = useStyles();
     const [errors, setErrors] = useState({});
+    const [confirmationOpen, setConfirmationOpen] = useState(false);
     const validateData = stateRegister.getOption(entity, 'validateData');
+    const primaryProperty = stateRegister.getOption(entity, 'primaryProperty');
+
     useEffect(() => {
       fetchData();
     }, [fetchData]);
@@ -42,6 +51,11 @@ export default function makeEditPage({ Editor, entity }) {
     const params = useParams();
     const history = useHistory();
     const id = params.id;
+
+    const handleClose = () => {
+      setConfirmationOpen(false);
+    };
+
     useEffect(() => {
       if (id === 'new') {
         setEditedData(-1);
@@ -62,8 +76,8 @@ export default function makeEditPage({ Editor, entity }) {
     };
 
     const onDelete = () => {
-      // FIXME: Ask for confirmation before deleting.
       deleteItem(selectedId);
+      setConfirmationOpen(false);
     };
 
     const onEditorSubmit = (e) => {
@@ -103,7 +117,7 @@ export default function makeEditPage({ Editor, entity }) {
                       Cancel
                     </Button>
                     <Button
-                      onClick={() => onDelete()}
+                      onClick={() => setConfirmationOpen(true)}
                       color='secondary'
                       disabled={!editedData.id}
                     >
@@ -122,6 +136,32 @@ export default function makeEditPage({ Editor, entity }) {
             >
               <AddIcon />
             </Fab>
+            <Dialog
+              open={confirmationOpen}
+              onClose={handleClose}
+              aria-labelledby='alert-dialog-title'
+              aria-describedby='alert-dialog-description'
+            >
+              <DialogTitle id='alert-dialog-title'>
+                Delete {stateRegister.getOption(entity, 'singularName')}
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id='alert-dialog-description'>
+                  Are you sure you want to delete the following{' '}
+                  {stateRegister.getOption(entity, 'singularName')}?
+                  <br />
+                  {getDisplayValue(editedData, primaryProperty.display)}
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={onDelete} color='secondary'>
+                  Yes
+                </Button>
+                <Button onClick={handleClose} color='secondary'>
+                  No
+                </Button>
+              </DialogActions>
+            </Dialog>
           </Container>
         )}
       </div>

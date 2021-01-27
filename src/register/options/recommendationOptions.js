@@ -2,6 +2,7 @@ import MovieIcon from '@material-ui/icons/Movie';
 import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
 
 const recommendationOptions = {
+  singularName: 'recommendation',
   columns: [
     {
       header: 'Type',

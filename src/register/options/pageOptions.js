@@ -1,4 +1,5 @@
 const pageOptions = {
+  singularName: 'page',
   columns: [
     {
       header: 'Name',

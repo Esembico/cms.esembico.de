@@ -1,4 +1,5 @@
 const imageOptions = {
+  singularName: 'image',
   columns: [
     {
       header: 'Url',

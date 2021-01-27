@@ -1,4 +1,5 @@
 const prototypeOptions = {
+  singularName: 'prototype',
   columns: [
     {
       header: 'Title',
