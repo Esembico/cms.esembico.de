@@ -209,7 +209,7 @@ function Base({ children, token, sidebarVisible, setSidebarVisible, logout }) {
               ))}
               {entityLinks.map((link) => (
                 <ListItemLink
-                  key={link.name}
+                  key={link.text}
                   to={link.to}
                   primary={link.text}
                   icon={link.icon}
