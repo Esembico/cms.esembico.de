@@ -70,6 +70,24 @@ function createFieldForProperty({ property, data, onUpdate, ...others }) {
           {...others}
         />
       );
+    case 'generated':
+      const value = property.value(data);
+      if (value !== data[property.name]) {
+        onUpdate(property.name, value);
+      }
+      return (
+        <TextField
+          label={label}
+          InputProps={{
+            readOnly: true
+          }}
+          value={value}
+          multiline={property.multiline}
+          onChange={(e) => onUpdate(property.name, e.target.value)}
+          required={property.required}
+          {...others}
+        />
+      );
     default:
       return <span>{data[property.name]}</span>;
   }

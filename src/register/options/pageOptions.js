@@ -25,9 +25,12 @@ const pageOptions = {
       required: true
     },
     {
-      type: 'text',
+      type: 'generated',
       label: 'Slug',
       name: 'slug',
+      value: (data) => {
+        return data.name.replace(' ', '-').toLowerCase();
+      },
       required: true
     },
     {
