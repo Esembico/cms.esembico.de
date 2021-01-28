@@ -73,7 +73,7 @@ function createFieldForProperty({ property, data, onUpdate, ...others }) {
     case 'generated':
       const value = property.value(data);
       if (value !== data[property.name]) {
-        onUpdate(property.name, value);
+        onUpdate(property.name, value, false);
       }
       return (
         <TextField

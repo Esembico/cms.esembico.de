@@ -69,6 +69,10 @@ export default function getSelectors(entity) {
     return getState(store) ? getState(store).totalItems : 0;
   };
 
+  const getLastEditedField = (store) => {
+    return getState(store) ? getState(store).lastEditedField : null;
+  };
+
   return {
     getState,
     getList,
@@ -85,6 +89,7 @@ export default function getSelectors(entity) {
     getEditedData,
     getFilteredData,
     getPageLastLoaded,
-    getTotalItems
+    getTotalItems,
+    getLastEditedField
   };
 }

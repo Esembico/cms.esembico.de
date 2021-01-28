@@ -12,7 +12,8 @@ export default function getMappers(entity) {
       getSelectedId,
       getSelectedData,
       getEditedData,
-      getTotalItems
+      getTotalItems,
+      getLastEditedField
     } = stateRegister.getSelectors(entity);
     const error = getError(state);
     const status = getStatus(state);
@@ -23,6 +24,7 @@ export default function getMappers(entity) {
     const selectedData = getSelectedData(state);
     const editedData = getEditedData(state);
     const totalItems = getTotalItems(state);
+    const lastEditedField = getLastEditedField(state);
     return {
       error,
       status,
@@ -32,7 +34,8 @@ export default function getMappers(entity) {
       selectedId,
       selectedData,
       editedData,
-      totalItems
+      totalItems,
+      lastEditedField
     };
   };
 

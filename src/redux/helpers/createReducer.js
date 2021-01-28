@@ -10,7 +10,8 @@ const initialState = {
   selectedId: null,
   editedData: null,
   filteredData: [],
-  pageLoaded: {}
+  pageLoaded: {},
+  lastEditedField: null
 };
 
 export default function createReducer(entity) {
@@ -50,7 +51,10 @@ export default function createReducer(entity) {
         const newData = { ...state.editedData, [action.field]: action.value };
         return {
           ...state,
-          editedData: newData
+          editedData: newData,
+          lastEditedField: action.trackField
+            ? action.field
+            : state.lastEditedField
         };
       case `UPDATE_${actionEntity}`:
         const page1 = state.byPage[1];

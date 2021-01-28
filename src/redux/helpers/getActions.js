@@ -131,9 +131,14 @@ export default function getActions(entity, endpoint) {
     };
   };
 
-  const updateEditedDataAction = (field, value) => {
+  const updateEditedDataAction = (field, value, trackField = true) => {
     return (dispatch) => {
-      dispatch({ type: `UPDATE_EDITED_DATA_${actionEntity}`, field, value });
+      dispatch({
+        type: `UPDATE_EDITED_DATA_${actionEntity}`,
+        field,
+        value,
+        trackField
+      });
     };
   };
 
