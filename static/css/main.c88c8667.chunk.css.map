@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/css/App.css"],"names":[],"mappings":"AAAA,kBACE,cAAe,CACf,WACF","file":"main.c88c8667.chunk.css","sourcesContent":[".responsive-image {\n  max-width: 100%;\n  height: auto;\n}\n"]}
