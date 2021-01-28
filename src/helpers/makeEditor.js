@@ -1,9 +1,9 @@
 import React from 'react';
 import Row from '../components/Responsive/Row';
-import TextField from '../components/Input/TextFieldImpl';
-import SearchableField from '../components/Input/SearchableField';
-import MarkdownEditor from '../components/Input/MarkdownEditor';
-import Select from '../components/Input/SelectImpl';
+import TextField from '../components/EditorField/TextFieldImpl';
+import SearchableField from '../components/EditorField/SearchableField';
+import MarkdownEditor from '../components/EditorField/MarkdownEditor';
+import Select from '../components/EditorField/SelectImpl';
 import getLabelText from './getLabelText';
 
 function createFieldForProperty({

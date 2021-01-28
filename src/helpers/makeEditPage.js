@@ -17,7 +17,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
 import getDisplayValue from '../helpers/getDisplayValue';
-import ButtonWithLoading from '../components/Input/ButtonWithLoading';
+import ButtonWithLoading from '../components/ButtonWithLoading';
 
 const useStyles = makeStyles((theme) => {
   return {
