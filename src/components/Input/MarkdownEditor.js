@@ -37,6 +37,10 @@ const useStyles = makeStyles((theme) => {
       '& .mde-textarea-wrapper textarea.mde-text': {
         backgroundColor: theme.palette.background.default,
         color: theme.palette.text.primary
+      },
+      // FIXME: Find a better way to make the editor responsive
+      '& .mde-preview-content': {
+        maxWidth: '85vw'
       }
     },
     editorError: {

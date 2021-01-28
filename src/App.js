@@ -14,6 +14,7 @@ import {
 } from '@material-ui/core/styles';
 import CssBaseLine from '@material-ui/core/CssBaseline';
 
+import './css/App.css';
 import 'esembico-common/dist/styles/css/CodeHighlighter.css';
 
 import Home from './pages/Home';
