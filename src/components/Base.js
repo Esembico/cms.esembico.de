@@ -22,6 +22,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import stateRegister from '../register/stateRegister';
+import { useMediaQuery } from '@material-ui/core';
 
 const drawerWidth = 240;
 
@@ -82,7 +83,9 @@ const useStyles = makeStyles((theme) => ({
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
-    }),
+    })
+  },
+  contentSmUp: {
     marginLeft: -drawerWidth
   },
   contentShift: {
@@ -94,11 +97,50 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+function DrawerContent({ handleDrawerClose, classes, entityLinks }) {
+  const theme = useTheme();
+  return (
+    <React.Fragment>
+      <div className={classes.drawerHeader}>
+        <IconButton onClick={handleDrawerClose}>
+          {theme.direction === 'ltr' ? (
+            <ChevronLeftIcon />
+          ) : (
+            <ChevronRightIcon />
+          )}
+        </IconButton>
+      </div>
+      <Divider />
+      <List>
+        {links.map((link) => (
+          <ListItemLink
+            key={link.text}
+            to={link.to}
+            primary={link.text}
+            icon={link.icon}
+            exact={link.exact}
+          />
+        ))}
+        {entityLinks.map((link) => (
+          <ListItemLink
+            key={link.text}
+            to={link.to}
+            primary={link.text}
+            icon={link.icon}
+            exact={true}
+          />
+        ))}
+      </List>
+    </React.Fragment>
+  );
+}
+
 function Base({ children, token, sidebarVisible, setSidebarVisible, logout }) {
   const classes = useStyles();
   const theme = useTheme();
-
   const entityLinks = stateRegister.getLinks();
+
+  const smUp = useMediaQuery(theme.breakpoints.up('sm'));
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -132,7 +174,7 @@ function Base({ children, token, sidebarVisible, setSidebarVisible, logout }) {
           <AppBar
             position='fixed'
             className={clsx(classes.appBar, {
-              [classes.appBarShift]: sidebarVisible
+              [classes.appBarShift]: sidebarVisible && smUp
             })}
           >
             <Toolbar>
@@ -180,49 +222,26 @@ function Base({ children, token, sidebarVisible, setSidebarVisible, logout }) {
           </AppBar>
           <Drawer
             className={classes.drawer}
-            variant='persistent'
+            variant={smUp ? 'persistent' : 'temporary'}
             anchor='left'
             open={sidebarVisible}
+            onClose={handleDrawerClose}
             classes={{
               paper: classes.drawerPaper
             }}
           >
-            <div className={classes.drawerHeader}>
-              <IconButton onClick={handleDrawerClose}>
-                {theme.direction === 'ltr' ? (
-                  <ChevronLeftIcon />
-                ) : (
-                  <ChevronRightIcon />
-                )}
-              </IconButton>
-            </div>
-            <Divider />
-            <List>
-              {links.map((link) => (
-                <ListItemLink
-                  key={link.text}
-                  to={link.to}
-                  primary={link.text}
-                  icon={link.icon}
-                  exact={link.exact}
-                />
-              ))}
-              {entityLinks.map((link) => (
-                <ListItemLink
-                  key={link.text}
-                  to={link.to}
-                  primary={link.text}
-                  icon={link.icon}
-                  exact={true}
-                />
-              ))}
-            </List>
+            <DrawerContent
+              classes={classes}
+              handleDrawerClose={handleDrawerClose}
+              entityLinks={entityLinks}
+            />
           </Drawer>
         </React.Fragment>
       )}
       <main
         className={clsx(classes.content, {
-          [classes.contentShift]: sidebarVisible
+          [classes.contentShift]: sidebarVisible && smUp,
+          [classes.contentSmUp]: smUp
         })}
       >
         <div className={classes.drawerHeader} />
