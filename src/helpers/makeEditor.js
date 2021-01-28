@@ -5,6 +5,7 @@ import SearchableField from '../components/EditorField/SearchableField';
 import MarkdownEditor from '../components/EditorField/MarkdownEditor';
 import Select from '../components/EditorField/SelectImpl';
 import getLabelText from './getLabelText';
+import ImagePreview from '../components/EditorField/ImagePreview';
 
 function createFieldForProperty({
   property,
@@ -97,6 +98,8 @@ function createFieldForProperty({
           {...others}
         />
       );
+    case 'image-preview':
+      return <ImagePreview value={data[property.name]} base={property.base} />;
     default:
       return <span>{data[property.name]}</span>;
   }
@@ -109,7 +112,7 @@ export default function makeEditor({ proprties }) {
         <Row>
           {proprties.map((property) => {
             return (
-              <React.Fragment key={property.name}>
+              <React.Fragment key={property.key || property.name}>
                 {createFieldForProperty({
                   property,
                   data,

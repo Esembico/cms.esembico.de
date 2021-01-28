@@ -31,6 +31,12 @@ const imageOptions = {
       required: true
     },
     {
+      type: 'image-preview',
+      key: 'image-preview',
+      name: 'url',
+      base: 'http://react.esembico.de'
+    },
+    {
       type: 'text',
       label: 'Alt',
       name: 'alt',
