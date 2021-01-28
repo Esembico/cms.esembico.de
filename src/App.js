@@ -7,7 +7,11 @@ import stateRegister from './register/stateRegister';
 import { bindActionCreators } from 'redux';
 import Base from './components/Base';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import {
+  createMuiTheme,
+  responsiveFontSizes,
+  ThemeProvider
+} from '@material-ui/core/styles';
 import CssBaseLine from '@material-ui/core/CssBaseline';
 
 import 'esembico-common/dist/styles/css/CodeHighlighter.css';
@@ -23,11 +27,13 @@ function App({ validateAuth }) {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
 
   const theme = useMemo(() => {
-    return createMuiTheme({
-      palette: {
-        type: prefersDarkMode ? 'dark' : 'light'
-      }
-    });
+    return responsiveFontSizes(
+      createMuiTheme({
+        palette: {
+          type: prefersDarkMode ? 'dark' : 'light'
+        }
+      })
+    );
   }, [prefersDarkMode]);
 
   return (
