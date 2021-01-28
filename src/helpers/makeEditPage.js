@@ -38,7 +38,8 @@ export default function makeEditPage({ Editor, entity }) {
     updateEditedData,
     commitData,
     deleteItem,
-    status
+    status,
+    lastEditedField
   }) => {
     const classes = useStyles();
     const [errors, setErrors] = useState({});
@@ -108,6 +109,7 @@ export default function makeEditPage({ Editor, entity }) {
                   errors={errors}
                   onUpdate={updateEditedData}
                   data={editedData}
+                  lastEditedField={lastEditedField}
                 />
                 <Column width={100}>
                   <ButtonGroup color='primary' variant='contained'>

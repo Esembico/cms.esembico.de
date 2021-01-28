@@ -31,6 +31,7 @@ const pageOptions = {
       value: (data) => {
         return data.name?.replace(' ', '-').toLowerCase();
       },
+      dependsOn: ['name'],
       required: true
     },
     {

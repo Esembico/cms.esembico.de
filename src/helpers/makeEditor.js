@@ -6,7 +6,13 @@ import MarkdownEditor from '../components/Input/MarkdownEditor';
 import Select from '../components/Input/SelectImpl';
 import getLabelText from './getLabelText';
 
-function createFieldForProperty({ property, data, onUpdate, ...others }) {
+function createFieldForProperty({
+  property,
+  data,
+  onUpdate,
+  lastEditedField,
+  ...others
+}) {
   if (property.if) {
     if (!property.if(data)) {
       return <React.Fragment />;
@@ -71,9 +77,12 @@ function createFieldForProperty({ property, data, onUpdate, ...others }) {
         />
       );
     case 'generated':
-      const value = property.value(data);
-      if (value !== data[property.name]) {
-        onUpdate(property.name, value, false);
+      let value = data[property.name];
+      if (property.dependsOn.includes(lastEditedField)) {
+        value = property.value(data);
+        if (value !== data[property.name]) {
+          onUpdate(property.name, value, false);
+        }
       }
       return (
         <TextField
@@ -94,7 +103,7 @@ function createFieldForProperty({ property, data, onUpdate, ...others }) {
 }
 
 export default function makeEditor({ proprties }) {
-  const Editor = ({ data, onUpdate, errors }) => {
+  const Editor = ({ data, onUpdate, errors, lastEditedField }) => {
     return (
       <React.Fragment>
         <Row>
@@ -105,7 +114,8 @@ export default function makeEditor({ proprties }) {
                   property,
                   data,
                   onUpdate,
-                  errors: errors[property.name]
+                  errors: errors[property.name],
+                  lastEditedField
                 })}
               </React.Fragment>
             );
