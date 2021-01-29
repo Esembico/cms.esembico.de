@@ -45,6 +45,7 @@
     "react/jsx-fragments": 0,
     "react/no-unused-prop-types": 0,
     "react/display-name": 0,
-    "import/export": 0
+    "import/export": 0,
+    "@typescript-eslint/no-explicit-any": 0
   }
 }

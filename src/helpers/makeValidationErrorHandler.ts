@@ -4,7 +4,9 @@ import {
 } from './types/makeValidationErrorHandler';
 
 export default function makeValidationErrorHandler(
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   errors: any,
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   data: any
 ): ValidationErrorHandler {
   const required: RequiredHandler = (name, property) => {

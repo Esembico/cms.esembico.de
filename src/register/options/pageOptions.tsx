@@ -28,7 +28,7 @@ const pageOptions = {
       type: 'generated',
       label: 'Slug',
       name: 'slug',
-      value: (data: { name: string }) => {
+      value: (data: { name: string }): string => {
         return data.name?.replace(' ', '-').toLowerCase();
       },
       dependsOn: ['name'],

@@ -48,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "@types/customize-cra": "^1.0.0",
     "@types/jest": "^26.0.20",
     "@types/node": "^14.14.22",
     "@types/react": "^17.0.0",

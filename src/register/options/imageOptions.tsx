@@ -15,7 +15,7 @@ const imageOptions: Options = {
     },
     {
       header: 'Dimension',
-      display: (entry: { width: any; height: any }) => {
+      display: (entry: { width: any; height: any }): string => {
         return `${entry.width || 'auto'} x ${entry.height || 'auto'}`;
       }
     }

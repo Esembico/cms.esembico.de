@@ -19,7 +19,7 @@ const teamOptions = {
     }
   ],
   primaryProperty: {
-    display: (entry: { name: any; artist_name: any }) => {
+    display: (entry: { name: any; artist_name: any }): string => {
       return `${entry.name} (${entry.artist_name})`;
     },
     header: 'Name'
