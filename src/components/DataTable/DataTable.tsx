@@ -16,6 +16,7 @@ import LastPageIcon from '@material-ui/icons/LastPage';
 import { makeStyles, useTheme } from '@material-ui/core';
 import { TablePaginationActionsProps } from '@material-ui/core/TablePagination/TablePaginationActions';
 import { DataTableProps } from '../types/components';
+import { Data } from '../../redux/helpers/types/state';
 
 const usePaginationStyle = makeStyles((theme) => {
   return {
@@ -116,7 +117,7 @@ export default function DataTable({
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map((entry: { id: string | number | null | undefined }) => {
+            {data.map((entry: Data) => {
               return (
                 <TableRow
                   onClick={() => onSelect(entry.id)}

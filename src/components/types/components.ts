@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { Data } from '../../redux/helpers/types/state';
 import { Column, Link } from '../../types/stateRegister';
 
 export interface HeaderProps {
@@ -49,13 +50,13 @@ export interface PageData {
 }
 
 export interface DataTableProps {
-  data: any;
+  data: Array<Data>;
   columns: Array<Column>;
   pageData: PageData;
   totalItems: number;
   onPageChange: any;
   onSelect: any;
-  selected: any;
+  selected: number | null;
   className: string;
 }
 
@@ -96,7 +97,7 @@ export interface CodeRendererParams {
 export interface SearchableFieldProps {
   label: string;
   entity: string;
-  value: any;
+  value: Data;
   onChange: any;
   errors: any;
   required?: boolean;
