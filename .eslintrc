@@ -1,12 +1,15 @@
 {
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
   "extends": [
     "standard",
     "standard-react",
     "plugin:react/recommended",
     "plugin:prettier/recommended",
     "prettier/standard",
-    "prettier/react"
+    "prettier/react",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "env": {
     "node": true
@@ -25,12 +28,15 @@
   },
   "globals": {
     "localStorage": true,
-    "fetch": true
+    "fetch": true,
+    "JSX": true
   },
   "rules": {
     "semi": [2, "always"],
     "no-case-declarations": 0,
     "prefer-promise-reject-errors": 0,
+    "no-use-before-define": 0,
+    "camelcase": 0,
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "react/react-in-jsx-scope": 0,
     "space-before-function-paren": 0,
