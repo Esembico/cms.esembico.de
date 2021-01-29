@@ -1,6 +1,7 @@
 import GroupIcon from '@material-ui/icons/Group';
+import { Options } from '../../types/stateRegister';
 
-const teamOptions = {
+const teamOptions: Options = {
   singularName: 'team member',
   icon: <GroupIcon />,
   endpoint: 'members',

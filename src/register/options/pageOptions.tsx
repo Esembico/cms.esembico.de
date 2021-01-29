@@ -1,6 +1,7 @@
 import PagesIcon from '@material-ui/icons/Pages';
+import { Options } from '../../types/stateRegister';
 
-const pageOptions = {
+const pageOptions: Options = {
   singularName: 'page',
   icon: <PagesIcon />,
   columns: [

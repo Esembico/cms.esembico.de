@@ -19,19 +19,70 @@ export interface Column {
   header: string;
   display: string | ResolveValueFromDataFunction;
 }
-export interface EditorEntry {
-  type: string;
-  label?: string | ResolveValueFromDataFunction;
+
+export interface EditorEntryBase {
+  label: string | ResolveValueFromDataFunction;
   name: string;
-  required?: boolean;
   key?: string;
-  base?: string;
-  value?: ResolveValueFromDataFunction;
-  to?: string;
-  multiline?: boolean;
   if?: any;
-  options?: Array<SelectOption>;
 }
+
+export interface TextEditorEntry extends EditorEntryBase {
+  type: 'text';
+  required?: boolean;
+  multiline?: boolean;
+}
+
+export interface NumberEditorEntry extends EditorEntryBase {
+  type: 'number';
+  required?: boolean;
+}
+
+export interface SelectEditorEntry extends EditorEntryBase {
+  type: 'select';
+  required?: boolean;
+  options: Array<SelectOption>;
+}
+
+export interface UrlEditorEntry extends EditorEntryBase {
+  type: 'url';
+  required?: boolean;
+}
+
+export interface ReferenceEditorEntry extends EditorEntryBase {
+  type: 'reference';
+  required?: boolean;
+  to: string;
+}
+
+export interface MarkdownEditorEntry extends EditorEntryBase {
+  type: 'markdown';
+  required?: boolean;
+}
+
+export interface GeneratedEditorEntry extends EditorEntryBase {
+  type: 'generated';
+  value: ResolveValueFromDataFunction;
+  dependsOn: Array<string>;
+  required?: boolean;
+}
+
+export interface ImagePreviewEditorEntry extends EditorEntryBase {
+  type: 'image-preview';
+  base?: string;
+  required?: false;
+}
+
+export type EditorEntry =
+  | TextEditorEntry
+  | NumberEditorEntry
+  | SelectEditorEntry
+  | UrlEditorEntry
+  | ReferenceEditorEntry
+  | MarkdownEditorEntry
+  | GeneratedEditorEntry
+  | ImagePreviewEditorEntry;
+
 export interface State {
   [key: string]: any;
   header: string;

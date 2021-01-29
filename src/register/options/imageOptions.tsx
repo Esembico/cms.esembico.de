@@ -33,6 +33,7 @@ const imageOptions: Options = {
     },
     {
       type: 'image-preview',
+      label: 'Preview',
       key: 'image-preview',
       name: 'url',
       base: 'http://react.esembico.de'

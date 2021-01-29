@@ -1,6 +1,7 @@
 import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
+import { Options } from '../../types/stateRegister';
 
-const prototypeOptions = {
+const prototypeOptions: Options = {
   singularName: 'prototype',
   icon: <EmojiObjectsIcon />,
   columns: [
