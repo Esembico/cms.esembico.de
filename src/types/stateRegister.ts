@@ -1,9 +1,12 @@
+import { SelectOption } from '../components/types/components';
 import { Actions } from '../redux/helpers/types/actions';
 import { Mappers } from '../redux/helpers/types/mappers';
 import { Selectors } from '../redux/helpers/types/selectors';
 
+export type InputErrors = Array<string>;
+
 export interface ValidateData {
-  (data?: any): any | void;
+  (data?: any): InputErrors | Record<string, never>;
 }
 export interface Property {
   header: string;
@@ -27,6 +30,7 @@ export interface EditorEntry {
   to?: string;
   multiline?: boolean;
   if?: any;
+  options?: Array<SelectOption>;
 }
 export interface State {
   [key: string]: any;

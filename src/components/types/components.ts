@@ -1,8 +1,6 @@
 import { ReactNode } from 'react';
 import { Data } from '../../redux/helpers/types/state';
-import { Column, Link } from '../../types/stateRegister';
-
-export type InputErrors = Array<string>;
+import { Column, Link, InputErrors } from '../../types/stateRegister';
 
 export interface HeaderProps {
   children: ReactNode;
