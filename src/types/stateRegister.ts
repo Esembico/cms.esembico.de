@@ -93,8 +93,22 @@ export type EditorEntry =
   | GeneratedEditorEntry
   | ImagePreviewEditorEntry;
 
+export type StateOption =
+  | number
+  | string
+  | Record<string, unknown>
+  | Mappers
+  | ReducerFunction
+  | ValidateData
+  | FC<EditorProps>
+  | JSX.Element
+  | Array<Column>
+  | Property
+  | undefined
+  | boolean
+  | GetNextPageNumber;
 export interface State {
-  [option: string]: unknown;
+  [option: string]: StateOption;
   header: string;
   actions: Actions;
   selectors: Selectors;
@@ -104,6 +118,9 @@ export interface State {
   editor: FC<EditorProps>;
   icon?: JSX.Element;
   columns?: Array<Column>;
+  primaryProperty?: Property;
+  buildValidationFromEditor?: boolean;
+  getNextPageNumber?: GetNextPageNumber;
 }
 export interface States {
   [key: string]: State;

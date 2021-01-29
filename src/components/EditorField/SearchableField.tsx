@@ -27,7 +27,10 @@ export default function SearchableField({
 
   const data = getFilteredDataSelector(state);
 
-  const primaryProperty = stateRegister.getOption(entity, 'primaryProperty');
+  const primaryProperty = stateRegister.getOption(
+    entity,
+    'primaryProperty'
+  ) as any;
   const dispatch = useDispatch();
 
   const onInputChange = (e: ChangeEvent<unknown>, value: any) => {

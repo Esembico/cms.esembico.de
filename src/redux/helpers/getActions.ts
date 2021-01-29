@@ -5,6 +5,7 @@ import {
   DispatchActionFunction,
   FetchSuccessCallback
 } from './types/actions';
+import { GetNextPageNumber } from '../../types/stateRegister';
 
 export default function getActions(entity: string, endpoint: string): Actions {
   const actionEntity = entity.replace(' ', '_').toUpperCase();
@@ -40,7 +41,7 @@ export default function getActions(entity: string, endpoint: string): Actions {
           const getNextPageNumber = stateRegister.getOption(
             entity,
             'getNextPageNumber'
-          );
+          ) as GetNextPageNumber;
           const nextPage = getNextPageNumber(json);
           dispatch({
             type: `FETCH_${actionEntity}_SUCCESS`,

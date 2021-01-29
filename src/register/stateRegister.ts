@@ -7,7 +7,17 @@ import makeEditor from '../helpers/makeEditor';
 import makeValidation from '../helpers/makeValidation';
 import makeListPage from '../helpers/makeListPage';
 import makeEditPage from '../helpers/makeEditPage';
-import { States, Options, Link, Route, Reducers } from '../types/stateRegister';
+import {
+  States,
+  Options,
+  Link,
+  Route,
+  Reducers,
+  EditorEntry,
+  StateOption
+} from '../types/stateRegister';
+import { FC } from 'react';
+import { EditorProps } from '../helpers/types/makeEditor';
 
 class StateRegister {
   states: States;
@@ -31,7 +41,7 @@ class StateRegister {
       ...this.globalOptions,
       ...options
     };
-    let editor: any = options.editor;
+    let editor: FC<EditorProps> | Array<EditorEntry> = options.editor ?? [];
     let validateData = mergedOptions.validateData;
     if (mergedOptions.buildValidationFromEditor) {
       if (!Array.isArray(editor)) {
@@ -101,7 +111,7 @@ class StateRegister {
     return routes;
   }
 
-  getOption(name: string, option: string, defaultValue?: any) {
+  getOption(name: string, option: string, defaultValue?: StateOption) {
     const value = this.states[name][option];
     return value || defaultValue;
   }

@@ -19,6 +19,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import getDisplayValue from './getDisplayValue';
 import ButtonWithLoading from '../components/ButtonWithLoading';
 import { MakeEditPageParams, EditPageProps } from './types/makeEditPage';
+import { Property, ValidateData } from '../types/stateRegister';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -48,8 +49,14 @@ export default function makeEditPage({
     const classes = useStyles();
     const [errors, setErrors] = useState({});
     const [confirmationOpen, setConfirmationOpen] = useState(false);
-    const validateData = stateRegister.getOption(entity, 'validateData');
-    const primaryProperty = stateRegister.getOption(entity, 'primaryProperty');
+    const validateData = stateRegister.getOption(
+      entity,
+      'validateData'
+    ) as ValidateData;
+    const primaryProperty = stateRegister.getOption(
+      entity,
+      'primaryProperty'
+    ) as Property;
 
     useEffect(() => {
       fetchData();
