@@ -5,6 +5,7 @@ import { useDispatch, useStore } from 'react-redux';
 import getDisplayValue from '../../helpers/getDisplayValue';
 import stateRegister from '../../register/stateRegister';
 import { SearchableFieldProps } from '../types/components';
+import { SetFilteredDataAction } from '../../redux/helpers/types/actions';
 
 export default function SearchableField({
   label,
@@ -18,7 +19,7 @@ export default function SearchableField({
   const setFilteredDataAction = stateRegister.getAction(
     entity,
     'setFilteredDataAction'
-  );
+  ) as SetFilteredDataAction;
 
   const getFilteredDataSelector = stateRegister.getSelector(
     entity,

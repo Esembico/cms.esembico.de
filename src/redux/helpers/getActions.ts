@@ -2,18 +2,20 @@ import stateRegister from '../../register/stateRegister';
 import { generateHeaders, fetchWrapper } from '../../helpers/api';
 import {
   Actions,
-  DispatchActionFunction,
-  FetchSuccessCallback
+  DeleteItemAction,
+  GetPageAction,
+  SelectItemAction,
+  SetFilteredDataAction,
+  SetEditedDataAction,
+  UpdateEditedDataAction,
+  CommitDataAction
 } from './types/actions';
 import { GetNextPageNumber } from '../../types/stateRegister';
 
 export default function getActions(entity: string, endpoint: string): Actions {
   const actionEntity = entity.replace(' ', '_').toUpperCase();
 
-  const getPageAction = (
-    page: number,
-    forceLoad?: boolean
-  ): DispatchActionFunction => {
+  const getPageAction: GetPageAction = (page, forceLoad) => {
     return (dispatch, getState) => {
       const state = getState();
       const token = state.auth.token;
@@ -60,10 +62,7 @@ export default function getActions(entity: string, endpoint: string): Actions {
     };
   };
 
-  const deleteItemAction = (
-    id: number,
-    callback: FetchSuccessCallback
-  ): DispatchActionFunction => {
+  const deleteItemAction: DeleteItemAction = (id, callback) => {
     return (dispatch, storeGetter) => {
       dispatch({ type: `SET_STATUS_${actionEntity}`, status: 'deleting' });
       const store = storeGetter();
@@ -78,7 +77,7 @@ export default function getActions(entity: string, endpoint: string): Actions {
       })
         .then(() => {
           const page = getCurrentPage(store);
-          dispatch(getPageAction(page, true));
+          dispatch(getPageAction(page, true) as any);
           dispatch({ type: `SET_STATUS_${actionEntity}`, status: 'idle' });
           if (callback && typeof callback === 'function') {
             callback();
@@ -90,7 +89,7 @@ export default function getActions(entity: string, endpoint: string): Actions {
     };
   };
 
-  const setFilteredDataAction = (search: string): DispatchActionFunction => {
+  const setFilteredDataAction: SetFilteredDataAction = (search) => {
     return (dispatch, getState) => {
       const state = getState();
       const token = state.auth.token;
@@ -112,17 +111,13 @@ export default function getActions(entity: string, endpoint: string): Actions {
     };
   };
 
-  const fetchAction = () => {
-    return getPageAction(1);
-  };
-
-  const selectItemAction = (id: number): DispatchActionFunction => {
+  const selectItemAction: SelectItemAction = (id) => {
     return (dispatch) => {
       dispatch({ type: `SELECT_${actionEntity}_ID`, selectedId: id });
     };
   };
 
-  const setEditedDataAction = (id: number): DispatchActionFunction => {
+  const setEditedDataAction: SetEditedDataAction = (id) => {
     return (dispatch, getState) => {
       const state = getState();
       const token = state.auth.token;
@@ -143,11 +138,11 @@ export default function getActions(entity: string, endpoint: string): Actions {
     };
   };
 
-  const updateEditedDataAction = (
-    field: string,
-    value: any,
+  const updateEditedDataAction: UpdateEditedDataAction = (
+    field,
+    value,
     trackField = true
-  ): DispatchActionFunction => {
+  ) => {
     return (dispatch) => {
       dispatch({
         type: `UPDATE_EDITED_DATA_${actionEntity}`,
@@ -158,10 +153,7 @@ export default function getActions(entity: string, endpoint: string): Actions {
     };
   };
 
-  const commitDataAction = (
-    data: any,
-    callback: FetchSuccessCallback
-  ): DispatchActionFunction => {
+  const commitDataAction: CommitDataAction = (data, callback) => {
     return (dispatch, storeGetter) => {
       const store = storeGetter();
       const token = store.auth.token;
@@ -195,7 +187,6 @@ export default function getActions(entity: string, endpoint: string): Actions {
 
   return {
     getPageAction,
-    fetchAction,
     selectItemAction,
     setEditedDataAction,
     updateEditedDataAction,

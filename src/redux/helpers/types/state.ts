@@ -1,3 +1,5 @@
+export type StateError = Error | string | null;
+
 export interface Data {
   [key: string]: string | number | Data;
   id: number;
@@ -21,7 +23,7 @@ export interface DataState {
   currentPage: number;
   lastPage: number;
   status: string;
-  error: any;
+  error: StateError;
   selectedId: number | null;
   editedData: Data | null;
   filteredData: Array<Data>;

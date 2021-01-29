@@ -1,9 +1,10 @@
 import { SET_USERNAME, SET_TOKEN, SET_AUTH_ERROR } from '../../actionTypes';
+import { StateError } from '../../helpers/types/state';
 
 export interface AuthState {
   token: string | null;
   username: string | null;
-  error: any;
+  error: StateError;
 }
 
 export interface SetTokenActionType {
@@ -16,7 +17,7 @@ export interface SetUsernameActionType {
 }
 export interface SetAuthErrorActionType {
   type: typeof SET_AUTH_ERROR;
-  error: any;
+  error: StateError;
 }
 
 export type AuthActionType =
