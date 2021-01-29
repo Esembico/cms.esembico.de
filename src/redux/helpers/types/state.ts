@@ -1,3 +1,6 @@
+export interface Data {
+  id: number;
+}
 export interface PageLookup {
   [key: number]: Array<number>;
 }
@@ -8,7 +11,7 @@ export interface DataStore {
   [key: string]: any;
 }
 export interface IdLookup {
-  [key: number]: any;
+  [key: number]: Data;
 }
 export interface DataState {
   allIds: Array<number>;
@@ -19,8 +22,8 @@ export interface DataState {
   status: string;
   error: any;
   selectedId: number | null;
-  editedData: any | null;
-  filteredData: Array<any>;
+  editedData: Data | null;
+  filteredData: Array<Data>;
   pageLoaded: PageLoadedLookup;
   totalItems: number;
   lastEditedField: string | null;

@@ -1,4 +1,4 @@
-import { DataState, IdLookup } from './types/state';
+import { DataState, IdLookup, Data } from './types/state';
 import {
   DataActionType,
   SelectIdActionType,
@@ -32,7 +32,7 @@ const initialState: DataState = {
 
 export default function createReducer(entity: string): ReducerFunction {
   const actionEntity = entity.replace(' ', '_').toUpperCase();
-  const reducer = (state = initialState, action: DataActionType) => {
+  const reducer = (state = initialState, action: DataActionType): DataState => {
     switch (action.type) {
       case `SELECT_${actionEntity}_ID`:
         const selectIdAction = action as SelectIdActionType;
@@ -50,7 +50,7 @@ export default function createReducer(entity: string): ReducerFunction {
         const setEditedDataAction = action as SetEditedDataActionType;
         const editedData =
           setEditedDataAction.id === -1
-            ? {}
+            ? { id: 0 }
             : state.byIds[setEditedDataAction.id];
         return {
           ...state,
@@ -72,7 +72,8 @@ export default function createReducer(entity: string): ReducerFunction {
         };
       case `UPDATE_EDITED_DATA_${actionEntity}`:
         const updateEditedDataAction = action as UpdateEditedDataActionType;
-        const newData = {
+        const newData: Data = {
+          id: 0,
           ...state.editedData,
           [updateEditedDataAction.field]: updateEditedDataAction.value
         };

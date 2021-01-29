@@ -1,4 +1,4 @@
-import { DataState } from './state';
+import { Data, DataState } from './state';
 
 export interface SelectIdActionType {
   type: string;
@@ -29,7 +29,7 @@ export interface UpdateEditedDataActionType {
 
 export interface UpdateActionType {
   type: string;
-  data: any;
+  data: Data;
   new: boolean;
 }
 
@@ -39,7 +39,7 @@ export interface FetchPendingActionType {
 
 export interface SetFilteredDataActionType {
   type: string;
-  data: Array<any>;
+  data: Array<Data>;
 }
 
 export interface FetchSuccessActionType {
