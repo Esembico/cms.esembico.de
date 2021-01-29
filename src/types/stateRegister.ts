@@ -1,30 +1,40 @@
+import { FC } from 'react';
 import { SelectOption } from '../components/types/components';
+import { EditorProps } from '../helpers/types/makeEditor';
+import { EditPageProps } from '../helpers/types/makeEditPage';
+import { ListPageProps } from '../helpers/types/makeListPage';
 import { Actions } from '../redux/helpers/types/actions';
 import { Mappers } from '../redux/helpers/types/mappers';
+import { ReducerFunction } from '../redux/helpers/types/reducer';
 import { Selectors } from '../redux/helpers/types/selectors';
+import { Data } from '../redux/helpers/types/state';
 
 export type InputErrors = Array<string>;
 
 export interface ValidateData {
-  (data?: any): InputErrors | Record<string, never>;
+  (data?: Data): InputErrors | Record<string, never>;
+}
+export interface ResolveValueFromDataFunction {
+  (data: Data): string;
 }
 export interface Property {
   header: string;
-  display: any | string;
-}
-export interface ResolveValueFromDataFunction {
-  (data?: any): string;
+  display: string | ResolveValueFromDataFunction;
 }
 export interface Column {
   header: string;
   display: string | ResolveValueFromDataFunction;
 }
 
+export interface IfFunction {
+  (data: Data): boolean;
+}
+
 export interface EditorEntryBase {
   label: string | ResolveValueFromDataFunction;
   name: string;
   key?: string;
-  if?: any;
+  if?: IfFunction;
 }
 
 export interface TextEditorEntry extends EditorEntryBase {
@@ -84,19 +94,25 @@ export type EditorEntry =
   | ImagePreviewEditorEntry;
 
 export interface State {
-  [key: string]: any;
+  [option: string]: unknown;
   header: string;
   actions: Actions;
   selectors: Selectors;
   mappers: Mappers;
-  reducer: any;
+  reducer: ReducerFunction;
   validateData: ValidateData;
-  editor: any;
+  editor: FC<EditorProps>;
   icon?: JSX.Element;
   columns?: Array<Column>;
 }
 export interface States {
   [key: string]: State;
+}
+export interface GetNextPageNumberParams {
+  [key: string]: string | number;
+}
+export interface GetNextPageNumber {
+  (json: GetNextPageNumberParams): number | null;
 }
 export interface Options {
   singularName?: string;
@@ -108,20 +124,20 @@ export interface Options {
   buildValidationFromEditor?: boolean;
   endpoint?: string;
   header?: string;
-  getNextPageNumber?: any;
+  getNextPageNumber?: GetNextPageNumber;
 }
 export interface Link {
   text: string;
   to: string;
-  icon?: any;
+  icon?: JSX.Element;
 }
 export interface Route {
   name: string;
   listPath: string;
   editPath: string;
-  listComponent: any;
-  editComponent: any;
+  listComponent: FC<ListPageProps>;
+  editComponent: FC<EditPageProps>;
 }
 export interface Reducers {
-  [key: string]: any;
+  [key: string]: ReducerFunction;
 }

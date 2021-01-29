@@ -1,5 +1,6 @@
 import GroupIcon from '@material-ui/icons/Group';
 import { Options } from '../../types/stateRegister';
+import { Data } from '../../redux/helpers/types/state';
 
 const teamOptions: Options = {
   singularName: 'team member',
@@ -20,7 +21,7 @@ const teamOptions: Options = {
     }
   ],
   primaryProperty: {
-    display: (entry: { name: any; artist_name: any }): string => {
+    display: (entry: Data): string => {
       return `${entry.name} (${entry.artist_name})`;
     },
     header: 'Name'

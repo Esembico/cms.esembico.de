@@ -1,4 +1,5 @@
 import ImageIcon from '@material-ui/icons/Image';
+import { Data } from '../../redux/helpers/types/state';
 import { Options } from '../../types/stateRegister';
 
 const imageOptions: Options = {
@@ -15,7 +16,7 @@ const imageOptions: Options = {
     },
     {
       header: 'Dimension',
-      display: (entry: { width: any; height: any }): string => {
+      display: (entry: Data): string => {
         return `${entry.width || 'auto'} x ${entry.height || 'auto'}`;
       }
     }

@@ -2,6 +2,7 @@ import MovieIcon from '@material-ui/icons/Movie';
 import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
 import FeaturedPlayListIcon from '@material-ui/icons/FeaturedPlayList';
 import { Options } from '../../types/stateRegister';
+import { Data } from '../../redux/helpers/types/state';
 
 const recommendationOptions: Options = {
   singularName: 'recommendation',
@@ -9,7 +10,7 @@ const recommendationOptions: Options = {
   columns: [
     {
       header: 'Type',
-      display: (entry: { type: string }): any => {
+      display: (entry: Data): any => {
         switch (entry.type) {
           case 'movie':
             return <MovieIcon />;
@@ -67,35 +68,35 @@ const recommendationOptions: Options = {
       type: 'text',
       label: 'Description',
       name: 'description',
-      if: (data: { type: string }): boolean => {
+      if: (data: Data): boolean => {
         return data.type === 'misc';
       },
       required: true
     },
     {
       type: 'text',
-      label: (data: { type: string }): string => {
+      label: (data: Data): string => {
         if (data.type === 'movie') {
           return 'FSK Rating';
         }
         return 'Field1';
       },
       name: 'field1',
-      if: (data: { type: string }): boolean => {
+      if: (data: Data): boolean => {
         return data.type === 'movie';
       },
       required: true
     },
     {
       type: 'text',
-      label: (data: { type: string }): string => {
+      label: (data: Data): string => {
         if (data.type === 'movie') {
           return 'Release year';
         }
         return 'Field2';
       },
       name: 'field2',
-      if: (data: { type: string }): boolean => {
+      if: (data: Data): boolean => {
         return data.type === 'movie';
       },
       required: true

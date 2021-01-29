@@ -1,4 +1,5 @@
 export interface Data {
+  [key: string]: string | number | Data;
   id: number;
 }
 export interface PageLookup {

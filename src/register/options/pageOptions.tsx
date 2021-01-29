@@ -1,4 +1,5 @@
 import PagesIcon from '@material-ui/icons/Pages';
+import { Data } from '../../redux/helpers/types/state';
 import { Options } from '../../types/stateRegister';
 
 const pageOptions: Options = {
@@ -29,8 +30,10 @@ const pageOptions: Options = {
       type: 'generated',
       label: 'Slug',
       name: 'slug',
-      value: (data: { name: string }): string => {
-        return data.name?.replace(' ', '-').toLowerCase();
+      value: (data: Data): string => {
+        if (typeof data.name === 'string')
+          return data.name?.replace(' ', '-').toLowerCase();
+        return '';
       },
       dependsOn: ['name'],
       required: true
