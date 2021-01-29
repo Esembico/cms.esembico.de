@@ -17,19 +17,13 @@ export default function InputErrors({ errors }: InputErrorsProps): JSX.Element {
     <React.Fragment>
       {errors && (
         <React.Fragment>
-          {Array.isArray(errors) ? (
-            <React.Fragment>
-              {errors.map((error, i) => {
-                return (
-                  <span className={classes.error} key={i}>
-                    {error}
-                  </span>
-                );
-              })}
-            </React.Fragment>
-          ) : (
-            <span className={classes.error}>{errors}</span>
-          )}
+          {errors.map((error, i) => {
+            return (
+              <span className={classes.error} key={i}>
+                {error}
+              </span>
+            );
+          })}
         </React.Fragment>
       )}
     </React.Fragment>

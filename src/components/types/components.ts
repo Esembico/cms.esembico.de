@@ -2,6 +2,8 @@ import { ReactNode } from 'react';
 import { Data } from '../../redux/helpers/types/state';
 import { Column, Link } from '../../types/stateRegister';
 
+export type InputErrors = Array<string>;
+
 export interface HeaderProps {
   children: ReactNode;
   loading?: boolean;
@@ -79,14 +81,14 @@ export interface ImagePreviewProps {
 }
 
 export interface InputErrorsProps {
-  errors: any;
+  errors: InputErrors;
 }
 
 export interface MarkdownEditorProps {
   label: string;
   value: string;
   onChange: any;
-  errors: any;
+  errors: InputErrors;
 }
 
 export interface CodeRendererParams {
@@ -99,7 +101,7 @@ export interface SearchableFieldProps {
   entity: string;
   value: Data;
   onChange: any;
-  errors: any;
+  errors: InputErrors;
   required?: boolean;
 }
 
@@ -112,7 +114,7 @@ export interface SelectProps {
   label: string;
   value: string;
   options: Array<SelectOption>;
-  errors: any;
+  errors: InputErrors;
   onChange: any;
   required?: boolean;
 }
@@ -120,7 +122,7 @@ export interface SelectProps {
 export interface TextFieldProps {
   label: string;
   value: string;
-  errors: any;
+  errors: InputErrors;
   multiline?: boolean;
   onChange: any;
   required?: boolean;
