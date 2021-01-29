@@ -19,8 +19,8 @@ export interface DataState {
   status: string;
   error: any;
   selectedId: number | null;
-  editedData: Object | null;
-  filteredData: Array<Object>;
+  editedData: unknown | null;
+  filteredData: Array<unknown>;
   pageLoaded: PageLoadedLookup;
   totalItems: number;
   lastEditedField: string | null;
