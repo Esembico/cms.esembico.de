@@ -5,7 +5,7 @@ export interface MakeEditPageParams {
 
 export interface EditPageProps {
   editedData: any;
-  fetchData: any;
+  selectPage: any;
   selectedId: number | null;
   setEditedData: any;
   updateEditedData: any;

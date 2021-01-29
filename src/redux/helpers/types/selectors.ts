@@ -1,27 +1,63 @@
-import { DataState, DataStore } from './state';
+import { Data, DataState, DataStore, StateError } from './state';
 
 export interface Selectors {
-  [name: string]: any;
+  [name: string]: Selector;
+  getError: GetError;
+  getState: GetState;
+  getList: GetList;
+  getById: GetById;
+  get: Get;
+  getPage: GetPage;
+  getCurrentPage: GetCurrentPage;
+  getCurrentPageData: GetCurrentPageData;
+  getLastPage: GetLastPage;
+  getSelectedData: GetSelectedData;
+  getEditedData: GetEditedData;
+  getStatus: GetStatus;
+  getSelectedId: GetSelectedId;
+  getFilteredData: GetFilteredData;
+  getPageLastLoaded: GetPageLastLoaded;
+  getTotalItems: GetTotalItems;
+  getLastEditedField: GetLastEditedField;
 }
+
+export type Selector =
+  | GetError
+  | GetState
+  | GetList
+  | GetById
+  | Get
+  | GetPage
+  | GetCurrentPage
+  | GetCurrentPageData
+  | GetLastPage
+  | GetSelectedData
+  | GetEditedData
+  | GetStatus
+  | GetSelectedId
+  | GetFilteredData
+  | GetPageLastLoaded
+  | GetTotalItems
+  | GetLastEditedField;
 
 export interface GetState {
   (store: DataStore): DataState;
 }
 
 export interface GetList {
-  (store: DataStore): Array<any>;
+  (store: DataStore): Array<number>;
 }
 
 export interface GetById {
-  (store: DataStore, id: number): any;
+  (store: DataStore, id: number): Data | Record<string, never>;
 }
 
 export interface Get {
-  (store: DataStore): any;
+  (store: DataStore): Array<Data | Record<string, never>>;
 }
 
 export interface GetPage {
-  (store: DataStore, page: number): Array<any>;
+  (store: DataStore, page: number): Array<number>;
 }
 
 export interface GetCurrentPage {
@@ -33,7 +69,7 @@ export interface GetLastPage {
 }
 
 export interface GetCurrentPageData {
-  (store: DataStore): any;
+  (store: DataStore): Array<Data | Record<string, never>>;
 }
 
 export interface GetStatus {
@@ -41,7 +77,7 @@ export interface GetStatus {
 }
 
 export interface GetError {
-  (store: DataStore): any;
+  (store: DataStore): StateError;
 }
 
 export interface GetSelectedId {
@@ -49,15 +85,15 @@ export interface GetSelectedId {
 }
 
 export interface GetSelectedData {
-  (store: DataStore): any;
+  (store: DataStore): Data | Record<string, never>;
 }
 
 export interface GetEditedData {
-  (store: DataStore): any;
+  (store: DataStore): Data | null;
 }
 
 export interface GetFilteredData {
-  (store: DataStore): Array<any>;
+  (store: DataStore): Array<Data>;
 }
 
 export interface GetPageLastLoaded {

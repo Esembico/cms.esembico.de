@@ -11,7 +11,6 @@ export interface ListPageProps {
   lastPage: number;
   currentPage: number;
   totalItems: number;
-  fetchData: any;
   selectPage: any;
   selectItem: any;
   selectedId: number | null;

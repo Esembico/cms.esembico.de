@@ -37,7 +37,7 @@ export default function makeEditPage({
 }: MakeEditPageParams): FC<EditPageProps> {
   const Component: FC<EditPageProps> = ({
     editedData,
-    fetchData,
+    selectPage,
     selectedId,
     setEditedData,
     updateEditedData,
@@ -59,8 +59,8 @@ export default function makeEditPage({
     ) as Property;
 
     useEffect(() => {
-      fetchData();
-    }, [fetchData]);
+      selectPage(1);
+    }, [selectPage]);
 
     const params: any = useParams();
     const history = useHistory();

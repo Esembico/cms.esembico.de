@@ -33,7 +33,6 @@ export default function makeListPage({
     lastPage,
     currentPage,
     totalItems,
-    fetchData,
     selectPage,
     selectItem,
     selectedId
@@ -42,8 +41,8 @@ export default function makeListPage({
     const history = useHistory();
 
     useEffect(() => {
-      fetchData();
-    }, [fetchData]);
+      selectPage(1);
+    }, [selectPage]);
 
     const changePage = (page: number) => {
       selectPage(page);

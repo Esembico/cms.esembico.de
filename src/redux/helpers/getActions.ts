@@ -11,6 +11,7 @@ import {
   CommitDataAction
 } from './types/actions';
 import { GetNextPageNumber } from '../../types/stateRegister';
+import { GetCurrentPage, GetPageLastLoaded } from './types/selectors';
 
 export default function getActions(entity: string, endpoint: string): Actions {
   const actionEntity = entity.replace(' ', '_').toUpperCase();
@@ -22,7 +23,7 @@ export default function getActions(entity: string, endpoint: string): Actions {
       const getPageLastLoaded = stateRegister.getSelector(
         entity,
         'getPageLastLoaded'
-      );
+      ) as GetPageLastLoaded;
       const lastLoaded = getPageLastLoaded(state, page);
 
       const diff = Date.now() - lastLoaded;
@@ -70,7 +71,7 @@ export default function getActions(entity: string, endpoint: string): Actions {
       const getCurrentPage = stateRegister.getSelector(
         entity,
         'getCurrentPage'
-      );
+      ) as GetCurrentPage;
       fetchWrapper(`${process.env.REACT_APP_API_URL}/${endpoint}/${id}/`, {
         method: 'DELETE',
         headers: generateHeaders(token)

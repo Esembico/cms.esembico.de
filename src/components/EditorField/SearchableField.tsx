@@ -6,6 +6,7 @@ import getDisplayValue from '../../helpers/getDisplayValue';
 import stateRegister from '../../register/stateRegister';
 import { SearchableFieldProps } from '../types/components';
 import { SetFilteredDataAction } from '../../redux/helpers/types/actions';
+import { GetFilteredData } from '../../redux/helpers/types/selectors';
 
 export default function SearchableField({
   label,
@@ -24,7 +25,7 @@ export default function SearchableField({
   const getFilteredDataSelector = stateRegister.getSelector(
     entity,
     'getFilteredData'
-  );
+  ) as GetFilteredData;
 
   const data = getFilteredDataSelector(state);
 

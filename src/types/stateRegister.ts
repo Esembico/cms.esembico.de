@@ -106,7 +106,8 @@ export type StateOption =
   | Property
   | undefined
   | boolean
-  | GetNextPageNumber;
+  | GetNextPageNumber
+  | Selectors;
 export interface State {
   [option: string]: StateOption;
   header: string;
