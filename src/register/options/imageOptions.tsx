@@ -1,6 +1,6 @@
 import ImageIcon from '@material-ui/icons/Image';
 import { Data } from '../../redux/helpers/types/state';
-import { Options } from '../../types/stateRegister';
+import { FieldProps, Options } from '../../types/stateRegister';
 
 const imageOptions: Options = {
   singularName: 'image',
@@ -37,7 +37,11 @@ const imageOptions: Options = {
       label: 'Preview',
       key: 'image-preview',
       name: 'url',
-      base: 'http://react.esembico.de'
+      base: 'http://react.esembico.de',
+      fieldProps: (data: Data): FieldProps => {
+        const { width, height, alt } = data;
+        return { width, height, alt };
+      }
     },
     {
       type: 'text',

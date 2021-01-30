@@ -30,11 +30,22 @@ export interface IfFunction {
   (data: Data): boolean;
 }
 
+export type FieldProp = string | number | Data | null;
+
+export interface FieldProps {
+  [key: string]: FieldProp;
+}
+
+export interface FieldPropsFunction {
+  (data: Data): FieldProps;
+}
+
 export interface EditorEntryBase {
   label: string | ResolveValueFromDataFunction;
   name: string;
   key?: string;
   if?: IfFunction;
+  fieldProps?: FieldPropsFunction;
 }
 
 export interface TextEditorEntry extends EditorEntryBase {

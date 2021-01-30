@@ -76,6 +76,9 @@ export interface RowProps {
 export interface ImagePreviewProps {
   value: string;
   base?: string;
+  width?: number | string;
+  height?: number | string;
+  alt?: string;
 }
 
 export interface InputErrorsProps {

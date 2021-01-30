@@ -11,6 +11,8 @@ import {
   EditorProps,
   MakeEditorParams
 } from './types/makeEditor';
+import { EditorEntryBase } from '../types/stateRegister';
+import { Data } from '../redux/helpers/types/state';
 
 function createFieldForProperty({
   property,
@@ -25,37 +27,53 @@ function createFieldForProperty({
     }
   }
   const label = getLabelText(property.label, data);
+
+  const additionalProps = property.fieldProps ? property.fieldProps(data) : {};
+
   switch (property.type) {
     case 'select':
       return (
         <Select
+          {...additionalProps}
+          {...others}
           label={label}
-          value={data[property.name]}
+          value={data[property.name] as string}
           onChange={(e: any) => onUpdate(property.name, e.target.value)}
           options={property.options}
           required={property.required}
-          {...others}
         />
       );
     case 'text':
-    case 'url':
       return (
         <TextField
+          {...additionalProps}
+          {...others}
           label={label}
-          value={data[property.name]}
+          value={data[property.name] as string}
           multiline={property.multiline}
           onChange={(e: any) => onUpdate(property.name, e.target.value)}
           required={property.required}
+        />
+      );
+    case 'url':
+      return (
+        <TextField
+          {...additionalProps}
           {...others}
+          label={label}
+          value={data[property.name] as string}
+          onChange={(e: any) => onUpdate(property.name, e.target.value)}
+          required={property.required}
         />
       );
     case 'number':
       return (
         <TextField
+          {...additionalProps}
+          {...others}
           type='number'
           label={label}
-          value={data[property.name]}
-          multiline={property.multiline}
+          value={data[property.name] as string}
           onChange={(e: any) => onUpdate(property.name, e.target.value || null)}
           required={property.required}
           {...others}
@@ -64,26 +82,28 @@ function createFieldForProperty({
     case 'reference':
       return (
         <SearchableField
+          {...additionalProps}
+          {...others}
           label={label}
           entity={property.to}
-          value={data[property.name]}
+          value={data[property.name] as Data}
           onChange={(value: any) => onUpdate(property.name, value)}
           required={property.required}
-          {...others}
         />
       );
     case 'markdown':
       return (
         <MarkdownEditor
-          label={label}
-          value={data[property.name]}
-          onChange={(value: any) => onUpdate(property.name, value)}
+          {...additionalProps}
           {...others}
+          label={label}
+          value={data[property.name] as string}
+          onChange={(value: any) => onUpdate(property.name, value)}
         />
       );
     case 'generated':
       let value = data[property.name];
-      if (property.dependsOn.includes(lastEditedField)) {
+      if (lastEditedField && property.dependsOn.includes(lastEditedField)) {
         value = property.value(data);
         if (value !== data[property.name]) {
           onUpdate(property.name, value, false);
@@ -91,21 +111,30 @@ function createFieldForProperty({
       }
       return (
         <TextField
+          {...additionalProps}
+          {...others}
           label={label}
           InputProps={{
             readOnly: true
           }}
-          value={value}
-          multiline={property.multiline}
+          value={value as string}
           onChange={(e: any) => onUpdate(property.name, e.target.value)}
           required={property.required}
-          {...others}
         />
       );
     case 'image-preview':
-      return <ImagePreview value={data[property.name]} base={property.base} />;
+      return (
+        <ImagePreview
+          {...additionalProps}
+          {...others}
+          value={data[property.name] as string}
+          base={property.base}
+        />
+      );
     default:
-      return <span>{data[property.name]}</span>;
+      throw Error(
+        `Unsupported type for field ${(property as EditorEntryBase).name}`
+      );
   }
 }
 
