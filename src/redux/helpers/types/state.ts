@@ -11,7 +11,7 @@ export interface PageLoadedLookup {
   [key: number]: number;
 }
 export interface DataStore {
-  [key: string]: any;
+  [key: string]: DataState;
 }
 export interface IdLookup {
   [key: number]: Data;
@@ -30,4 +30,5 @@ export interface DataState {
   pageLoaded: PageLoadedLookup;
   totalItems: number;
   lastEditedField: string | null;
+  [key: string]: any;
 }

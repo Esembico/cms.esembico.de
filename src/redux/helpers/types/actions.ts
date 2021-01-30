@@ -1,4 +1,5 @@
-import { Data } from './state';
+import { AnyAction } from 'redux';
+import { Data, DataStore } from './state';
 
 export interface GetPageAction {
   (page: number, forceReload?: boolean): DispatchActionFunction;
@@ -42,11 +43,15 @@ export interface Actions {
 }
 
 export interface GetState {
-  (): any;
+  (): DataStore;
+}
+
+export interface DispatchFunction {
+  (action: DispatchActionFunction | AnyAction): void;
 }
 
 export interface DispatchActionFunction {
-  (dispatch: any, getState: GetState): void;
+  (dispatch: DispatchFunction, getState: GetState): void;
 }
 
 export interface JsonResponse {
