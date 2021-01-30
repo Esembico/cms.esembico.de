@@ -25,6 +25,10 @@ export type AuthActionType =
   | SetUsernameActionType
   | SetAuthErrorActionType;
 
+export interface ValidateAuthFunction {
+  (): void;
+}
+
 export interface AuthFunction {
   (username: string, password: string): void;
 }

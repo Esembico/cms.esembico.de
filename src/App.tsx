@@ -13,6 +13,7 @@ import {
   ThemeProvider
 } from '@material-ui/core/styles';
 import CssBaseLine from '@material-ui/core/CssBaseline';
+import { AppProps } from './types/App';
 
 import './css/App.css';
 import 'esembico-common/dist/styles/css/CodeHighlighter.css';
@@ -21,11 +22,7 @@ import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import Login from './pages/Login';
 
-interface Props {
-  validateAuth: any;
-}
-
-function App({ validateAuth }: Props) {
+function App({ validateAuth }: AppProps) {
   const routes = stateRegister.getRoutes();
   validateAuth();
 
