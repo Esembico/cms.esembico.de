@@ -1,25 +1,25 @@
-import { Data } from '../../redux/helpers/types/state';
-import { EditorEntry } from '../../types/stateRegister';
+import { Data, FieldValue } from '../../redux/helpers/types/state';
+import { EditorEntry, InputErrors } from '../../types/stateRegister';
 
 export interface UpdateEvent {
-  (field: string, newValue: any, trackField?: boolean): void;
+  (field: string, newValue: FieldValue, trackField?: boolean): void;
 }
 
 export interface CreateFieldForPropertyParams {
   property: EditorEntry;
   data: Data;
   onUpdate: UpdateEvent;
-  errors: any;
+  errors: InputErrors;
   lastEditedField: string | null;
 }
 
 export interface MakeEditorParams {
-  properties: any;
+  properties: Array<EditorEntry>;
 }
 
 export interface EditorProps {
-  data: any;
+  data: Data;
   onUpdate: UpdateEvent;
-  errors: any;
+  errors: Record<string, InputErrors>;
   lastEditedField: string | null;
 }

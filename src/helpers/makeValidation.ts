@@ -1,9 +1,10 @@
-import { EditorEntry } from '../types/stateRegister';
+import { EditorEntry, ValidateData } from '../types/stateRegister';
 import getLabelText from './getLabelText';
 import makeValidationErrorHandler from './makeValidationErrorHandler';
-import { Validation } from './types/makeValidation';
 
-export default function makeValidation(editor: Array<EditorEntry>): Validation {
+export default function makeValidation(
+  editor: Array<EditorEntry>
+): ValidateData {
   return (data) => {
     const errors = {};
     const { required, requireNumber, requireUrl } = makeValidationErrorHandler(

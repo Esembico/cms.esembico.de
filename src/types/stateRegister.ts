@@ -12,7 +12,7 @@ import { Data } from '../redux/helpers/types/state';
 export type InputErrors = Array<string>;
 
 export interface ValidateData {
-  (data?: Data): InputErrors | Record<string, never>;
+  (data: Data): Record<string, InputErrors> | Record<string, never>;
 }
 export interface ResolveValueFromDataFunction {
   (data: Data): string;
