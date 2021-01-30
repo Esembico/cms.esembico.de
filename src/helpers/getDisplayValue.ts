@@ -1,17 +1,22 @@
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export default function getDisplayValue(obj: any, displayDefinition: any): any {
-  if (!obj) {
+import { Data } from '../redux/helpers/types/state';
+import { ResolveValueFromDataFunction } from '../types/stateRegister';
+
+export default function getDisplayValue(
+  data: Data,
+  displayDefinition: string | ResolveValueFromDataFunction
+): string | number | Data {
+  if (!data) {
     return '';
   }
-  if (typeof obj !== 'object') {
-    return obj;
+  if (typeof data !== 'object') {
+    return data;
   }
   if (typeof displayDefinition === 'string') {
-    return obj[displayDefinition];
+    return data[displayDefinition];
   }
 
   if (typeof displayDefinition === 'function') {
-    return displayDefinition(obj);
+    return displayDefinition(data);
   }
 
   return '';

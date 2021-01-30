@@ -44,7 +44,7 @@ export default function SearchableField({
       <Autocomplete
         options={data}
         getOptionLabel={(option) =>
-          getDisplayValue(option, primaryProperty.display)
+          getDisplayValue(option, primaryProperty.display) as string
         }
         onChange={(_, newValue) => {
           onChange(newValue);
