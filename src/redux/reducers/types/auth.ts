@@ -24,3 +24,7 @@ export type AuthActionType =
   | SetTokenActionType
   | SetUsernameActionType
   | SetAuthErrorActionType;
+
+export interface AuthFunction {
+  (username: string, password: string): void;
+}

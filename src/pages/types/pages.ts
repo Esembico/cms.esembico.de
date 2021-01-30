@@ -1,4 +1,6 @@
+import { AuthFunction } from '../../redux/reducers/types/auth';
+
 export interface LoginProps {
-  auth: any;
+  auth: AuthFunction;
   token: string | null;
 }
