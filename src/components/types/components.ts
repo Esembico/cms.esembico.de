@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ChangeEvent, MouseEvent, ReactNode } from 'react';
 import { Data } from '../../redux/helpers/types/state';
 import { Column, Link, InputErrors } from '../../types/stateRegister';
 
@@ -12,7 +12,7 @@ export interface ButtonWithLoadingProps {
   loading?: boolean;
   children: ReactNode;
   type?: 'button' | 'submit' | 'reset';
-  onClick?: any;
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   color?: 'inherit' | 'default' | 'primary' | 'secondary';
 }
 
@@ -31,8 +31,8 @@ export interface PrivateRouteProps {
 }
 
 export interface DrawerContentProps {
-  handleDrawerClose: any;
-  classes: any;
+  handleDrawerClose: () => void;
+  classes: Record<'drawerHeader', string>;
   entityLinks: Array<Link>;
 }
 
@@ -40,8 +40,8 @@ export interface BaseProps {
   children: ReactNode;
   token: string | null;
   sidebarVisible: boolean;
-  setSidebarVisible: any;
-  logout: any;
+  setSidebarVisible: (visible: boolean) => void;
+  logout: () => void;
 }
 
 export interface PageData {
@@ -54,8 +54,8 @@ export interface DataTableProps {
   columns: Array<Column>;
   pageData: PageData;
   totalItems: number;
-  onPageChange: any;
-  onSelect: any;
+  onPageChange: (page: number) => void;
+  onSelect: (id: number) => void;
   selected: number | null;
   className: string;
 }
@@ -88,7 +88,7 @@ export interface InputErrorsProps {
 export interface MarkdownEditorProps {
   label: string;
   value: string;
-  onChange: any;
+  onChange: (value: string) => void;
   errors: InputErrors;
 }
 
@@ -101,7 +101,7 @@ export interface SearchableFieldProps {
   label: string;
   entity: string;
   value: Data;
-  onChange: any;
+  onChange: (newValue: Data | null) => void;
   errors: InputErrors;
   required?: boolean;
 }
@@ -116,7 +116,7 @@ export interface SelectProps {
   value: string;
   options: Array<SelectOption>;
   errors: InputErrors;
-  onChange: any;
+  onChange: (event: ChangeEvent<{ name?: string; value: unknown }>) => void;
   required?: boolean;
 }
 
@@ -125,7 +125,7 @@ export interface TextFieldProps {
   value: string;
   errors: InputErrors;
   multiline?: boolean;
-  onChange: any;
+  onChange: (event: ChangeEvent) => void;
   required?: boolean;
   type?: string;
   InputProps?: any;
