@@ -2,8 +2,7 @@ import { MutableRefObject, useEffect } from 'react';
 
 export function useOutsideAlerter(
   ref: MutableRefObject<HTMLElement>,
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  callback: any
+  callback: () => void
 ): void {
   useEffect(() => {
     function handleClickOutside(e: MouseEvent): void {
