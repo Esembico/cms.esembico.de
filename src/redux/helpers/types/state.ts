@@ -1,3 +1,5 @@
+export type FieldValue = string | number | Data | null;
+
 export type StateError = Error | string | null;
 
 export interface Data {
@@ -16,6 +18,19 @@ export interface DataStore {
 export interface IdLookup {
   [key: number]: Data;
 }
+
+export type DataStateProperties =
+  | Array<number>
+  | IdLookup
+  | PageLookup
+  | number
+  | string
+  | StateError
+  | null
+  | Data
+  | Array<Data>
+  | PageLoadedLookup;
+
 export interface DataState {
   allIds: Array<number>;
   byIds: IdLookup;
@@ -30,5 +45,5 @@ export interface DataState {
   pageLoaded: PageLoadedLookup;
   totalItems: number;
   lastEditedField: string | null;
-  [key: string]: any;
+  [key: string]: DataStateProperties;
 }

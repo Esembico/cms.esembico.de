@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux';
-import { Data, DataStore } from './state';
+import { Data, DataStore, FieldValue } from './state';
 
 export interface GetPageAction {
   (page: number, forceReload?: boolean): DispatchActionFunction;
@@ -22,7 +22,11 @@ export interface SetEditedDataAction {
 }
 
 export interface UpdateEditedDataAction {
-  (field: string, value: any, trackField?: boolean): DispatchActionFunction;
+  (
+    field: string,
+    value: FieldValue,
+    trackField?: boolean
+  ): DispatchActionFunction;
 }
 
 export interface CommitDataAction {

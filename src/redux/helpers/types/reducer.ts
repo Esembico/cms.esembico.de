@@ -1,4 +1,4 @@
-import { Data, DataState } from './state';
+import { Data, DataState, FieldValue, StateError } from './state';
 
 export interface SelectIdActionType {
   type: string;
@@ -17,13 +17,13 @@ export interface SetEditedDataActionType {
 
 export interface UpdateDataActionType {
   type: string;
-  data: any;
+  data: Data;
 }
 
 export interface UpdateEditedDataActionType {
   type: string;
   field: string;
-  value: any;
+  value: FieldValue;
   trackField: boolean;
 }
 
@@ -42,14 +42,21 @@ export interface SetFilteredDataActionType {
   data: Array<Data>;
 }
 
+export interface FetchPayload {
+  data: Array<Data>;
+  page: number;
+  nextPage: number;
+  count: number;
+}
+
 export interface FetchSuccessActionType {
   type: string;
-  payload: any;
+  payload: FetchPayload;
 }
 
 export interface FetchErrorActionType {
   type: string;
-  error: any;
+  error: StateError;
 }
 
 export interface SetStatusActionType {

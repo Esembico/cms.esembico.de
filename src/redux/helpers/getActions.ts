@@ -37,7 +37,7 @@ export default function getActions(entity: string, endpoint: string): Actions {
       fetchWrapper(
         `${process.env.REACT_APP_API_URL}/${endpoint}/?page=${page}`,
         {
-          headers: generateHeaders(token)
+          headers: generateHeaders(token as string)
         }
       )
         .then((json) => {
@@ -74,7 +74,7 @@ export default function getActions(entity: string, endpoint: string): Actions {
       ) as GetCurrentPage;
       fetchWrapper(`${process.env.REACT_APP_API_URL}/${endpoint}/${id}/`, {
         method: 'DELETE',
-        headers: generateHeaders(token)
+        headers: generateHeaders(token as string)
       })
         .then(() => {
           const page = getCurrentPage(store);
@@ -97,7 +97,7 @@ export default function getActions(entity: string, endpoint: string): Actions {
       fetchWrapper(
         `${process.env.REACT_APP_API_URL}/${endpoint}/?search=${search}`,
         {
-          headers: generateHeaders(token)
+          headers: generateHeaders(token as string)
         }
       )
         .then((json) => {
@@ -126,7 +126,7 @@ export default function getActions(entity: string, endpoint: string): Actions {
         dispatch({ type: `SET_EDITED_DATA_${actionEntity}`, id });
       } else {
         fetchWrapper(`${process.env.REACT_APP_API_URL}/${endpoint}/${id}/`, {
-          headers: generateHeaders(token)
+          headers: generateHeaders(token as string)
         })
           .then((json) => {
             dispatch({ type: `UPDATE_DATA_${actionEntity}`, data: json });
@@ -165,7 +165,7 @@ export default function getActions(entity: string, endpoint: string): Actions {
         }`,
         {
           method: data.id ? 'PUT' : 'POST',
-          headers: generateHeaders(token),
+          headers: generateHeaders(token as string),
           body: JSON.stringify(data)
         }
       )
