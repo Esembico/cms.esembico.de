@@ -1,13 +1,13 @@
+import { Data } from '../redux/helpers/types/state';
+import { InputErrors } from '../types/stateRegister';
 import {
   RequiredHandler,
   ValidationErrorHandler
 } from './types/makeValidationErrorHandler';
 
 export default function makeValidationErrorHandler(
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  errors: any,
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  data: any
+  errors: Record<string, InputErrors>,
+  data: Data
 ): ValidationErrorHandler {
   const required: RequiredHandler = (name, property) => {
     if (!data[property]) {
@@ -20,7 +20,7 @@ export default function makeValidationErrorHandler(
 
   const requireNumber: RequiredHandler = (name, property) => {
     const value = data[property];
-    if (value && isNaN(value)) {
+    if (value && isNaN(value as number)) {
       if (!errors[property]) {
         errors[property] = [];
       }
@@ -32,7 +32,7 @@ export default function makeValidationErrorHandler(
     const value = data[property];
     try {
       // eslint-disable-next-line no-new
-      new URL(value, 'http://esembico.de');
+      new URL(value as string, 'http://esembico.de');
     } catch {
       if (!errors[property]) {
         errors[property] = [];
