@@ -1,6 +1,7 @@
 import { bindActionCreators } from 'redux';
 import stateRegister from '../../register/stateRegister';
 import { Mappers } from './types/mappers';
+import { addAlertAction } from '../reducers/alert';
 
 export default function getMappers(entity: string): Mappers {
   const mapStateToProps = (state: any) => {
@@ -58,7 +59,8 @@ export default function getMappers(entity: string): Mappers {
         setEditedData: setEditedDataAction,
         updateEditedData: updateEditedDataAction,
         commitData: commitDataAction,
-        deleteItem: deleteItemAction
+        deleteItem: deleteItemAction,
+        addAlert: addAlertAction
       },
       dispatch
     );

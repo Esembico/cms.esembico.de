@@ -1,5 +1,6 @@
 import { ChangeEvent, MouseEvent, ReactNode } from 'react';
 import { Data } from '../../redux/helpers/types/state';
+import { AlertData } from '../../redux/reducers/types/alert';
 import { Column, Link, InputErrors } from '../../types/stateRegister';
 
 export interface HeaderProps {
@@ -129,4 +130,9 @@ export interface TextFieldProps {
   required?: boolean;
   type?: string;
   InputProps?: any;
+}
+
+export interface AlertDisplayProps {
+  alerts: Record<string, AlertData>;
+  removeAlert: (id: string) => void;
 }

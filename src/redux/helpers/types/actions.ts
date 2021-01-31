@@ -5,8 +5,16 @@ export interface GetPageAction {
   (page: number, forceReload?: boolean): DispatchActionFunction;
 }
 
+export interface ErrorCallback {
+  (error: any): void;
+}
+
 export interface DeleteItemAction {
-  (id: number, callback: FetchSuccessCallback): DispatchActionFunction;
+  (
+    id: number,
+    callback: FetchSuccessCallback,
+    errorCallback?: ErrorCallback
+  ): DispatchActionFunction;
 }
 
 export interface SetFilteredDataAction {
@@ -30,7 +38,11 @@ export interface UpdateEditedDataAction {
 }
 
 export interface CommitDataAction {
-  (data: Data, callback: FetchSuccessCallback): DispatchActionFunction;
+  (
+    data: Data,
+    callback: FetchSuccessCallback,
+    errorCallback: ErrorCallback
+  ): DispatchActionFunction;
 }
 
 export type ActionFunction =

@@ -44,7 +44,8 @@ export default function makeEditPage({
     commitData,
     deleteItem,
     status,
-    lastEditedField
+    lastEditedField,
+    addAlert
   }) => {
     const classes = useStyles();
     const [errors, setErrors] = useState({});
@@ -85,16 +86,36 @@ export default function makeEditPage({
 
     const saveEntry = () => {
       if (Object.keys(errors).length === 0) {
-        commitData(editedData, (data: any) => {
-          history.push(stateRegister.getEditUrl(entity, data.id));
-        });
+        commitData(
+          editedData,
+          (data: any) => {
+            history.push(stateRegister.getEditUrl(entity, data.id));
+          },
+          (error: any) => {
+            addAlert({
+              severity: 'error',
+              title: 'Failed to Save',
+              message: error.message
+            });
+          }
+        );
       }
     };
 
     const onDelete = () => {
-      deleteItem(selectedId, () => {
-        history.push(stateRegister.getListUrl(entity));
-      });
+      deleteItem(
+        selectedId,
+        () => {
+          history.push(stateRegister.getListUrl(entity));
+        },
+        (error: any) => {
+          addAlert({
+            severity: 'error',
+            title: 'Failed to Delete',
+            message: error.message
+          });
+        }
+      );
       setConfirmationOpen(false);
     };
 

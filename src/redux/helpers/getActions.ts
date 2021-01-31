@@ -63,7 +63,7 @@ export default function getActions(entity: string, endpoint: string): Actions {
     };
   };
 
-  const deleteItemAction: DeleteItemAction = (id, callback) => {
+  const deleteItemAction: DeleteItemAction = (id, callback, errorCallback) => {
     return (dispatch, storeGetter) => {
       dispatch({ type: `SET_STATUS_${actionEntity}`, status: 'deleting' });
       const store = storeGetter();
@@ -86,6 +86,9 @@ export default function getActions(entity: string, endpoint: string): Actions {
         })
         .catch((error) => {
           dispatch({ type: `FETCH_${actionEntity}_ERROR`, error });
+          if (errorCallback) {
+            errorCallback(error);
+          }
         });
     };
   };
@@ -154,7 +157,11 @@ export default function getActions(entity: string, endpoint: string): Actions {
     };
   };
 
-  const commitDataAction: CommitDataAction = (data, callback) => {
+  const commitDataAction: CommitDataAction = (
+    data,
+    callback,
+    errorCallback
+  ) => {
     return (dispatch, storeGetter) => {
       const store = storeGetter();
       const token = store.auth.token;
@@ -180,8 +187,11 @@ export default function getActions(entity: string, endpoint: string): Actions {
             callback(json);
           }
         })
-        .catch((err) => {
-          dispatch({ type: `FETCH_${actionEntity}_ERROR`, error: err });
+        .catch((error) => {
+          dispatch({ type: `FETCH_${actionEntity}_ERROR`, error });
+          if (errorCallback) {
+            errorCallback(error);
+          }
         });
     };
   };

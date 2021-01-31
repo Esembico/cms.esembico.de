@@ -6,6 +6,7 @@ import PrivateRoute from './components/PrivateRoute';
 import stateRegister from './register/stateRegister';
 import { AnyAction, bindActionCreators, Dispatch } from 'redux';
 import Base from './components/Base';
+import AlertDisplay from './components/AlertDisplay';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import {
   createMuiTheme,
@@ -43,6 +44,7 @@ function App({ validateAuth }: AppProps) {
       <CssBaseLine />
       <Router>
         <Base>
+          <AlertDisplay />
           <Switch>
             <Route exact={true} path='/login' component={Login} />
             {routes.map((route) => {
