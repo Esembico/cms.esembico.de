@@ -15,7 +15,7 @@ export function fetchWrapper(url: string, options: RequestInit): Promise<any> {
       .then((res) => {
         if (!res.ok) {
           res.json().then((json) => {
-            reject({ status: res.status, message: json });
+            reject({ status: res.status, message: json.detail });
           });
           return;
         }
