@@ -1,9 +1,17 @@
-import { SET_TOKEN, SET_USERNAME, SET_AUTH_ERROR } from '../actionTypes';
+import {
+  SET_TOKEN,
+  SET_USERNAME,
+  SET_AUTH_ERROR,
+  SET_SUPERUSER,
+  SET_PERMISSIONS
+} from '../actionTypes';
 import { generateHeaders, fetchWrapper } from '../../helpers/api';
 import {
   AuthActionType,
   AuthState,
   SetAuthErrorActionType,
+  SetPermissionsActionType,
+  SetSuperuserActionType,
   SetTokenActionType,
   SetUsernameActionType
 } from './types/auth';
@@ -14,7 +22,9 @@ const localToken = localStorage.getItem('token');
 const initialState: AuthState = {
   token: localToken,
   username: null,
-  error: null
+  error: null,
+  superuser: false,
+  permissions: []
 };
 
 export function logoutAction(): DispatchActionFunction {
@@ -33,6 +43,8 @@ export function validateAuthAction(): DispatchActionFunction {
         | SetTokenActionType
         | SetUsernameActionType
         | SetAuthErrorActionType
+        | SetPermissionsActionType
+        | SetSuperuserActionType
     ) => void,
     stateGetter: () => any
   ) => {
@@ -42,6 +54,8 @@ export function validateAuthAction(): DispatchActionFunction {
     })
       .then((json) => {
         dispatch({ type: SET_USERNAME, username: json.username });
+        dispatch({ type: SET_SUPERUSER, superuser: json.is_superuser });
+        dispatch({ type: SET_PERMISSIONS, permissions: json.user_permissions });
       })
       .catch((error) => {
         dispatch({ type: SET_TOKEN, token: null });
@@ -110,6 +124,16 @@ export default function reducer(
       return {
         ...state,
         error: action.error
+      };
+    case SET_SUPERUSER:
+      return {
+        ...state,
+        superuser: action.superuser
+      };
+    case SET_PERMISSIONS:
+      return {
+        ...state,
+        permissions: action.permissions
       };
     default:
       return state;
