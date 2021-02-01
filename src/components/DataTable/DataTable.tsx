@@ -128,7 +128,7 @@ export default function DataTable({
                   {columns.map((column) => {
                     return (
                       <TableCell key={`${column.header}-${entry.id}`}>
-                        {getDisplayValue(entry, column.display)}
+                        {getDisplayValue(entry, column.display)?.toString()}
                       </TableCell>
                     );
                   })}
