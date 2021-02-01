@@ -132,6 +132,13 @@ export interface TextFieldProps {
   InputProps?: any;
 }
 
+export interface BooleanFieldProps {
+  checked: boolean;
+  onChange: (event: ChangeEvent) => void;
+  label: string;
+  errors: InputErrors;
+}
+
 export interface AlertDisplayProps {
   alerts: Record<string, AlertData>;
   removeAlert: (id: string) => void;

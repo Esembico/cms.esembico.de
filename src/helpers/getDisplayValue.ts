@@ -1,10 +1,10 @@
-import { Data } from '../redux/helpers/types/state';
+import { Data, FieldValue } from '../redux/helpers/types/state';
 import { ResolveValueFromDataFunction } from '../types/stateRegister';
 
 export default function getDisplayValue(
   data: Data,
   displayDefinition: string | ResolveValueFromDataFunction
-): string | number | Data {
+): FieldValue {
   if (!data) {
     return '';
   }

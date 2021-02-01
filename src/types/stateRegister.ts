@@ -7,7 +7,7 @@ import { Actions } from '../redux/helpers/types/actions';
 import { Mappers } from '../redux/helpers/types/mappers';
 import { ReducerFunction } from '../redux/helpers/types/reducer';
 import { Selectors } from '../redux/helpers/types/selectors';
-import { Data } from '../redux/helpers/types/state';
+import { Data, FieldValue } from '../redux/helpers/types/state';
 
 export type InputErrors = Array<string>;
 
@@ -33,7 +33,7 @@ export interface IfFunction {
 export type FieldProp = string | number | Data | null;
 
 export interface FieldProps {
-  [key: string]: FieldProp;
+  [key: string]: FieldValue;
 }
 
 export interface FieldPropsFunction {
@@ -94,6 +94,11 @@ export interface ImagePreviewEditorEntry extends EditorEntryBase {
   required?: false;
 }
 
+export interface BooleanEditorEntry extends EditorEntryBase {
+  type: 'boolean';
+  required?: boolean;
+}
+
 export type EditorEntry =
   | TextEditorEntry
   | NumberEditorEntry
@@ -102,7 +107,8 @@ export type EditorEntry =
   | ReferenceEditorEntry
   | MarkdownEditorEntry
   | GeneratedEditorEntry
-  | ImagePreviewEditorEntry;
+  | ImagePreviewEditorEntry
+  | BooleanEditorEntry;
 
 export type StateOption =
   | number

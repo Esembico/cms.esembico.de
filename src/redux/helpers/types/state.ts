@@ -1,9 +1,9 @@
-export type FieldValue = string | number | Data | null;
+export type FieldValue = string | number | Data | null | boolean;
 
 export type StateError = Error | string | null;
 
 export interface Data {
-  [key: string]: string | number | Data;
+  [key: string]: FieldValue;
   id: number;
 }
 export interface PageLookup {

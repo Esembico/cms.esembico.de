@@ -4,6 +4,7 @@ import recommendationOptions from './options/recommendationOptions';
 import imageOptions from './options/imageOptions';
 import prototypeOptions from './options/prototypeOptions';
 import pageOptions from './options/pageOptions';
+import userOptions from './options/userOptions';
 
 stateRegister.setGlobalOptions({
   buildValidationFromEditor: true,
@@ -25,3 +26,4 @@ stateRegister.register('recommendations', recommendationOptions);
 stateRegister.register('prototypes', prototypeOptions);
 stateRegister.register('pages', pageOptions);
 stateRegister.register('images', imageOptions);
+stateRegister.register('users', userOptions);

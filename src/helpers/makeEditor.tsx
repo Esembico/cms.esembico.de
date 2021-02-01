@@ -6,6 +6,7 @@ import MarkdownEditor from '../components/EditorField/MarkdownEditor';
 import Select from '../components/EditorField/SelectImpl';
 import getLabelText from './getLabelText';
 import ImagePreview from '../components/EditorField/ImagePreview';
+import BooleanField from '../components/EditorField/BooleanField';
 import {
   CreateFieldForPropertyParams,
   EditorProps,
@@ -129,6 +130,16 @@ function createFieldForProperty({
           {...others}
           value={data[property.name] as string}
           base={property.base}
+        />
+      );
+    case 'boolean':
+      return (
+        <BooleanField
+          {...others}
+          {...additionalProps}
+          label={label}
+          checked={data[property.name] as boolean}
+          onChange={(e: any) => onUpdate(property.name, e.target.checked)}
         />
       );
     default:
