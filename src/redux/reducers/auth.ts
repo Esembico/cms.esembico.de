@@ -41,7 +41,7 @@ export function validateAuthAction(): DispatchActionFunction {
       headers: generateHeaders(state.auth.token)
     })
       .then((json) => {
-        dispatch({ type: SET_USERNAME, username: json.user });
+        dispatch({ type: SET_USERNAME, username: json.username });
       })
       .catch((error) => {
         dispatch({ type: SET_TOKEN, token: null });
@@ -59,7 +59,7 @@ export function authAction(
       action:
         | SetAuthErrorActionType
         | SetTokenActionType
-        | SetUsernameActionType
+        | DispatchActionFunction
     ) => void
   ) => {
     fetchWrapper(`${process.env.REACT_APP_API_URL}/auth/`, {
@@ -77,7 +77,7 @@ export function authAction(
           dispatch({ type: SET_AUTH_ERROR, error: json.non_field_errors });
         } else {
           dispatch({ type: SET_TOKEN, token: json.token });
-          dispatch({ type: SET_USERNAME, username });
+          dispatch(validateAuthAction());
         }
       })
       .catch((error) => {
