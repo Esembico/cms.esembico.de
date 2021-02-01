@@ -4,6 +4,7 @@ import { Data } from '../../redux/helpers/types/state';
 
 const teamOptions: Options = {
   singularName: 'team member',
+  model: 'member',
   icon: <GroupIcon />,
   endpoint: 'members',
   columns: [

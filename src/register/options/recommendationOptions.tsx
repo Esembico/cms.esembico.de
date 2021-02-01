@@ -6,6 +6,7 @@ import { Data } from '../../redux/helpers/types/state';
 
 const recommendationOptions: Options = {
   singularName: 'recommendation',
+  model: 'recommendation',
   icon: <FeaturedPlayListIcon />,
   columns: [
     {

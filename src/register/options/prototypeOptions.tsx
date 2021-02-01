@@ -3,6 +3,7 @@ import { Options } from '../../types/stateRegister';
 
 const prototypeOptions: Options = {
   singularName: 'prototype',
+  model: 'prototype',
   icon: <EmojiObjectsIcon />,
   columns: [
     {

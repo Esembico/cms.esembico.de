@@ -4,6 +4,7 @@ import { Options } from '../../types/stateRegister';
 
 const pageOptions: Options = {
   singularName: 'page',
+  model: 'page',
   icon: <PagesIcon />,
   columns: [
     {
