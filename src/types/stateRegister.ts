@@ -154,6 +154,7 @@ export interface Options {
   endpoint?: string;
   header?: string;
   getNextPageNumber?: GetNextPageNumber;
+  model?: string;
 }
 export interface Link {
   text: string;

@@ -16,4 +16,7 @@ export interface EditPageProps {
   status: string;
   lastEditedField: string | null;
   addAlert: (data: AlertData) => void;
+  canAdd: boolean;
+  canChange: boolean;
+  canDelete: boolean;
 }

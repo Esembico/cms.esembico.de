@@ -45,7 +45,10 @@ export default function makeEditPage({
     deleteItem,
     status,
     lastEditedField,
-    addAlert
+    addAlert,
+    canAdd,
+    canDelete,
+    canChange
   }) => {
     const classes = useStyles();
     const [errors, setErrors] = useState({});
@@ -147,7 +150,10 @@ export default function makeEditPage({
                   <ButtonGroup color='primary' variant='contained'>
                     <ButtonWithLoading
                       loading={status === 'saving'}
-                      disabled={Object.keys(errors).length !== 0}
+                      disabled={
+                        (id !== 'new' && !canChange) ||
+                        Object.keys(errors).length !== 0
+                      }
                       type='submit'
                     >
                       Save
@@ -163,7 +169,7 @@ export default function makeEditPage({
                       loading={status === 'deleting'}
                       onClick={() => setConfirmationOpen(true)}
                       color='secondary'
-                      disabled={!editedData.id}
+                      disabled={!canDelete || !editedData.id}
                     >
                       Delete
                     </ButtonWithLoading>
@@ -176,7 +182,7 @@ export default function makeEditPage({
               color='primary'
               aria-label='New'
               onClick={newEntry}
-              disabled={!editedData.id}
+              disabled={!canAdd || !editedData.id}
             >
               <AddIcon />
             </Fab>

@@ -14,4 +14,5 @@ export interface ListPageProps {
   selectPage: any;
   selectItem: any;
   selectedId: number | null;
+  canAdd: boolean;
 }

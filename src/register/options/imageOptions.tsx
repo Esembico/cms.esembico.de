@@ -4,6 +4,7 @@ import { FieldProps, Options } from '../../types/stateRegister';
 
 const imageOptions: Options = {
   singularName: 'image',
+  model: 'image',
   icon: <ImageIcon />,
   columns: [
     {

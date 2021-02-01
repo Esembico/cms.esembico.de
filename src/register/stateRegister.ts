@@ -59,15 +59,17 @@ class StateRegister {
     if (!editor) {
       throw new Error('editor is required');
     }
+    const model = mergedOptions.model ?? name;
     this.states[name] = {
       ...mergedOptions,
       actions: getActions(name, mergedOptions.endpoint || name),
       selectors: getSelectors(name),
-      mappers: getMappers(name),
+      mappers: getMappers(name, model),
       reducer: createReducer(name),
       header: mergedOptions.header || toUpperCaseFirstChar(name),
       validateData,
-      editor
+      editor,
+      model
     };
   }
 

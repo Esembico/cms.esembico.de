@@ -35,7 +35,8 @@ export default function makeListPage({
     totalItems,
     selectPage,
     selectItem,
-    selectedId
+    selectedId,
+    canAdd
   }) => {
     const classes = useStyles();
     const history = useHistory();
@@ -81,6 +82,7 @@ export default function makeListPage({
                 color='primary'
                 aria-label='New'
                 onClick={newEntry}
+                disabled={!canAdd}
               >
                 <AddIcon />
               </Fab>
