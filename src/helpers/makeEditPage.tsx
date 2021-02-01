@@ -38,7 +38,6 @@ export default function makeEditPage({
   const Component: FC<EditPageProps> = ({
     editedData,
     selectPage,
-    selectedId,
     setEditedData,
     updateEditedData,
     commitData,
@@ -107,7 +106,7 @@ export default function makeEditPage({
 
     const onDelete = () => {
       deleteItem(
-        selectedId,
+        id,
         () => {
           history.push(stateRegister.getListUrl(entity));
         },
