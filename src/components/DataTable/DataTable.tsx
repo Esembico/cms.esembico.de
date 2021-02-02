@@ -131,7 +131,7 @@ export default function DataTable({
                       <TableCell key={`${column.header}-${entry.id}`}>
                         {typeof display === 'object'
                           ? display
-                          : display.toString()}
+                          : display?.toString()}
                       </TableCell>
                     );
                   })}
