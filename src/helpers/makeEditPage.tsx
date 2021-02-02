@@ -19,7 +19,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import getDisplayValue from './getDisplayValue';
 import ButtonWithLoading from '../components/ButtonWithLoading';
 import { MakeEditPageParams, EditPageProps } from './types/makeEditPage';
-import { Property, ValidateData } from '../types/stateRegister';
+import { Property, ValidateData, InputErrors } from '../types/stateRegister';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -35,23 +35,25 @@ export default function makeEditPage({
   Editor,
   entity
 }: MakeEditPageParams): FC<EditPageProps> {
-  const Component: FC<EditPageProps> = ({
-    editedData,
-    selectPage,
-    setEditedData,
-    updateEditedData,
-    commitData,
-    deleteItem,
-    status,
-    lastEditedField,
-    addAlert,
-    canAdd,
-    canDelete,
-    canChange
-  }) => {
+  const Component: FC<EditPageProps> = (props) => {
+    const {
+      editedData,
+      selectPage,
+      setEditedData,
+      updateEditedData,
+      commitData,
+      deleteItem,
+      status,
+      lastEditedField,
+      addAlert,
+      canAdd,
+      canDelete,
+      canChange
+    } = props;
     const classes = useStyles();
     const [errors, setErrors] = useState({});
     const [confirmationOpen, setConfirmationOpen] = useState(false);
+    const actions = stateRegister.getEditorActions(entity);
     const validateData = stateRegister.getOption(
       entity,
       'validateData'
@@ -147,23 +149,41 @@ export default function makeEditPage({
                 />
                 <Column width={100}>
                   <ButtonGroup color='primary' variant='contained'>
-                    <ButtonWithLoading
-                      loading={status === 'saving'}
-                      disabled={
-                        (id !== 'new' && !canChange) ||
-                        Object.keys(errors).length !== 0
-                      }
-                      type='submit'
-                    >
-                      Save
-                    </ButtonWithLoading>
-                    <Button
-                      onClick={() =>
-                        history.push(stateRegister.getListUrl(entity))
-                      }
-                    >
-                      Cancel
-                    </Button>
+                    {actions.map((action) => {
+                      return (
+                        <ButtonWithLoading
+                          onClick={() => {
+                            if (action.onClick) {
+                              action.onClick({
+                                props,
+                                id,
+                                errors: errors as InputErrors,
+                                entity,
+                                history
+                              });
+                            }
+                          }}
+                          disabled={
+                            action.disabled
+                              ? action.disabled({
+                                  props,
+                                  id,
+                                  errors: errors as InputErrors,
+                                  entity,
+                                  history
+                                })
+                              : false
+                          }
+                          loading={
+                            action.loading ? action.loading(status) : false
+                          }
+                          key={action.name}
+                          type={action.isSubmitAction ? 'submit' : undefined}
+                        >
+                          {action.text}
+                        </ButtonWithLoading>
+                      );
+                    })}
                     <ButtonWithLoading
                       loading={status === 'deleting'}
                       onClick={() => setConfirmationOpen(true)}

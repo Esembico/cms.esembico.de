@@ -26,7 +26,30 @@ class StateRegister {
   constructor() {
     this.states = {};
     this.defaultOptions = {
-      validateData: () => ({})
+      validateData: () => ({}),
+      editorActions: [
+        {
+          name: 'save',
+          text: 'Save',
+          isSubmitAction: true,
+          loading: (status) => {
+            return status === 'saving';
+          },
+          disabled: ({ props, id, errors }) => {
+            return (
+              (id !== 'new' && !props.canChange) ||
+              Object.keys(errors).length !== 0
+            );
+          }
+        },
+        {
+          name: 'cancel',
+          text: 'Cancel',
+          onClick: ({ history, entity }) => {
+            history.push(this.getListUrl(entity));
+          }
+        }
+      ]
     };
     this.globalOptions = {};
   }
@@ -69,7 +92,8 @@ class StateRegister {
       header: mergedOptions.header || toUpperCaseFirstChar(name),
       validateData,
       editor,
-      model
+      model,
+      editorActions: mergedOptions.editorActions ?? []
     };
   }
 
@@ -149,6 +173,10 @@ class StateRegister {
     });
 
     return reducers;
+  }
+
+  getEditorActions(entity: string) {
+    return this.states[entity].editorActions;
   }
 }
 

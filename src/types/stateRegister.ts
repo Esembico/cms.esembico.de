@@ -8,6 +8,7 @@ import { Mappers } from '../redux/helpers/types/mappers';
 import { ReducerFunction } from '../redux/helpers/types/reducer';
 import { Selectors } from '../redux/helpers/types/selectors';
 import { Data, FieldValue } from '../redux/helpers/types/state';
+import * as H from 'history';
 
 export type InputErrors = Array<string>;
 
@@ -124,7 +125,8 @@ export type StateOption =
   | undefined
   | boolean
   | GetNextPageNumber
-  | Selectors;
+  | Selectors
+  | Array<EditorAction>;
 export interface State {
   [option: string]: StateOption;
   header: string;
@@ -139,6 +141,7 @@ export interface State {
   primaryProperty?: Property;
   buildValidationFromEditor?: boolean;
   getNextPageNumber?: GetNextPageNumber;
+  editorActions: Array<EditorAction>;
 }
 export interface States {
   [key: string]: State;
@@ -149,6 +152,24 @@ export interface GetNextPageNumberParams {
 export interface GetNextPageNumber {
   (json: GetNextPageNumberParams): number | null;
 }
+
+export interface EditorActionParams {
+  props: EditPageProps;
+  id: number | string;
+  entity: string;
+  errors: InputErrors;
+  history: H.History<unknown>;
+}
+
+export interface EditorAction {
+  name: string;
+  text: string;
+  isSubmitAction?: boolean;
+  onClick?: (params: EditorActionParams) => void;
+  loading?: (status: string) => boolean;
+  disabled?: (params: EditorActionParams) => boolean;
+}
+
 export interface Options {
   singularName?: string;
   icon?: JSX.Element;
@@ -161,6 +182,7 @@ export interface Options {
   header?: string;
   getNextPageNumber?: GetNextPageNumber;
   model?: string;
+  editorActions?: Array<EditorAction>;
 }
 export interface Link {
   text: string;
