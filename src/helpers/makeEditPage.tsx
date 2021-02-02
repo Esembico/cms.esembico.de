@@ -47,8 +47,7 @@ export default function makeEditPage({
       lastEditedField,
       addAlert,
       canAdd,
-      canDelete,
-      canChange
+      canDelete
     } = props;
     const classes = useStyles();
     const [errors, setErrors] = useState({});
