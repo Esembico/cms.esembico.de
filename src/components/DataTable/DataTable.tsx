@@ -126,9 +126,12 @@ export default function DataTable({
                   key={entry.id}
                 >
                   {columns.map((column) => {
+                    const display = getDisplayValue(entry, column.display);
                     return (
                       <TableCell key={`${column.header}-${entry.id}`}>
-                        {getDisplayValue(entry, column.display)}
+                        {typeof display === 'object'
+                          ? display
+                          : display.toString()}
                       </TableCell>
                     );
                   })}
