@@ -144,7 +144,7 @@ export default function DataTable({
               <TableRow>
                 <TablePagination
                   rowsPerPageOptions={[]}
-                  colSpan={3}
+                  colSpan={columns.length}
                   count={totalItems}
                   rowsPerPage={parseInt(
                     process.env.REACT_APP_ROWS_PER_PAGE ?? '50'
