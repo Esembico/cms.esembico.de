@@ -14,10 +14,12 @@ import {
   Route,
   Reducers,
   EditorEntry,
-  StateOption
+  StateOption,
+  Property
 } from '../types/stateRegister';
 import { FC } from 'react';
 import { EditorProps } from '../helpers/types/makeEditor';
+import getDisplayValue from '../helpers/getDisplayValue';
 
 class StateRegister {
   states: States;
@@ -47,6 +49,62 @@ class StateRegister {
           text: 'Cancel',
           onClick: ({ history, entity }) => {
             history.push(this.getListUrl(entity));
+          }
+        },
+        {
+          name: 'delete',
+          text: 'Delete',
+          loading: (status) => {
+            return status === 'deleting';
+          },
+          disabled: ({ props }) => {
+            return !props.canDelete || !props.editedData.id;
+          },
+          buttonColor: 'secondary',
+          onClick: ({ entity, props }, showDialog, closeDialog) => {
+            const { editedData } = props;
+            showDialog({
+              title: `Delete ${this.getOption(entity, 'singularName')}`,
+              show: true,
+              text: `Are you sure you want to delete the following ${this.getOption(
+                entity,
+                'singularName'
+              )}: ${getDisplayValue(
+                editedData,
+                (this.getOption(entity, 'primaryProperty') as Property).display
+              )}`,
+              actions: [
+                {
+                  name: 'yes',
+                  text: 'Yes',
+                  buttonColor: 'secondary',
+                  onClick: ({ props, id, history, entity }) => {
+                    const { addAlert, deleteItem } = props;
+                    deleteItem(
+                      id,
+                      () => {
+                        history.push(this.getListUrl(entity));
+                      },
+                      (error: any) => {
+                        addAlert({
+                          severity: 'error',
+                          title: 'Failed to delete',
+                          message: error.message
+                        });
+                      }
+                    );
+                  }
+                },
+                {
+                  name: 'no',
+                  text: 'No',
+                  buttonColor: 'secondary',
+                  onClick: () => {
+                    closeDialog();
+                  }
+                }
+              ]
+            });
           }
         }
       ]

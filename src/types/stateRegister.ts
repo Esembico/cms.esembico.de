@@ -153,6 +153,14 @@ export interface GetNextPageNumber {
   (json: GetNextPageNumberParams): number | null;
 }
 
+export interface ActionDialogOptions {
+  title?: string;
+  text?: string;
+  show: boolean;
+  component?: JSX.Element;
+  actions?: Array<EditorAction>;
+}
+
 export interface EditorActionParams {
   props: EditPageProps;
   id: number | string;
@@ -165,7 +173,12 @@ export interface EditorAction {
   name: string;
   text: string;
   isSubmitAction?: boolean;
-  onClick?: (params: EditorActionParams) => void;
+  buttonColor?: 'default' | 'inherit' | 'primary' | 'secondary';
+  onClick?: (
+    params: EditorActionParams,
+    showDialog: (options: ActionDialogOptions) => void,
+    closeDialog: () => void
+  ) => void;
   loading?: (status: string) => boolean;
   disabled?: (params: EditorActionParams) => boolean;
 }
