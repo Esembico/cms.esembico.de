@@ -132,7 +132,6 @@ function DrawerContent({
             to={link.to}
             primary={link.text}
             icon={link.icon}
-            exact={true}
           />
         ))}
       </List>
