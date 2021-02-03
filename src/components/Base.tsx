@@ -24,6 +24,7 @@ import Menu from '@material-ui/core/Menu';
 import stateRegister from '../register/stateRegister';
 import { useMediaQuery } from '@material-ui/core';
 import { BaseProps, DrawerContentProps } from './types/components';
+import { NavLink } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -226,6 +227,14 @@ function Base({
                   onClose={handleCloseMenu}
                 >
                   <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                  <MenuItem
+                    to='/settings'
+                    exact={true}
+                    onClick={() => handleCloseMenu()}
+                    component={NavLink}
+                  >
+                    Settings
+                  </MenuItem>
                 </Menu>
               </div>
             </Toolbar>

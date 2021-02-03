@@ -4,5 +4,6 @@ export const SET_AUTH_ERROR = 'SET_AUTH_ERROR';
 export const SET_PERMISSIONS = 'SET_PERMISSIONS';
 export const SET_SUPERUSER = 'SET_SUPERUSER';
 export const SET_SIDEBAR_VISIBLE = 'SET_SIDEBAR_VISIBLE';
+export const SET_THEME = 'SET_THEME';
 export const ADD_ALERT = 'ADD_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';

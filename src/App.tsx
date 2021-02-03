@@ -15,15 +15,18 @@ import {
 } from '@material-ui/core/styles';
 import CssBaseLine from '@material-ui/core/CssBaseline';
 import { AppProps } from './types/App';
+import { getThemeName } from './redux/reducers/selectors/pageState';
 
 import './css/App.css';
 import 'esembico-common/dist/styles/css/CodeHighlighter.css';
 
 import Home from './pages/Home';
+import Settings from './pages/Settings';
 import NotFound from './pages/NotFound';
 import Login from './pages/Login';
+import { ReduxStore } from './redux/reducers/types/base';
 
-function App({ validateAuth }: AppProps) {
+function App({ validateAuth, themeName }: AppProps) {
   const routes = stateRegister.getRoutes();
   validateAuth();
 
@@ -33,11 +36,16 @@ function App({ validateAuth }: AppProps) {
     return responsiveFontSizes(
       createMuiTheme({
         palette: {
-          type: prefersDarkMode ? 'dark' : 'light'
+          type:
+            themeName === 'system'
+              ? prefersDarkMode
+                ? 'dark'
+                : 'light'
+              : themeName
         }
       })
     );
-  }, [prefersDarkMode]);
+  }, [prefersDarkMode, themeName]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -67,6 +75,7 @@ function App({ validateAuth }: AppProps) {
                 />
               );
             })}
+            <PrivateRoute exact={true} path='/settings' component={Settings} />
             <PrivateRoute exact={true} path='/' component={Home} />
             <PrivateRoute path='*' component={NotFound} />
           </Switch>
@@ -76,8 +85,11 @@ function App({ validateAuth }: AppProps) {
   );
 }
 
-const mapStateToProps = () => {
-  return {};
+const mapStateToProps = (state: ReduxStore) => {
+  const themeName = getThemeName(state);
+  return {
+    themeName
+  };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
